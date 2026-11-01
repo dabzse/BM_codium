@@ -1,0 +1,117 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "master" ]
+    tags: [ "v*" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  check-and-test:
+    name: Check & Test (${{ matrix.name }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            name: Linux
+          - os: windows-latest
+            name: Windows
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install system dependencies for GUI (Linux only)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libx11-dev \
+            libxcursor-dev \
+            libxrandr-dev \
+            libxi-dev \
+            libxinerama-dev \
+            libgl1-mesa-dev \
+            libfontconfig1-dev \
+            libasound2-dev \
+            xz-utils
+
+      - name: Setup Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: 1.85.0
+          components: clippy, rustfmt
+
+      - name: Rust cache
+        uses: Swatinem/rust-cache@v2
+
+      - name: Extract Codium version from Cargo.toml
+        shell: bash
+        run: |
+          VERSION=$(grep -m 1 '^version' Cargo.toml | sed -E 's/.*"([^"]+)".*/\1/')
+          echo "Detected version: ${VERSION}"
+          echo "CODIUM_VERSION=${VERSION}" >> "$GITHUB_ENV"
+
+      - name: Check workspace
+        run: cargo check --workspace --all-targets
+
+      - name: Run unit & integration tests
+        run: cargo test --workspace
+
+      - name: Build binaries (Release)
+        run: cargo build --release --workspace --bin edu-codium --bin ai-codium
+
+      # -------------------------------------------------------------
+      # Linux Packaging (.tar.xz)
+      # -------------------------------------------------------------
+      - name: Package Linux release bundle (.tar.xz)
+        if: runner.os == 'Linux'
+        run: |
+          BUNDLE_NAME="codium-v${{ env.CODIUM_VERSION }}-linux-x64"
+          mkdir -p "staging/${BUNDLE_NAME}"
+          cp target/release/edu-codium "staging/${BUNDLE_NAME}/"
+          cp target/release/ai-codium "staging/${BUNDLE_NAME}/"
+          chmod +x "staging/${BUNDLE_NAME}/edu-codium" "staging/${BUNDLE_NAME}/ai-codium"
+          cp -r resources "staging/${BUNDLE_NAME}/"
+          cp -r locales "staging/${BUNDLE_NAME}/"
+          cp settings.json "staging/${BUNDLE_NAME}/"
+          cp README.md "staging/${BUNDLE_NAME}/"
+          tar -cJf "${BUNDLE_NAME}.tar.xz" -C staging "${BUNDLE_NAME}"
+
+      - name: Upload Linux bundle (.tar.xz)
+        if: runner.os == 'Linux'
+        uses: actions/upload-artifact@v4
+        with:
+          name: codium-v${{ env.CODIUM_VERSION }}-linux-x64
+          path: codium-v${{ env.CODIUM_VERSION }}-linux-x64.tar.xz
+
+      # -------------------------------------------------------------
+      # Windows Packaging (.zip)
+      # -------------------------------------------------------------
+      - name: Package Windows release bundle (.zip)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $ver = "${{ env.CODIUM_VERSION }}"
+          $bundleName = "codium-v${ver}-windows-x64"
+          New-Item -ItemType Directory -Force -Path "staging/$bundleName"
+          Copy-Item target/release/edu-codium.exe "staging/$bundleName/"
+          Copy-Item target/release/ai-codium.exe "staging/$bundleName/"
+          Copy-Item -Recurse resources "staging/$bundleName/"
+          Copy-Item -Recurse locales "staging/$bundleName/"
+          Copy-Item settings.json "staging/$bundleName/"
+          Copy-Item README.md "staging/$bundleName/"
+          Compress-Archive -Path "staging/$bundleName" -DestinationPath "${bundleName}.zip"
+
+      - name: Upload Windows bundle (.zip)
+        if: runner.os == 'Windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: codium-v${{ env.CODIUM_VERSION }}-windows-x64
+          path: codium-v${{ env.CODIUM_VERSION }}-windows-x64.zip
