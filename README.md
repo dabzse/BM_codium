@@ -2,10 +2,21 @@
 
 [![Language](assets/rust-lang.svg)](https://www.rust-lang.org/)
 [![GUI](assets/gui_floem_gpu_accelerated.svg)](https://github.com/lapce/floem)
-[![License: AGPL-3.0-or-later](assets/license_AGPLv3.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![License: AGPL-3.0-or-later](assets/license_AGPLv3.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
 [![Dual-License: AGPLv3+ / Commercial](assets/license_AGPLv3+_commercial.svg)](LICENSE)
+[![Binary Size](assets/binary_size.svg)](Binary_Size)
+[![Status](assets/status.svg)](Status)
 
 > High-performance native Rust IDE platform blending the ergonomics of **VS Code**, the hardware-accelerated speed of **Zed**, the clean architecture of **Floem**, and the beloved productivity features of **JetBrains** (Search Everywhere, Run Gutter).
+
+![BM::Codium Preview](assets/BM_AI_codium.png)
+*This is just the beginning. Plenty of room for improvement and further development...*
+
+---
+
+## Hungarian Documentation
+
+A részletes magyar nyelvű leírásért tekintsd meg a [README_hu.md](README_hu.md) fájlt!
 
 ---
 
@@ -21,31 +32,31 @@
 
 ## Beginning and Idea
 
-My **BSc final exam** was on **12 June 2026**, so next day I've decided to build something more to the universities and students...  
-This one is called: **EDU::Codium**. It is an educational text editor not just for learning programming languages, but also using it for school work, labs, university tasks, etc. At last, but not least: for doing the exam tasks.  
-It's **AI-free**. Code completion is disabled by default. Also it contains features for teachers, to create assignments and courses for their students. It is based on **Floem** GUI framework. Inspired by **Zed** IDE, **Lapce** IDE, **Lite-XL** IDE, and mostly **VSCodium** (as the name is also similar).  
+My **BSc final exam** was on **12 June 2026**, so the very next day I decided to build something truly useful for universities and students...  
+This project is called: **EDU::Codium**. It is an educational code editor tailored not just for learning programming languages, but for school assignments, laboratory sessions, university coursework, and above all: **administering quizzes, tests, and exam tasks**.  
+It is **AI-free**: code completion is disabled by default so that students genuinely learn how to program. Furthermore, it includes features for instructors to create assignments and manage courses. Built on the **Floem** GUI framework, it is inspired by **Zed**, **Lapce**, **Lite-XL**, and above all **VSCodium** (sharing a kindred name).  
 
-Alongside it lives **AI::Codium**, the counterpart edition tailored for advanced software engineering with integrated local LLM capabilities.
+Alongside it lives **AI::Codium**, the counterpart edition tailored for advanced software engineers and researchers with integrated, offline local LLM capabilities.
 
 ---
 
 ## Two Dedicated Editions
 
-| Feature               | 🎓 EDU::Codium (`edu-codium`)                                         | ✦ AI::Codium (`ai-codium`)                            |
-| :-------------------- | :-------------------------------------------------------------------- | :---------------------------------------------------- |
-| **Target Audience**   | Universities, High Schools, Students, Teachers, Exams                 | Professional Developers, Researchers                  |
-| **Generative AI**     | **Strictly Disabled** (prevents cheating, enforces learning)          | **Enabled** (Ghost-text completions, LLM chat)        |
-| **Code Completion**   | **Teacher-Configurable** (disabled by default, Kite-style token mode) | Full AI & LSP Autocomplete                            |
-| **Educational Tutor** | **Doc Tutor & Hint Explainer** (explains errors pedagogically)        | AI Explanations & Refactoring suggestions             |
-| **Teacher Policy**    | Configurable via `.codium-edu.toml` (exam mode, lock downs)           | Standard user settings                                |
-| **Binary Size**       | **standalone native binary**                                          | **standalone native binary**                          |
-| **Startup Time**      | **planned to be near-instant** (Rust, small and fast)                 | **planned to be near-instant** (Rust, small and fast) |
+| Feature               | 🎓 EDU::Codium (`edu-codium`)                                        | ✦ AI::Codium (`ai-codium`)                                  |
+| :-------------------- | :------------------------------------------------------------------- | :---------------------------------------------------------- |
+| **Target Audience**   | Universities, High Schools, Students, Teachers, Exams                | Professional Developers, Researchers                        |
+| **Generative AI**     | **Strictly Disabled** (prevents cheating, enforces genuine learning) | **Enabled** (Ghost-text completions, LLM chat)              |
+| **Code Completion**   | **Teacher-Configurable** (disabled by default, „ac”-token mode)      | Full AI & LSP Autocomplete                                  |
+| **Educational Tutor** | **Doc Tutor & Hint Explainer** (explains errors pedagogically)       | AI Explanations & Refactoring suggestions                   |
+| **Teacher Policy**    | Configurable via `.codium-edu.toml` (exam mode, lock downs)          | Standard user settings                                      |
+| **Binary Size**       | **standalone native binary** (see the badge above)                   | **standalone native binary**                                |
+| **Startup Time**      | **planned to be near-instant** (Rust, lightweight and fast)          | **planned to be near-instant** (Rust, lightweight and fast) |
 
 ---
 
 ## Supported Programming Languages
 
-Designed for university computer science curricula, coding bootcamps, and professional software engineering across **17 core programming languages**, along with complete built-in support for daily static web, serverless-web, stylesheets, "read-me" files/books, command shells, and configuration formats:
+Tailored to the demands of university computer science curricula, engineering courses, and professional software development across **18 key programming languages**, along with direct out-of-the-box support for static web, serverless-web, stylesheets, "read-me" files/books, command shells, and configuration formats (23 technologies total):
 
 | Language / Technology | Category                                | File Extensions                        | Recommended LSP                    | Gutter Run (▶) & Doc Tutor Highlights                                                        |
 | :-------------------- | :-------------------------------------- | :------------------------------------- | :--------------------------------- | :------------------------------------------------------------------------------------------- |
@@ -87,28 +98,30 @@ Designed for university computer science curricula, coding bootcamps, and profes
 
 ## Key Ergonomics & User Interface
 
-*::Codium combines the best UX innovations from modern IDEs into a unified, zero-bloat environment:
+BM::Codium combines the best UX innovations from modern IDEs into a unified, zero-bloat environment:
 
 1. **VS Code Familiarity**:
    - **Activity Bar**: Left vertical vector icon strip with active indicator accent.
+   - **Desktop Menubar**: Traditional and intuitive top menu system (File, Edit, View, Tools, Help) with floating foreground dropdowns and keyboard shortcuts.
    - **Primary Sidebar**: Collapsible file explorer with folder trees and language badges.
    - **Tabbed Editor**: Multiple split-ready document tabs with active/inactive contrast and dirty state dots (`●`).
-   - **Bottom Dock**: Multi-tab panel hosting Terminal, Problems diagnostics, and Doc Tutor outputs.
+   - **Bottom Dock**: Multi-tab panel hosting Terminal, Problems diagnostics, and Doc Tutor pedagogic hints/outputs.
    - **Status Bar**: Clean footer with cursor coordinates (`Ln, Col`), Encoding (`UTF-8`), Spaces indent, and Language mode.
+   - **VSCodium Keybindings**: Standard, customizable `keybindings.json` profiles with Hungarian QWERTZ / QWERTY layout tolerance and AltGr normalization.
 
 2. **JetBrains Productivity Features**:
-   - **Search Everywhere (`Shift + Shift` / `Ctrl + P`)**: Central titlebar pill allowing universal search across files, symbols, and actions.
+   - **Search Everywhere (`Shift + Shift` / `Ctrl + P`)**: Central titlebar pill allowing universal search across files, symbols, and actions (toggleable via the View menu or titlebar).
    - **Gutter Run Button (▶)**: Direct compile and run execution from the titlebar or right next to code entry points (`main()`).
    - **Quick Documentation (`F1` / Doc Tutor)**: Instant access to standard library cheat sheets and syntax cards.
 
 3. **Pure Native Rust & Floem**:
    - **Zero Electron / Zero Web Bloat**: Runs on bare metal with hardware-accelerated GPU rendering via WGPU and Taffy flexbox.
    - **Xi-Rope Text Engine**: B-tree text buffer with instant open/edit performance on files of any size.
-   - **Vector SVG Icons**: Clean, scalable Codicons embedded natively without emoji fallbacks. (?)
+   - **Vector SVG Icons**: Clean, scalable Codicons embedded natively without emoji fallbacks.
 
 4. **Bilingual Localization (EN / HU)**:
    - **Default Language**: English (`EN`) as the international academic standard.
-   - **Parallel Hungarian (`HU`) Support**: Instant runtime language switching via the `🌐 EN / HU` toggle in the titlebar and statusbar. (?)
+   - **Parallel Hungarian (`HU`) Support**: Instant runtime language switching via the `🌐 EN / HU` toggle in the titlebar, statusbar, or Tools menu (powered by GNU gettext `.po` catalogs).
 
 ---
 
@@ -120,6 +133,9 @@ The project is structured as a modular Rust Cargo workspace:
 BM_codium/
 ├── Cargo.toml                # Workspace definition & optimized dev/release profiles
 ├── .cargo/config.toml        # Offline vendored crate resolution (vendor-offline)
+├── settings/                 # Dedicated configuration folder:
+│   ├── settings.json         # User and environment settings
+│   └── keybindings.json      # VSCodium keybinding shortcuts profile
 ├── crates/
 │   ├── codium-core/          # Xi-Rope buffer, undo/redo, file trees, i18n locale engine
 │   ├── codium-edu/           # University policies (.codium-edu.toml), DocTutor, error explainer
@@ -127,8 +143,8 @@ BM_codium/
 │   └── codium-ui/            # Floem layout: titlebar, activity bar, sidebar, tabs, bottom panel
 └── apps/
     └── codium-app/           # Binary runners:
-        ├── src/bin/ai_codium.rs   -> ai-codium executable (~29 MB)
-        └── src/bin/edu_codium.rs  -> edu-codium executable (~29 MB)
+        ├── src/bin/ai_codium.rs   -> ai-codium executable
+        └── src/bin/edu_codium.rs  -> edu-codium executable
 ```
 
 ---
@@ -194,5 +210,5 @@ exam_mode = true
 We actively welcome feedback, ideas, and contributions from university professors, students, and open-source software engineers:
 
 - **University Curricula & Exam Policies**: If you are a faculty member interested in custom exam lockdown modes or `.codium-edu.toml` profiles, feel free to submit ideas.
-- **Doc Tutor Cheatsheets**: Help expand offline pedagogic cards, syntax examples, and compiler error explainers for the 13 supported languages.
+- **Doc Tutor Cheatsheets**: Help expand offline pedagogic cards, syntax examples, and compiler error explainers for the 18+ supported languages and formats.
 - **Ergonomics & Performance**: Share your thoughts on keyboard shortcuts, Search Everywhere indexing, and gutter run integrations.

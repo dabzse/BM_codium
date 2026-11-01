@@ -1,0 +1,310 @@
+# Magyar fordítás a BM::Codium (EDU::Codium és AI::Codium) szoftverhez
+msgid ""
+msgstr ""
+"Project-Id-Version: BM::Codium 0.0.0-pre-canary-0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-01 10:20+0100\n"
+"PO-Revision-Date: 2026-11-01 10:20+0100\n"
+"Last-Translator: Nyilas Mihály <dr.dabzse@gmail.com>\n"
+"Language-Team: Hungarian (https://dabzse.net, FSF.hu)\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Fejléc és navigáció
+msgid "Search Files & Symbols (Shift+Shift / Ctrl+P)"
+msgstr "Keresés fájlokban és szimbólumokban (Shift+Shift / Ctrl+P)"
+
+msgid "Run"
+msgstr "Futtatás"
+
+msgid "Sidebar"
+msgstr "Oldalsáv"
+
+msgid "Panel"
+msgstr "Alsó panel"
+
+msgid "Manuals"
+msgstr "Kézikönyvek"
+
+msgid "EXPLORER"
+msgstr "INTÉZŐ"
+
+msgid "SEARCH IN FILES"
+msgstr "KERESÉS A FÁJLOKBAN"
+
+msgid "EDU DOC TUTOR"
+msgstr "OKTATÓI DOKUMENTÁCIÓ"
+
+msgid "Quick reference and help cards for students"
+msgstr "Gyors referencia és segédletkártyák diákoknak"
+
+msgid "AI ASSISTANT"
+msgstr "AI ASSZISZTENS"
+
+msgid "SETTINGS & POLICIES"
+msgstr "BEÁLLÍTÁSOK ÉS SZABÁLYOK"
+
+# Keresés és Csere a fájlokban (Search & Replace)
+msgid "Search"
+msgstr "Keresés"
+
+msgid "Replace"
+msgstr "Csere"
+
+msgid "Replace All"
+msgstr "Mind cseréje"
+
+msgid "Type search expression..."
+msgstr "Írj be kifejezést a kereséshez..."
+
+msgid "No results found in workspace."
+msgstr "Nincs találat a munkaterületen."
+
+msgid "results found:"
+msgstr "találat:"
+
+# Jobb oldali panel: kézikönyvek és oktatói segítő
+msgid "MANUALS & DOC TUTOR"
+msgstr "KÉZIKÖNYVEK ÉS OKTATÓI SEGÍTŐ"
+
+msgid "Offline language & framework documentation assistant"
+msgstr "Offline nyelvi és keretrendszer dokumentáció asszisztens"
+
+msgid "Language (e.g. python, php, c):"
+msgstr "Nyelv (pl. python, php, c):"
+
+msgid "Framework / Module (e.g. django):"
+msgstr "Keretrendszer / Modul (pl. django):"
+
+msgid "Detected Manuals:"
+msgstr "Észlelt kézikönyvek:"
+
+msgid "Ask local manual tutor..."
+msgstr "Kérdezz a helyi kézikönyvtárról..."
+
+msgid "Send"
+msgstr "Küldés"
+
+msgid "Manuals access is restricted in exam mode"
+msgstr "A kézikönyvek elérése vizsgamódban korlátozott"
+
+# Alsó dokk fülek
+msgid "TERMINAL"
+msgstr "TERMINÁL"
+
+msgid "PROBLEMS"
+msgstr "PROBLÉMÁK"
+
+msgid "DOC TUTOR HINTS"
+msgstr "OKTATÓI TIPPEK"
+
+# Állapotsor
+msgid "Ready"
+msgstr "Kész"
+
+msgid "EDU Mode (AI Disabled)"
+msgstr "EDU mód (AI letiltva)"
+
+msgid "AI Ready (Local LLM)"
+msgstr "AI kész (helyi LLM)"
+
+# Kiadás alcímek
+msgid "University Edition - No AI Cheating, Just Pure Learning"
+msgstr "Egyetemi kiadás - Nincs AI csalás, csak tiszta tanulás"
+
+msgid "AI Edition - Integrated Local LLM & Smart Assistance"
+msgstr "AI kiadás - Integrált helyi LLM és intelligens asszisztencia"
+
+# Üdvözlő gyorsbillentyűk
+msgid "Search Everywhere (Files, Symbols, Commands)"
+msgstr "Keresés mindenhol (fájlok, szimbólumok, parancsok)"
+
+msgid "Toggle Primary Side Bar"
+msgstr "Elsődleges oldalsáv ki-/bekapcsolása"
+
+msgid "Toggle Terminal / Bottom Panel"
+msgstr "Terminál / Alsó panel ki-/bekapcsolása"
+
+msgid "Execute active file / project"
+msgstr "Aktív fájl / projekt futtatása"
+
+msgid "Open University Doc Tutor / Language Help"
+msgstr "Egyetemi Doc Tutor / Nyelvi segítség megnyitása"
+
+# Oldalsáv és UI szövegek
+msgid "NO FOLDER OPEN"
+msgstr "NINCS MEGNYITOTT MAPPA"
+
+msgid "Type to search workspace symbols..."
+msgstr "Írj ide a munkaterület szimbólumaiban való kereséshez..."
+
+msgid "Local LLM: Connected (Offline)"
+msgstr "Helyi LLM: csatlakoztatva (offline)"
+
+msgid "Ask about your code, refactorings, or architecture. Running offline on background thread."
+msgstr "Kérdezz a kódodról, refaktorálásról vagy architektúráról. Offline fut a háttérszálon."
+
+msgid "Institution:"
+msgstr "Intézmény:"
+
+msgid "AI Code Gen Allowed:"
+msgstr "AI kódgenerálás engedélyezve:"
+
+msgid "Autocomplete Assistant Allowed:"
+msgstr "Automatikus kiegészítés engedélyezve:"
+
+msgid "Manuals Access Allowed:"
+msgstr "Kézikönyvtár elérése engedélyezve:"
+
+msgid "Offline Exam Mode:"
+msgstr "Offline ZH/vizsgamód:"
+
+msgid "Language / Nyelv:"
+msgstr "Nyelv / Language:"
+
+msgid "Autocomplete Assistant Path:"
+msgstr "Automatikus kiegészítés útvonala:"
+
+msgid "Manuals Directory:"
+msgstr "Kézikönyvtár mappa:"
+
+msgid "Plugins Dir:"
+msgstr "Bővítmények mappája:"
+
+msgid "No compiler errors detected. All workspace diagnostics clean."
+msgstr "Nincs fordítási hiba. Minden diagnosztika tiszta."
+
+msgid "Doc Tutor Pedagogic Hint:"
+msgstr "🎓 Oktatói segédlet / Tipp:"
+
+msgid "Tip: When working with arrays in C/C++, always check buffer bounds before dereferencing pointers!"
+msgstr "Tipp: C/C++ tömböknél mindig ellenőrizd a határokat a mutatók dereferálása előtt!"
+
+# Hibamagyarázatok (Oktatói diagnosztikai motor)
+msgid "diag_borrow_checker_code"
+msgstr "E0502 / E0596"
+
+msgid "diag_borrow_checker_explanation"
+msgstr "A változót megpróbáltad módosítani vagy mutábilisan kölcsönözni, miközben már van rá élő olvasási (&) referencia, vagy maga a változó nincs `mut`-ként deklarálva."
+
+msgid "diag_borrow_checker_hint"
+msgstr "Ellenőrizd: 1) Szerepel a változónév előtt a `let mut`? 2) Befejeződött-e az előző immutábilis referencia használata, mielőtt mutábilisan használnád?"
+
+msgid "diag_segfault_code"
+msgstr "SIGSEGV (139)"
+
+msgid "diag_segfault_explanation"
+msgstr "Memóriahozzáférési hiba történt futás közben: a program olyan memóriaterületet próbált olvasni vagy írni, amihez nincs joga (pl. NULL pointer, túlindexelt tömb)."
+
+msgid "diag_segfault_hint"
+msgstr "Gyakori okok: 1) Ellenőrizted, hogy a pointer nem NULL? 2) A tömbindex nem lépi át a megengedett határokat (0-tól N-1-ig)? 3) Inicializálatlan mutatóra írsz?"
+
+msgid "diag_undefined_ref_code"
+msgstr "Linker Error"
+
+msgid "diag_undefined_ref_explanation"
+msgstr "A fordító megtalálta a függvény fejlécét a headerben (.h), de a szerkesztő (linker) nem találja a függvény valódi implementációját (törzsét) a fordított fájlokban."
+
+msgid "diag_undefined_ref_hint"
+msgstr "Ellenőrizd: Megadtad az összes .c / .cpp fájlt a fordításkor? (Pl.: `gcc main.c utils.c -o program`)"
+
+msgid "diag_index_error_code"
+msgstr "IndexError"
+
+msgid "diag_index_error_explanation"
+msgstr "Olyan sorszámú (indexű) elemet kértél le a listából, ami nem létezik (túl nagy az index vagy üres a lista)."
+
+msgid "diag_index_error_hint"
+msgstr "Nézd meg a lista hosszát: `len(lista)`. Ne feledd, egy 5 elemű lista indexei: 0, 1, 2, 3, 4."
+
+# Navigáció, Csere és Keresés
+msgid "↑ Prev"
+msgstr "↑ Előző"
+
+msgid "↓ Next"
+msgstr "↓ Köv."
+
+msgid "1 occurrence replaced."
+msgstr "1 előfordulás kicserélve."
+
+# Sortörés
+msgid "Word Wrap"
+msgstr "Sortörés"
+
+msgid "↩ Word Wrap: ON"
+msgstr "↩ Sortörés: BE"
+
+msgid "↩ Word Wrap (Alt+Z)"
+msgstr "↩ Sortörés (Alt+Z)"
+
+msgid "Word Wrap enabled (Alt+Z)"
+msgstr "Sortörés bekapcsolva (Alt+Z)"
+
+msgid "Word Wrap disabled (Alt+Z)"
+msgstr "Sortörés kikapcsolva (Alt+Z)"
+
+# Betűtípus beállítások
+msgid "UI Font:"
+msgstr "UI betűtípus:"
+
+msgid "Editor Font:"
+msgstr "Szerkesztő betűtípus:"
+
+msgid "Terminal Font:"
+msgstr "Terminál betűtípus:"
+
+# Kézikönyvek és Oktatói asszisztens
+msgid "Local Manual Tutor"
+msgstr "Helyi Kézikönyv Oktató"
+
+msgid "(Manuals directory empty or not found)"
+msgstr "(A kézikönyvtár mappa üres vagy nem található)"
+
+msgid "No matching manuals found."
+msgstr "Nincs egyező kézikönyv."
+
+msgid "Manual"
+msgstr "Kézikönyv"
+
+msgid "Ask about downloaded manuals or select a programming language and module!"
+msgstr "Kérdezz a letöltött kézikönyvekről vagy válassz nyelvet és modult!"
+
+msgid "Django ORM: Use Model.objects.filter(...) queries. Details in manuals/python/django/ directory."
+msgstr "Django ORM: Használd a `Model.objects.filter(...)` lekérdezést. Részletek a `manuals/python/django/` mappában."
+
+msgid "C I/O: printf formats (%d int, %f float, %s string). Scanf needs pointers: scanf(\"%d\", &val). Details in manuals/c/."
+msgstr "C I/O: printf formátumok (%d int, %f float, %s string). Scanf-nél mutató kell: `scanf(\"%d\", &val)`. Részletek a `manuals/c/` alatt."
+
+msgid "Rust memory: Either any number of immutable references (&T) or exactly one mutable reference (&mut T) can exist at a time. See manuals/rust/."
+msgstr "Rust memória: Egyszerre vagy tetszőleges számú olvasási (&T), vagy pontosan egy írási (&mut T) referencia létezhet. Lásd `manuals/rust/`."
+
+msgid "PHP manual: PDO database connection: new PDO(...). Arrays: associative and indexed. See manuals/php/."
+msgstr "PHP kézikönyv: PDO adatbázis-kapcsolat: `new PDO(...)`. Tömbök: asszociatív és indexelt tömbök. Lásd `manuals/php/`."
+
+msgid "Information for [{target}] topic: Search downloaded files in manuals/ directory or refine your query keyword!"
+msgstr "Információ a [{target}] témakörhöz: Keresd a letöltött fájlokat a `manuals/` mappában, vagy kérj pontosabb kulcsszót!"
+
+# Terminál
+msgid "Native Terminal Ready"
+msgstr "Natív terminál kész"
+
+msgid "Type commands below or click ▶ Run to execute code."
+msgstr "Írj be parancsot alább, vagy kattints a ▶ Futtatás gombra a kód futtatásához."
+
+# Mappaválasztás és csevegés
+msgid "Open Folder"
+msgstr "Mappa megnyitása"
+
+msgid "You have not yet opened a folder."
+msgstr "Még nem nyitottál meg mappát."
+
+msgid "Opened folder"
+msgstr "Megnyitott mappa"
+
+msgid "Press Enter to send"
+msgstr "Enter a küldéshez"
+
+msgid "Open"
+msgstr "Megnyitás"

@@ -1,0 +1,10 @@
+pub mod activity_bar;
+pub mod app_view;
+pub mod bottom_panel;
+pub mod editor_view;
+pub mod right_panel;
+pub mod sidebar;
+pub mod splitter;
+pub mod statusbar;
+pub mod titlebar;
+pub mod menubar;

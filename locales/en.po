@@ -1,0 +1,310 @@
+# English translations for BM::Codium (EDU::Codium && AI::Codium)
+msgid ""
+msgstr ""
+"Project-Id-Version: BM::Codium 0.0.0-pre-canary-0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-01 10:20+0100\n"
+"PO-Revision-Date: 2026-11-01 10:20+0100\n"
+"Last-Translator: Mihaly Nyilas <dr.dabzse@gmail.com>\n"
+"Language-Team: English (https://dabzse.net)\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Titlebar and Navigation
+msgid "Search Files & Symbols (Shift+Shift / Ctrl+P)"
+msgstr "Search Files & Symbols (Shift+Shift / Ctrl+P)"
+
+msgid "Run"
+msgstr "Run"
+
+msgid "Sidebar"
+msgstr "Sidebar"
+
+msgid "Panel"
+msgstr "Panel"
+
+msgid "Manuals"
+msgstr "Manuals"
+
+msgid "EXPLORER"
+msgstr "EXPLORER"
+
+msgid "SEARCH IN FILES"
+msgstr "SEARCH IN FILES"
+
+msgid "EDU DOC TUTOR"
+msgstr "EDU DOC TUTOR"
+
+msgid "Quick reference and help cards for students"
+msgstr "Quick reference and help cards for students"
+
+msgid "AI ASSISTANT"
+msgstr "AI ASSISTANT"
+
+msgid "SETTINGS & POLICIES"
+msgstr "SETTINGS & POLICIES"
+
+# Search & Replace in Files
+msgid "Search"
+msgstr "Search"
+
+msgid "Replace"
+msgstr "Replace"
+
+msgid "Replace All"
+msgstr "Replace All"
+
+msgid "Type search expression..."
+msgstr "Type search expression..."
+
+msgid "No results found in workspace."
+msgstr "No results found in workspace."
+
+msgid "results found:"
+msgstr "results found:"
+
+# Right Panel: Manuals & Documentation Assistant
+msgid "MANUALS & DOC TUTOR"
+msgstr "MANUALS & DOC TUTOR"
+
+msgid "Offline language & framework documentation assistant"
+msgstr "Offline language & framework documentation assistant"
+
+msgid "Language (e.g. python, php, c):"
+msgstr "Language (e.g. python, php, c):"
+
+msgid "Framework / Module (e.g. django):"
+msgstr "Framework / Module (e.g. django):"
+
+msgid "Detected Manuals:"
+msgstr "Detected Manuals:"
+
+msgid "Ask local manual tutor..."
+msgstr "Ask local manual tutor..."
+
+msgid "Send"
+msgstr "Send"
+
+msgid "Manuals access is restricted in exam mode"
+msgstr "Manuals access is restricted in exam mode"
+
+# Bottom Dock Tabs
+msgid "TERMINAL"
+msgstr "TERMINAL"
+
+msgid "PROBLEMS"
+msgstr "PROBLEMS"
+
+msgid "DOC TUTOR HINTS"
+msgstr "DOC TUTOR HINTS"
+
+# Status Bar
+msgid "Ready"
+msgstr "Ready"
+
+msgid "EDU Mode (AI Disabled)"
+msgstr "EDU Mode (AI Disabled)"
+
+msgid "AI Ready (Local LLM)"
+msgstr "AI Ready (Local LLM)"
+
+# Edition Subtitles
+msgid "University Edition - No AI Cheating, Just Pure Learning"
+msgstr "University Edition - No AI Cheating, Just Pure Learning"
+
+msgid "AI Edition - Integrated Local LLM & Smart Assistance"
+msgstr "AI Edition - Integrated Local LLM & Smart Assistance"
+
+# Welcome Shortcuts
+msgid "Search Everywhere (Files, Symbols, Commands)"
+msgstr "Search Everywhere (Files, Symbols, Commands)"
+
+msgid "Toggle Primary Side Bar"
+msgstr "Toggle Primary Side Bar"
+
+msgid "Toggle Terminal / Bottom Panel"
+msgstr "Toggle Terminal / Bottom Panel"
+
+msgid "Execute active file / project"
+msgstr "Execute active file / project"
+
+msgid "Open University Doc Tutor / Language Help"
+msgstr "Open University Doc Tutor / Language Help"
+
+# Sidebar & UI Strings
+msgid "NO FOLDER OPEN"
+msgstr "NO FOLDER OPEN"
+
+msgid "Type to search workspace symbols..."
+msgstr "Type to search workspace symbols..."
+
+msgid "Local LLM: Connected (Offline)"
+msgstr "Local LLM: Connected (Offline)"
+
+msgid "Ask about your code, refactorings, or architecture. Running offline on background thread."
+msgstr "Ask about your code, refactorings, or architecture. Running offline on background thread."
+
+msgid "Institution:"
+msgstr "Institution:"
+
+msgid "AI Code Gen Allowed:"
+msgstr "AI Code Gen Allowed:"
+
+msgid "Autocomplete Assistant Allowed:"
+msgstr "Autocomplete Assistant Allowed:"
+
+msgid "Manuals Access Allowed:"
+msgstr "Manuals Access Allowed:"
+
+msgid "Offline Exam Mode:"
+msgstr "Offline Exam Mode:"
+
+msgid "Language / Nyelv:"
+msgstr "Language / Nyelv:"
+
+msgid "Autocomplete Assistant Path:"
+msgstr "Autocomplete Assistant Path:"
+
+msgid "Manuals Directory:"
+msgstr "Manuals Directory:"
+
+msgid "Plugins Dir:"
+msgstr "Plugins Dir:"
+
+msgid "No compiler errors detected. All workspace diagnostics clean."
+msgstr "No compiler errors detected. All workspace diagnostics clean."
+
+msgid "Doc Tutor Pedagogic Hint:"
+msgstr "Doc Tutor Pedagogic Hint:"
+
+msgid "Tip: When working with arrays in C/C++, always check buffer bounds before dereferencing pointers!"
+msgstr "Tip: When working with arrays in C/C++, always check buffer bounds before dereferencing pointers!"
+
+# Error Explanations (Educational Diagnostic Engine)
+msgid "diag_borrow_checker_code"
+msgstr "E0502 / E0596"
+
+msgid "diag_borrow_checker_explanation"
+msgstr "You attempted to modify or borrow a variable as mutable while there is an active immutable (&) reference, or the variable itself was not declared with `let mut`."
+
+msgid "diag_borrow_checker_hint"
+msgstr "Check: 1) Is the variable declared with `let mut`? 2) Has the prior immutable reference finished its scope before using mutable borrow?"
+
+msgid "diag_segfault_code"
+msgstr "SIGSEGV (139)"
+
+msgid "diag_segfault_explanation"
+msgstr "A runtime memory access violation occurred: the process attempted to read or write memory it does not have permission to access (e.g. NULL pointer, array out-of-bounds)."
+
+msgid "diag_segfault_hint"
+msgstr "Common causes: 1) Did you verify pointer is not NULL? 2) Does the array index stay strictly within [0, N-1]? 3) Are you writing to uninitialized pointers?"
+
+msgid "diag_undefined_ref_code"
+msgstr "Linker Error"
+
+msgid "diag_undefined_ref_explanation"
+msgstr "The compiler found the function declaration in the header (.h), but the linker cannot find the actual function implementation (body) among compiled object files."
+
+msgid "diag_undefined_ref_hint"
+msgstr "Check: Did you provide all .c / .cpp source files during compilation? (e.g. `gcc main.c utils.c -o program`)"
+
+msgid "diag_index_error_code"
+msgstr "IndexError"
+
+msgid "diag_index_error_explanation"
+msgstr "You requested an index from a list/array that does not exist (index is too large or list is empty)."
+
+msgid "diag_index_error_hint"
+msgstr "Check list length: `len(items)`. Remember: a 5-element list has indices 0, 1, 2, 3, 4."
+
+# Navigation, Replace & Search
+msgid "↑ Prev"
+msgstr "↑ Prev"
+
+msgid "↓ Next"
+msgstr "↓ Next"
+
+msgid "1 occurrence replaced."
+msgstr "1 occurrence replaced."
+
+# Word Wrap & Editor
+msgid "Word Wrap"
+msgstr "Word Wrap"
+
+msgid "↩ Word Wrap: ON"
+msgstr "↩ Word Wrap: ON"
+
+msgid "↩ Word Wrap (Alt+Z)"
+msgstr "↩ Word Wrap (Alt+Z)"
+
+msgid "Word Wrap enabled (Alt+Z)"
+msgstr "Word Wrap enabled (Alt+Z)"
+
+msgid "Word Wrap disabled (Alt+Z)"
+msgstr "Word Wrap disabled (Alt+Z)"
+
+# Font settings
+msgid "UI Font:"
+msgstr "UI Font:"
+
+msgid "Editor Font:"
+msgstr "Editor Font:"
+
+msgid "Terminal Font:"
+msgstr "Terminal Font:"
+
+# Manuals & Tutor Assistant
+msgid "Local Manual Tutor"
+msgstr "Local Manual Tutor"
+
+msgid "(Manuals directory empty or not found)"
+msgstr "(Manuals directory empty or not found)"
+
+msgid "No matching manuals found."
+msgstr "No matching manuals found."
+
+msgid "Manual"
+msgstr "Manual"
+
+msgid "Ask about downloaded manuals or select a programming language and module!"
+msgstr "Ask about downloaded manuals or select a programming language and module!"
+
+msgid "Django ORM: Use Model.objects.filter(...) queries. Details in manuals/python/django/ directory."
+msgstr "Django ORM: Use Model.objects.filter(...) queries. Details in manuals/python/django/ directory."
+
+msgid "C I/O: printf formats (%d int, %f float, %s string). Scanf needs pointers: scanf(\"%d\", &val). Details in manuals/c/."
+msgstr "C I/O: printf formats (%d int, %f float, %s string). Scanf needs pointers: scanf(\"%d\", &val). Details in manuals/c/."
+
+msgid "Rust memory: Either any number of immutable references (&T) or exactly one mutable reference (&mut T) can exist at a time. See manuals/rust/."
+msgstr "Rust memory: Either any number of immutable references (&T) or exactly one mutable reference (&mut T) can exist at a time. See manuals/rust/."
+
+msgid "PHP manual: PDO database connection: new PDO(...). Arrays: associative and indexed. See manuals/php/."
+msgstr "PHP manual: PDO database connection: new PDO(...). Arrays: associative and indexed. See manuals/php/."
+
+msgid "Information for [{target}] topic: Search downloaded files in manuals/ directory or refine your query keyword!"
+msgstr "Information for [{target}] topic: Search downloaded files in manuals/ directory or refine your query keyword!"
+
+# Terminal
+msgid "Native Terminal Ready"
+msgstr "Native Terminal Ready"
+
+msgid "Type commands below or click ▶ Run to execute code."
+msgstr "Type commands below or click ▶ Run to execute code."
+
+# Folder selection and chat
+msgid "Open Folder"
+msgstr "Open Folder"
+
+msgid "You have not yet opened a folder."
+msgstr "You have not yet opened a folder."
+
+msgid "Opened folder"
+msgstr "Opened folder"
+
+msgid "Press Enter to send"
+msgstr "Press Enter to send"
+
+msgid "Open"
+msgstr "Open"

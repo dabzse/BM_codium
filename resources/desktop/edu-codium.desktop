@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=EDU::Codium
+GenericName=Educational Code Editor
+Comment=Lightweight educational GPU-accelerated code editor written in Rust
+Exec=edu-codium %F
+Icon=edu-codium
+Terminal=false
+Categories=Development;IDE;Education;TextEditor;
+MimeType=text/plain;text/x-rust;text/x-c;text/x-c++;text/x-python;text/javascript;application/json;
+StartupNotify=true
+StartupWMClass=edu-codium
+Keywords=editor;code;rust;edu;codium;ide;

@@ -1,0 +1,15 @@
+[package]
+name = "codium-ui"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[dependencies]
+codium-core = { workspace = true }
+codium-edu  = { workspace = true }
+codium-ai   = { workspace = true }
+floem       = { workspace = true }
+serde       = { workspace = true }
+anyhow      = { workspace = true }

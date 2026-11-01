@@ -1,0 +1,15 @@
+target/
+vendor-offline/
+
+# IDE & Editor files
+*.swp
+*.swo
+*~
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Local logs & overrides
+*.log
+settings.local.json

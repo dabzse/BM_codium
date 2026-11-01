@@ -1,0 +1,15 @@
+{
+    "rust-analyzer.check.overrideCommand": [
+        "cargo",
+        "check",
+        "--offline"
+    ],
+    "rust-analyzer.files.excludeDirs": [
+        "vendor-offline",
+        "target"
+    ],
+    "files.watcherExclude": {
+        "**/vendor-offline/**": true,
+        "**/target/**": true
+    }
+}

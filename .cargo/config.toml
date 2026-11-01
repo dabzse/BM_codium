@@ -1,0 +1,74 @@
+[profile.ci]
+inherits  = "dev"
+opt-level = 0
+debug     = false
+
+[source.crates-io]
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/alacritty/alacritty?rev=cacdb5bb3b72bad2c729227537979d95af75978f"]
+git = "https://github.com/alacritty/alacritty"
+rev = "cacdb5bb3b72bad2c729227537979d95af75978f"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/bytecodealliance/regalloc2?rev=5d79e12d0a93b10fc181f4da409b4671dd365228"]
+git = "https://github.com/bytecodealliance/regalloc2"
+rev = "5d79e12d0a93b10fc181f4da409b4671dd365228"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/dragazo/human-sort?rev=1e74db1e09e8194ba88ad983723cf6f8b0c365da"]
+git = "https://github.com/dragazo/human-sort"
+rev = "1e74db1e09e8194ba88ad983723cf6f8b0c365da"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/lapce/floem?rev=31fa8f444c37f4c314f47d88c23ffdbc25f2ab53"]
+git = "https://github.com/lapce/floem"
+rev = "31fa8f444c37f4c314f47d88c23ffdbc25f2ab53"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/lapce/locale_config.git?branch=lapce"]
+git = "https://github.com/lapce/locale_config.git"
+branch = "lapce"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/lapce/lsp-types?rev=feaa1e2ec80975c9dadd400a238ceacf071058e6"]
+git = "https://github.com/lapce/lsp-types"
+rev = "feaa1e2ec80975c9dadd400a238ceacf071058e6"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/lapce/psp-types?rev=f7fea28f59e7b2d6faa1034a21679ad49b3524ad"]
+git = "https://github.com/lapce/psp-types"
+rev = "f7fea28f59e7b2d6faa1034a21679ad49b3524ad"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/lapce/structdesc?rev=bb56969f22fdb2c2d6c03f158fd4a2bdc983b659"]
+git = "https://github.com/lapce/structdesc"
+rev = "bb56969f22fdb2c2d6c03f158fd4a2bdc983b659"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/lapce/vger-rs.git?rev=3206d47ec1e30b645ddcb0687036ba3e1f0d98ec"]
+git = "https://github.com/lapce/vger-rs.git"
+rev = "3206d47ec1e30b645ddcb0687036ba3e1f0d98ec"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/lapce/wasi-experimental-http"]
+git = "https://github.com/lapce/wasi-experimental-http"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/rust-windowing/winit?rev=ee245c569d65fdeacf705ee5eedb564508d10ebe"]
+git = "https://github.com/rust-windowing/winit"
+rev = "ee245c569d65fdeacf705ee5eedb564508d10ebe"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/tauri-apps/muda?rev=8e986af3cea96a729413abc75c3702dec3990bd2"]
+git = "https://github.com/tauri-apps/muda"
+rev = "8e986af3cea96a729413abc75c3702dec3990bd2"
+replace-with = "vendored-sources"
+
+[source."git+https://github.com/tokio-rs/tracing?rev=908cc432a5994f6e17c8f36e13c217dc40085704"]
+git = "https://github.com/tokio-rs/tracing"
+rev = "908cc432a5994f6e17c8f36e13c217dc40085704"
+replace-with = "vendored-sources"
+
+[source.vendored-sources]
+directory = "vendor-offline"

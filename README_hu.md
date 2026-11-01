@@ -4,8 +4,13 @@
 [![GUI keretrendszer](assets/gui_floem_gpu_gyorsitott.svg)](https://github.com/lapce/floem)
 [![Licenc: AGPL-3.0-or-later](assets/licenc_AGPLv3.svg)](https://www.gnu.org/licenses/agpl-3.0.html)
 [![Kettős licenc: AGPLv3+ / Kereskedelmi](assets/licenc_AGPLv3+_kereskedelmi.svg)](LICENSE)
+[![Bináris méret](assets/binaris_meret.svg)](Bináris_méret)
+[![Állapot](assets/statusz.svg)](Állapot)
 
 > Villámgyors, hardveresen gyorsított natív Rust fejlesztői környezet (IDE), amely egyesíti a **VS Code** megszokott ergonómiáját, a **Zed** hardveresen gyorsított sebességét, a **Floem** tiszta reaktív architektúráját és a **JetBrains** legkedveltebb produktivitási funkcióit (Mindent kereső / Search Everywhere, Futtatás a margóról / Run Gutter).
+
+![BM::Codium előnézet](assets/BM_AI_codium.png)
+*Ez még csak a kezdet. Bőven van mit fejleszteni...*
 
 ---
 
@@ -38,21 +43,21 @@ Ezzel párhuzamosan készül az **AI::Codium**, amely a haladó/professzionális
 
 ## Két célorientált kiadás
 
-| Tulajdonság          | 🎓 EDU::Codium (`edu-codium`)                                             | ✦ AI::Codium (`ai-codium`)                              |
-| :------------------- | :------------------------------------------------------------------------ | :------------------------------------------------------ |
-| **Célközönség**      | Egyetemek, középiskolák, hallgatók, oktatók, vizsgák                      | Professzionális fejlesztők, kutatók                     |
-| **Generatív AI**     | **Szigorúan tiltott** (csalás megelőzése, valódi tanulás kikényszerítése) | **Engedélyezett** (Ghost-text kódkiegészítés)           |
-| **Kódkiegészítés**   | **Tanár által konfigurálható** (alapértelmezetten kikapcsolva, Kite mód)  | Teljes AI és LSP kódkiegészítés                         |
-| **Oktatói segédlet** | **Doc Tutor és hibamagyarázó** (tippeket ad és magyaráz, nem kész kódot   | AI magyarázatok és refaktorálási javaslatok             |
-| **Oktatói házirend** | `.codium-edu.toml` fájlon keresztül szabályozható (vizsgamód)             | Szokásos felhasználói beállítások                       |
-| **Bináris méret**    | **önálló natív futtatható fájl**                                          | **önálló natív futtatható fájl**                        |
-| **Indítási idő**     | **terv szerint szinte azonnali** (Rust, kicsi és gyors)                   | **terv szerint szinte azonnali** (Rust, kicsi és gyors) |
+| Tulajdonság          | 🎓 EDU::Codium (`edu-codium`)                                               | ✦ AI::Codium (`ai-codium`)                                   |
+| :------------------- | :-------------------------------------------------------------------------- | :----------------------------------------------------------- |
+| **Célközönség**      | Egyetemek, középiskolák, diákok, hallgatók, oktatók, vizsgák                | Professzionális fejlesztők, haladó szoftvermérnökök, kutatók |
+| **Generatív AI**     | **Szigorúan tiltott** (csalás megelőzése, valódi tanulás kikényszerítése)   | **Engedélyezett** (Ghost-text kódkiegészítés, LLM chat)      |
+| **Kódkiegészítés**   | **Tanár által konfigurálható** (alapértelmezetten kikapcsolva, „ac”-mód)    | Teljes AI és LSP kódkiegészítés                              |
+| **Oktatói segédlet** | **Doc Tutor és hibamagyarázó** (tippeket ad és magyaráz, nem kész kódot)    | AI magyarázatok és refaktorálási javaslatok                  |
+| **Oktatói házirend** | `.codium-edu.toml` fájlon keresztül szabályozható (vizsgamód, korlátozások) | Szokásos felhasználói beállítások                            |
+| **Bináris méret**    | **önálló natív futtatható fájl** (lásd a fenti emblémát)                    | **önálló natív futtatható fájl**                             |
+| **Indítási idő**     | **terv szerint szinte azonnali** (Rust, kicsi és gyors)                     | **terv szerint szinte azonnali** (Rust, kicsi és gyors)      |
 
 ---
 
 ## Támogatott programozási nyelvek
 
-Az egyetemi informatikai képzések, mérnöki kurzusok és a professzionális szoftverfejlesztés igényeire hangolva **17 kulcsfontosságú programozási nyelv**, valamint a mindennapi statikus web, serverless-web, stíluslapok, „olvass-el” fájlok/könyvek, parancshéj és konfigurációs formátumok közvetlen támogatásával:
+Az egyetemi informatikai képzések, mérnöki kurzusok és a professzionális szoftverfejlesztés igényeire hangolva **18 kulcsfontosságú programozási nyelv**, valamint a mindennapi statikus web, serverless-web, stíluslapok, „olvass-el” fájlok/könyvek, parancshéj és konfigurációs formátumok közvetlen támogatásával (összesen 23 technológia):
 
 | Programozási nyelv / Technológia | Kategória                                  | Fájlkiterjesztések                     | Ajánlott LSP szerver               | Margó futtatás (▶) és Doc Tutor                                                                 |
 | :------------------------------- | :----------------------------------------- | :------------------------------------- | :--------------------------------- | :---------------------------------------------------------------------------------------------- |
@@ -76,8 +81,8 @@ Az egyetemi informatikai képzések, mérnöki kurzusok és a professzionális s
 | **Objective-C**                  | Natív / Legacy macOS & iOS                 | `.m`, `.mm`                            | `clangd`                           | `clang` fordítás, üzenetküldés (`[target action]`), régebbi Cocoa kompatibilitás.               |
 | **HTML / XML**                   | Statikus web / Jelölőnyelv                 | `.html`, `.htm`, `.xml`, `.svg`        | `html-languageserver` / `lemminx`  | Beépített előnézet, DOM fa struktúra és nyitó/záró címke puskák.                                |
 | **CSS / SCSS**                   | Stíluslapok / Web design                   | `.css`, `.scss`, `.sass`, `.less`      | `css-languageserver`               | Flexbox, CSS Grid és változók puskái, élő színminta előnézet.                                   |
-| **Markdown & TeX**               | „Olvass-el” fájlok / Könyvek               | `.md`, `.rst`, `.asc`, `.tex`          | `marksman` / `texlab`              | Élő Markdown előnézet, LaTeX képletfordítás, műszaki dokumentációs segédletek.                  |
-| **Shell & Szkriptek**            | Parancshéj (shell, batch, cmd, ps1)        | `.sh`, `.bash`, `.bat`, `.cmd`, `.ps1` | `bash-language-server`             | Közvetlen terminál futtatás (▶), POSIX Shell, Windows Batch és PowerShell puskák.               |
+| **Markdown és TeX**              | „Olvass-el” fájlok / Könyvek               | `.md`, `.rst`, `.asc`, `.tex`          | `marksman` / `texlab`              | Élő Markdown előnézet, LaTeX képletfordítás, műszaki dokumentációs segédletek.                  |
+| **Shell és szkriptek**           | Parancshéj (shell, batch, cmd, ps1)        | `.sh`, `.bash`, `.bat`, `.cmd`, `.ps1` | `bash-language-server`             | Közvetlen terminál futtatás (▶), POSIX Shell, Windows Batch és PowerShell puskák.               |
 | **Konfiguráció & SQL**           | Adatbázis & Konfiguráció                   | `.toml`, `.sql`, `.ini`, `.json`       | `taplo` / `sqls` / `json-ls`       | SQL lekérdezés-futtatás, sémavalidáció, kulcs-érték és formázási puskák.                        |
 
 ---
@@ -94,28 +99,30 @@ Az egyetemi informatikai képzések, mérnöki kurzusok és a professzionális s
 
 ## Elrendezés és ergonómia (Felhasználói felület)
 
-A *::Codium az ismert és bevált IDE megoldásokat ötvözi egy egységes, feleslegektől mentes felületen:
+A BM::Codium az ismert és bevált IDE megoldásokat ötvözi egy egységes, villámgyors, feleslegektől mentes felületen:
 
 1. **VS Code-ból ismert elemek**:
    - **Tevékenységsáv (Activity Bar)**: Bal oldali függőleges vektorsáv (Fájlkezelő, Keresés, Doc Tutor, Beállítások) aktív jelölőcsíkkal.
+   - **Asztali menüsor (Menubar)**: Hagyományos és professzionális felső menürendszer (Fájl, Szerkesztés, Nézet, Eszközök, Súgó) előtérbe helyezett lebegő menükkel és billentyűparancs-társításokkal.
    - **Oldalsáv (Sidebar)**: Összecsukható fájlfa projektstruktúrával és nyelvspecifikus ikonokkal.
-   - **Füles szerkesztő (Tabbed Editor)**: Többlapos, felosztható dokumentumfülek piszkos állapotjelző ponttal (`●`).
-   - **Alsó dokk (Bottom Dock)**: Többfunkciós alsó panel Terminállal, Problémák/Diagnosztika nézettel és Doc Tutor kimenettel.
-   - **Állapotsor (Status Bar)**: Letisztult lábléc kurzorpozícióval (`Sor, Oszlop`), Kódolással (`UTF-8`), Szóköz behúzással és Aktív nyelvvel.
+   - **Füles szerkesztő (Tabbed Editor)**: Többlapos, felosztható dokumentumfülek aktív/inaktív kontraszttal és módosítatlan/módosított állapotjelző ponttal (`●`).
+   - **Alsó dokk (Bottom Dock)**: Többfunkciós alsó panel Terminállal, Problémák/Diagnosztika nézettel és Doc Tutor oktatói kimenettel/tippekkel.
+   - **Állapotsor (Status Bar)**: Letisztult lábléc kurzorpozícióval (`Sor, Oszlop`), kódolással (`UTF-8`), szóköz behúzással és aktív nyelvvel.
+   - **VSCodium billentyűkiosztás**: Szabványos, testreszabható `keybindings.json` profilok, magyar QWERTZ / QWERTY és AltGr kompatibilitással.
 
-2. **JetBrains produktivitási funkciók**:
-   - **Mindent kereső (`Shift + Shift` / `Ctrl + P`)**: Központi keresősáv a címsorban fájlok, szimbólumok és parancsok azonnali eléréséhez.
+2. **JetBrains kényelmi funkciók**:
+   - **Mindent kereső (`Shift + Shift` / `Ctrl + P`)**: Központi keresősáv a címsorban fájlok, szimbólumok és parancsok azonnali eléréséhez (a Nézet menüből vagy a fejlécből egy kattintással elrejthető/bekapcsolható).
    - **Futtatás gomb a margón (▶)**: Közvetlen fordítás és indítás a címsorból vagy a belépési pontok (`main()`) mellől.
-   - **Gyors dokumentáció (`F1` / Doc Tutor)**: Azonnali hozzáférés a standard könyvtári puskákhoz és szintaxis kártyákhoz.
+   - **Gyors dokumentáció (`F1` / Doc Tutor)**: Azonnali hozzáférés a standard könyvtári puskákhoz és szintaxis kártyákhoz-példákhoz.
 
-3. **100% tiszta Rust és Floem**:
+3. **100% tiszta Rust és Floem motor**:
    - **Zéró Electron / Zéró Webes lomhaság**: Közvetlen gépi kód, GPU hardveres gyorsítással (WGPU és Taffy flexbox motor).
    - **Xi-Rope szövegpuffer**: B-fa alapú memóriakezelés, amely gigabájtos fájloknál is akadásmentes szerkesztést biztosít.
-   - **Vektoros SVG ikonok**: Beágyazott, éles Codicons vektoros ikonok emojik helyett. (?)
+   - **Vektoros SVG ikonok**: Beágyazott, éles Codicons vektoros ikonok emojik helyett.
 
 4. **Kétnyelvű lokalizáció (EN / HU)**:
    - **Alapértelmezett nyelv**: Angol (`EN`) a nemzetközi akadémiai szabványnak megfelelően.
-   - **Párhuzamos magyar (`HU`) támogatás**: Azonnali futásidejű nyelvváltás a címsor és állapotsor `🌐 EN / HU` gombjával. (?)
+   - **Párhuzamos magyar (`HU`) támogatás**: Azonnali futásidejű nyelvváltás a címsor és állapotsor `🌐 EN / HU` gombjával, vagy az Eszközök menüből (GNU gettext `.po` szótárak alapján).
 
 ---
 
@@ -127,15 +134,18 @@ A projekt moduláris Rust Cargo munkaterületként (workspace) épül fel:
 BM_codium/
 ├── Cargo.toml                # Munkaterület definíció és optimalizált profilok
 ├── .cargo/config.toml        # Offline vendored csomagfeloldás (vendor-offline)
+├── settings/                 # Konfigurációs mappa:
+│   ├── settings.json         # Felhasználói és környezeti beállítások
+│   └── keybindings.json      # VSCodium billentyűparancs profilok
 ├── crates/
-│   ├── codium-core/          # Xi-Rope puffer, visszavonás/újra, fájlfa, i18n lokalizáció, Nyelv definíciók (13 nyelv)
-│   ├── codium-edu/           # Egyetemi házirendek (.codium-edu.toml), DocTutor, hibamagyarázó
+│   ├── codium-core/          # Xi-Rope puffer, visszavonás/újra, fájlfa, i18n lokalizáció, Nyelv definíciók
+│   ├── codium-edu/           # Egyetemi/oktatói házirendek, szabályzatok (.codium-edu.toml), DocTutor, hibamagyarázó
 │   ├── codium-ai/            # Helyi LLM traitek, ghost-text kódkiegészítő szolgáltató
 │   └── codium-ui/            # Floem nézetek: címsor, tevékenységsáv, oldalsáv, fülek, alsó dokk
 └── apps/
     └── codium-app/           # Futtatható binárisok:
-        ├── src/bin/ai_codium.rs   -> ai-codium futtatható állomány (~29 MB)
-        └── src/bin/edu_codium.rs  -> edu-codium futtatható állomány (~29 MB)
+        ├── src/bin/ai_codium.rs   -> ai-codium futtatható állomány
+        └── src/bin/edu_codium.rs  -> edu-codium futtatható állomány
 ```
 
 ---
@@ -201,5 +211,5 @@ exam_mode = true
 Örömmel fogadjuk az egyetemi oktatók, hallgatók és nyílt forráskódú fejlesztők javaslatait és visszajelzéseit:
 
 - **Egyetemi tantervek és vizsgaszabályzatok**: Ha oktatóként érdekel egyedi vizsgamód vagy intézményi `.codium-edu.toml` szabályzat, oszd meg velünk a tanszéki követelményeket.
-- **Doc Tutor puskák és oktatókártyák**: Segíts bővíteni a 13 támogatott nyelvhez tartozó offline szintaxis puskákat és fordítóhiba-magyarázatokat.
+- **Doc Tutor puskák és oktatókártyák**: Segíts bővíteni a támogatott nyelvhez tartozó offline szintaxis puskákat és fordítóhiba-magyarázatokat.
 - **Ergonómia és teljesítmény**: Oszd meg véleményedet a billentyűparancsokról, a Mindent kereső működéséről vagy a margóról indítható futtatásról.

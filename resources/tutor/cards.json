@@ -1,0 +1,37 @@
+[
+    {
+        "title": "Standard I/O (printf / scanf)",
+        "language": "C",
+        "category": "I/O",
+        "content": "Be- és kimenet kezelése C-ben. A printf formázott kiíratást, a scanf beolvasást végez mutatókon keresztül (&).",
+        "example": "#include <stdio.h>\n\nint main() {\n    int szam;\n    printf(\"Adj meg egy számot: \");\n    scanf(\"%d\", &szam);\n    printf(\"A beolvasott szám: %d\\n\", szam);\n    return 0;\n}"
+    },
+    {
+        "title": "Dinamikus memóriakezelés (malloc / free)",
+        "language": "C",
+        "category": "Memória",
+        "content": "Dinamikus tömb vagy struktúra allokálása a heap memóriában. Minden malloc() híváshoz kötelező egy free() felszabadítás!",
+        "example": "#include <stdlib.h>\n\nint *tomb = (int*)malloc(n * sizeof(int));\nif (tomb == NULL) {\n    // Memóriahiba kezelése\n}\n// Használat...\nfree(tomb);"
+    },
+    {
+        "title": "Ownership és Borrowing",
+        "language": "Rust",
+        "category": "Memória",
+        "content": "Rust memóriabiztonsági modellje: Minden értéknek pontosan egy tulajdonosa van. Kölcsönzés történhet immutábilis (&T) vagy egyidejűleg egyetlen mutábilis (&mut T) hivatkozással.",
+        "example": "fn print_len(s: &String) {\n    println!(\"Hossz: {}\", s.len());\n}\n\nlet mut s = String::from(\"Hello\");\nprint_len(&s); // kölcsönzés\ns.push_str(\", World!\");"
+    },
+    {
+        "title": "Result és Option hibakezelés",
+        "language": "Rust",
+        "category": "Hibakezelés",
+        "content": "Rustban nincsenek kivételek (exception). A hiányzó értéket Option<T> (Some/None), a hibalehetőséget Result<T, E> (Ok/Err) fejezi ki.",
+        "example": "match std::fs::read_to_string(\"file.txt\") {\n    Ok(content) => println!(\"Tartalom: {content}\"),\n    Err(err) => eprintln!(\"Hiba: {err}\"),\n}"
+    },
+    {
+        "title": "Fájlkezelés 'with' blokkal",
+        "language": "Python",
+        "category": "I/O",
+        "content": "A 'with open(...) as f:' kontextuskezelő automatikusan és garantáltan lezárja a fájlt, még kivétel esetén is.",
+        "example": "with open(\"adatok.txt\", \"r\", encoding=\"utf-8\") as f:\n    sorok = [sor.strip() for sor in f.readlines()]\nprint(f\"{len(sorok)} sor beolvasva.\")"
+    }
+]

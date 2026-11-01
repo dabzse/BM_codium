@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+    <defs>
+        <linearGradient id="edu_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#141c24" />
+            <stop offset="100%" stop-color="#0b1118" />
+        </linearGradient>
+        <!-- New Testament Crystal Jasper Gradient: #16a085 -> #1abc9c -->
+        <linearGradient id="edu_accent" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#16a085" />
+            <stop offset="100%" stop-color="#1abc9c" />
+        </linearGradient>
+    </defs>
+    <rect x="4" y="4" width="120" height="120" rx="26" fill="url(#edu_bg)" stroke="#1abc9c" stroke-width="4" stroke-opacity="0.85" />
+    
+    <!-- Graduation Cap / Egyetemi Kalap (Újszövetségi Jáspis színben: #1abc9c) -->
+    <path d="M64 26 L104 46 L64 66 L24 46 Z" fill="url(#edu_accent)" opacity="0.95" />
+    <path d="M40 54 L40 76 Q64 92 88 76 L88 54" fill="none" stroke="#1abc9c" stroke-width="5" stroke-linecap="round" />
+    
+    <!-- Tassel / Bojt és zsinór (#48c9b0 áttetsző jáspis fény) -->
+    <path d="M64 46 L104 46 L104 58" fill="none" stroke="#48c9b0" stroke-width="2" stroke-opacity="0.9" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="64" cy="46" r="3.5" fill="#48c9b0" />
+    <circle cx="104" cy="62" r="5" fill="#48c9b0" />
+    
+    <!-- Code brackets -->
+    <path d="M38 92 L26 102 L38 112" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M90 92 L102 102 L90 112" fill="none" stroke="#cbd5e1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="64" y="107" font-family="'JetBrains Mono', monospace, sans-serif" font-size="16" font-weight="bold" fill="#1abc9c" text-anchor="middle">EDU</text>
+</svg>

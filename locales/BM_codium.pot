@@ -1,0 +1,316 @@
+# Translations template for BM::Codium (EDU::Codium && AI::Codium).
+# Copyright (C) 2026 Mihaly Nyilas <dr.dabzse@gmail.com>
+# This file is distributed under the same license as the BM::Codium project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: BM::Codium 0.0.0-pre-canary-0\n"
+"Report-Msgid-Bugs-To: dr.dabzse@gmail.com\n"
+"POT-Creation-Date: 2026-11-01 13:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# Titlebar and Navigation
+msgid "Search Files & Symbols (Shift+Shift / Ctrl+P)"
+msgstr ""
+
+msgid "Run"
+msgstr ""
+
+msgid "Sidebar"
+msgstr ""
+
+msgid "Panel"
+msgstr ""
+
+msgid "Manuals"
+msgstr ""
+
+# Primary Sidebar Tabs
+msgid "EXPLORER"
+msgstr ""
+
+msgid "SEARCH IN FILES"
+msgstr ""
+
+msgid "EDU DOC TUTOR"
+msgstr ""
+
+msgid "Quick reference and help cards for students"
+msgstr ""
+
+msgid "AI ASSISTANT"
+msgstr ""
+
+msgid "SETTINGS & POLICIES"
+msgstr ""
+
+# Search & Replace in Files
+msgid "Search"
+msgstr ""
+
+msgid "Replace"
+msgstr ""
+
+msgid "Replace All"
+msgstr ""
+
+msgid "Type search expression..."
+msgstr ""
+
+msgid "No results found in workspace."
+msgstr ""
+
+msgid "results found:"
+msgstr ""
+
+# Right Panel: Manuals & Documentation Assistant
+msgid "MANUALS & DOC TUTOR"
+msgstr ""
+
+msgid "Offline language & framework documentation assistant"
+msgstr ""
+
+msgid "Language (e.g. python, php, c):"
+msgstr ""
+
+msgid "Framework / Module (e.g. django):"
+msgstr ""
+
+msgid "Detected Manuals:"
+msgstr ""
+
+msgid "Ask local manual tutor..."
+msgstr ""
+
+msgid "Send"
+msgstr ""
+
+msgid "Manuals access is restricted in exam mode"
+msgstr ""
+
+# Bottom Dock Tabs
+msgid "TERMINAL"
+msgstr ""
+
+msgid "PROBLEMS"
+msgstr ""
+
+msgid "DOC TUTOR HINTS"
+msgstr ""
+
+# Status Bar
+msgid "Ready"
+msgstr ""
+
+msgid "EDU Mode (AI Disabled)"
+msgstr ""
+
+msgid "AI Ready (Local LLM)"
+msgstr ""
+
+# Edition Subtitles
+msgid "University Edition - No AI Cheating, Just Pure Learning"
+msgstr ""
+
+msgid "AI Edition - Integrated Local LLM & Smart Assistance"
+msgstr ""
+
+# Welcome / Shortcut Tooltips
+msgid "Search Everywhere (Files, Symbols, Commands)"
+msgstr ""
+
+msgid "Toggle Primary Side Bar"
+msgstr ""
+
+msgid "Toggle Terminal / Bottom Panel"
+msgstr ""
+
+msgid "Execute active file / project"
+msgstr ""
+
+msgid "Open University Doc Tutor / Language Help"
+msgstr ""
+
+# Sidebar & UI Text
+msgid "NO FOLDER OPEN"
+msgstr ""
+
+msgid "Type to search workspace symbols..."
+msgstr ""
+
+msgid "Local LLM: Connected (Offline)"
+msgstr ""
+
+msgid "Ask about your code, refactorings, or architecture. Running offline on background thread."
+msgstr ""
+
+msgid "Institution:"
+msgstr ""
+
+msgid "AI Code Gen Allowed:"
+msgstr ""
+
+msgid "Autocomplete Assistant Allowed:"
+msgstr ""
+
+msgid "Manuals Access Allowed:"
+msgstr ""
+
+msgid "Offline Exam Mode:"
+msgstr ""
+
+msgid "Language / Nyelv:"
+msgstr ""
+
+msgid "Autocomplete Assistant Path:"
+msgstr ""
+
+msgid "Manuals Directory:"
+msgstr ""
+
+msgid "Plugins Dir:"
+msgstr ""
+
+msgid "No compiler errors detected. All workspace diagnostics clean."
+msgstr ""
+
+msgid "Doc Tutor Pedagogic Hint:"
+msgstr ""
+
+msgid "Tip: When working with arrays in C/C++, always check buffer bounds before dereferencing pointers!"
+msgstr ""
+
+# Diagnostic Explanations (Pedagogic Diagnostic Engine)
+msgid "diag_borrow_checker_code"
+msgstr ""
+
+msgid "diag_borrow_checker_explanation"
+msgstr ""
+
+msgid "diag_borrow_checker_hint"
+msgstr ""
+
+msgid "diag_segfault_code"
+msgstr ""
+
+msgid "diag_segfault_explanation"
+msgstr ""
+
+msgid "diag_segfault_hint"
+msgstr ""
+
+msgid "diag_undefined_ref_code"
+msgstr ""
+
+msgid "diag_undefined_ref_explanation"
+msgstr ""
+
+msgid "diag_undefined_ref_hint"
+msgstr ""
+
+msgid "diag_index_error_code"
+msgstr ""
+
+msgid "diag_index_error_explanation"
+msgstr ""
+
+msgid "diag_index_error_hint"
+msgstr ""
+
+# Navigation, Replace & Search
+msgid "↑ Prev"
+msgstr ""
+
+msgid "↓ Next"
+msgstr ""
+
+msgid "1 occurrence replaced."
+msgstr ""
+
+# Word Wrap & Editor
+msgid "Word Wrap"
+msgstr ""
+
+msgid "↩ Word Wrap: ON"
+msgstr ""
+
+msgid "↩ Word Wrap (Alt+Z)"
+msgstr ""
+
+msgid "Word Wrap enabled (Alt+Z)"
+msgstr ""
+
+msgid "Word Wrap disabled (Alt+Z)"
+msgstr ""
+
+# Font settings
+msgid "UI Font:"
+msgstr ""
+
+msgid "Editor Font:"
+msgstr ""
+
+msgid "Terminal Font:"
+msgstr ""
+
+# Manuals & Tutor Assistant
+msgid "Local Manual Tutor"
+msgstr ""
+
+msgid "(Manuals directory empty or not found)"
+msgstr ""
+
+msgid "No matching manuals found."
+msgstr ""
+
+msgid "Manual"
+msgstr ""
+
+msgid "Ask about downloaded manuals or select a programming language and module!"
+msgstr ""
+
+msgid "Django ORM: Use Model.objects.filter(...) queries. Details in manuals/python/django/ directory."
+msgstr ""
+
+msgid "C I/O: printf formats (%d int, %f float, %s string). Scanf needs pointers: scanf(\"%d\", &val). Details in manuals/c/."
+msgstr ""
+
+msgid "Rust memory: Either any number of immutable references (&T) or exactly one mutable reference (&mut T) can exist at a time. See manuals/rust/."
+msgstr ""
+
+msgid "PHP manual: PDO database connection: new PDO(...). Arrays: associative and indexed. See manuals/php/."
+msgstr ""
+
+msgid "Information for [{target}] topic: Search downloaded files in manuals/ directory or refine your query keyword!"
+msgstr ""
+
+# Terminal
+msgid "Native Terminal Ready"
+msgstr ""
+
+msgid "Type commands below or click ▶ Run to execute code."
+msgstr ""
+
+# Folder selection and chat
+msgid "Open Folder"
+msgstr ""
+
+msgid "You have not yet opened a folder."
+msgstr ""
+
+msgid "Opened folder"
+msgstr ""
+
+msgid "Press Enter to send"
+msgstr ""
+
+msgid "Open"
+msgstr ""

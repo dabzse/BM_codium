@@ -1,0 +1,25 @@
+[package]
+name = "codium-app"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+default-run = "ai-codium"
+
+[[bin]]
+name = "ai-codium"
+path = "src/bin/ai_codium.rs"
+
+[[bin]]
+name = "edu-codium"
+path = "src/bin/edu_codium.rs"
+
+[dependencies]
+codium-core = { workspace = true }
+codium-edu  = { workspace = true }
+codium-ai   = { workspace = true }
+codium-ui   = { workspace = true }
+floem       = { workspace = true }
+clap        = { workspace = true }
+tracing     = { workspace = true }

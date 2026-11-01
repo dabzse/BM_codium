@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=AI::Codium
+GenericName=AI-Powered Code Editor
+Comment=Lightweight AI-assisted GPU-accelerated code editor written in Rust
+Exec=ai-codium %F
+Icon=ai-codium
+Terminal=false
+Categories=Development;IDE;TextEditor;
+MimeType=text/plain;text/x-rust;text/x-c;text/x-c++;text/x-python;text/javascript;application/json;
+StartupNotify=true
+StartupWMClass=ai-codium
+Keywords=editor;code;rust;ai;codium;ide;

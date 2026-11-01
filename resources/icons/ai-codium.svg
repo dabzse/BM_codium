@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+    <defs>
+        <linearGradient id="ai_bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#181825" />
+            <stop offset="100%" stop-color="#0f172a" />
+        </linearGradient>
+        <linearGradient id="ai_accent" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#06b6d4" />
+            <stop offset="100%" stop-color="#3b82f6" />
+        </linearGradient>
+    </defs>
+    <rect x="4" y="4" width="120" height="120" rx="26" fill="url(#ai_bg)" stroke="#06b6d4" stroke-width="4" stroke-opacity="0.8" />
+    <!-- AI Spark / Neural node shape -->
+    <path d="M64 22 L72 46 L96 54 L72 62 L64 86 L56 62 L32 54 L56 46 Z" fill="url(#ai_accent)" opacity="0.9" />
+    <circle cx="64" cy="54" r="6" fill="#ffffff" />
+    <circle cx="34" cy="36" r="3" fill="#38bdf8" />
+    <circle cx="94" cy="36" r="3" fill="#1982e4" />
+    <!-- Code brackets -->
+    <path d="M38 92 L26 102 L38 112" fill="none" stroke="#e0e0e0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M90 92 L102 102 L90 112" fill="none" stroke="#e0e0e0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+    <text x="64" y="107" font-family="monospace, sans-serif" font-size="16" font-weight="bold" fill="#38bdf8" text-anchor="middle">AI</text>
+</svg>

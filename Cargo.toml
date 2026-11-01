@@ -1,0 +1,49 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/codium-core",
+    "crates/codium-edu",
+    "crates/codium-ai",
+    "crates/codium-ui",
+    "apps/codium-app",
+]
+
+[workspace.package]
+version = "0.0.0-pre-canary-0"
+authors = ["Mihaly Nyilas (@dabzse, @mny, @mnyilas, @mnyil)"]
+edition = "2024"
+rust-version = "1.95.0"
+license = "AGPL-3.0-or-later"
+
+[workspace.dependencies]
+codium-core = { path = "crates/codium-core" }
+codium-edu  = { path = "crates/codium-edu" }
+codium-ai   = { path = "crates/codium-ai" }
+codium-ui   = { path = "crates/codium-ui" }
+
+# Vendored external dependencies
+floem = { git = "https://github.com/lapce/floem", rev = "31fa8f444c37f4c314f47d88c23ffdbc25f2ab53", features = ["editor", "serde", "default-image-formats"] }
+lapce-xi-rope = { version = "0.4.0", features = ["serde"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0" }
+anyhow = { version = "1.0" }
+thiserror = { version = "2.0" }
+parking_lot = { version = "0.13.0" }
+tracing = { version = "0.1" }
+once_cell = { version = "1.19" }
+chrono = { version = "0.4" }
+clap = { version = "4.6.7", default-features = false, features = ["std", "help", "usage", "derive"] }
+
+[patch.crates-io]
+regalloc2 = { rev = "5d79e12d0a93b10fc181f4da409b4671dd365228", git = "https://github.com/bytecodealliance/regalloc2" }
+dpi = { git = "https://github.com/rust-windowing/winit", rev = "ee245c569d65fdeacf705ee5eedb564508d10ebe" }
+
+[profile.dev]
+opt-level = 1
+debug = false
+strip = "debuginfo"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+strip = true
