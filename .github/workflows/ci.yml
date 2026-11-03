@@ -7,8 +7,13 @@ on:
   pull_request:
     branches: [ "main", "master" ]
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   CARGO_TERM_COLOR: always
+  CARGO_INCREMENTAL: 0
 
 jobs:
   check-and-test:
@@ -26,6 +31,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      # vendor-offline is gitignored and used for local offline development.
+      # When running in CI without vendor-offline present, remove local vendor config so Cargo fetches online.
+      - name: Prepare Cargo config for CI
+        shell: bash
+        run: |
+          if [ ! -d "vendor-offline" ]; then
+            echo "vendor-offline directory not found; disabling local offline vendoring configuration for CI."
+            rm -f .cargo/config.toml
+          fi
 
       - name: Install system dependencies for GUI (Linux only)
         if: runner.os == 'Linux'
@@ -45,11 +60,12 @@ jobs:
       - name: Setup Rust toolchain
         uses: dtolnay/rust-toolchain@stable
         with:
-          toolchain: 1.85.0
           components: clippy, rustfmt
 
       - name: Rust cache
         uses: Swatinem/rust-cache@v2
+        with:
+          save-if: ${{ github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main' }}
 
       - name: Extract Codium version from Cargo.toml
         shell: bash
@@ -80,7 +96,7 @@ jobs:
           chmod +x "staging/${BUNDLE_NAME}/edu-codium" "staging/${BUNDLE_NAME}/ai-codium"
           cp -r resources "staging/${BUNDLE_NAME}/"
           cp -r locales "staging/${BUNDLE_NAME}/"
-          cp settings.json "staging/${BUNDLE_NAME}/"
+          cp -r settings "staging/${BUNDLE_NAME}/"
           cp README.md "staging/${BUNDLE_NAME}/"
           tar -cJf "${BUNDLE_NAME}.tar.xz" -C staging "${BUNDLE_NAME}"
 
@@ -105,7 +121,7 @@ jobs:
           Copy-Item target/release/ai-codium.exe "staging/$bundleName/"
           Copy-Item -Recurse resources "staging/$bundleName/"
           Copy-Item -Recurse locales "staging/$bundleName/"
-          Copy-Item settings.json "staging/$bundleName/"
+          Copy-Item -Recurse settings "staging/$bundleName/"
           Copy-Item README.md "staging/$bundleName/"
           Compress-Archive -Path "staging/$bundleName" -DestinationPath "${bundleName}.zip"
 
