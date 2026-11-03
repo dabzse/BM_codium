@@ -41,7 +41,7 @@ fn main() {
 
     let mut window_config = WindowConfig::default()
         .size(Size::new(win_w, win_h))
-        .title("EDU_codium - University Edition");
+        .title("EDU::Codium - AI-free Edition of BM::Codium");
 
     if let Some(icon) = codium_ui::codium_window_icon(true) {
         window_config = window_config.window_icon(icon);
