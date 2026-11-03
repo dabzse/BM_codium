@@ -1,0 +1,308 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50cm" height="51cm" viewBox="0 0 1890 1928">
+    <defs>
+        <style>
+            .bg { fill: #0b1120; }
+            .card-bg { fill: #1e293b; stroke: #334155; stroke-width: 1px; }
+            .title { font-family: system-ui, -apple-system, sans-serif; font-size: 28px; font-weight: 800; fill: #f8fafc; }
+            .subtitle { font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 500; fill: #94a3b8; }
+            .col-header { font-family: system-ui, -apple-system, sans-serif; font-size: 20px; font-weight: 700; fill: #38bdf8; }
+            .name-hu { font-family: system-ui, -apple-system, sans-serif; font-size: 19px; font-weight: 700; fill: #ffffff; }
+            .name-en { font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 600; fill: #cbd5e1; }
+            .meta { font-family: 'JetBrains Mono', monospace; font-size: 12.5px; fill: #94a3b8; }
+            .dim-text { font-family: 'JetBrains Mono', monospace; font-size: 12px; fill: #64748b; }
+            .badge-hex { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 700; fill: #ffffff; }
+            .badge-rgb { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 500; fill: #38bdf8; }
+            .badge-rgba { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 400; fill: #cbd5e1; }
+            .divider { stroke: #334155; stroke-width: 1.5px; stroke-dasharray: 6 6; }
+    </style>
+    </defs>
+
+    <!-- Background (Teljes felületet kitöltő háttér) -->
+    <rect x="0" y="0" width="100%" height="100%" class="bg" />
+
+    <!-- Main Header -->
+    <g transform="translate(40, 24)">
+        <rect width="1810" height="76" rx="10" class="card-bg" />
+        <text x="24" y="33" class="title">A BIBLIA 12 SZÍNE ÉS DRÁGAKÖVE / THE 12 BIBLICAL COLORS &amp; GEMSTONES</text>
+        <text x="24" y="58" class="subtitle">Ószövetség (2Mózes 28:17–20) és Újszövetség (Jelenések 21:19–20) • Precíz 10 cm × 3 cm színminták • HEX / RGB / RGBA</text>
+    </g>
+
+    <!-- Column Headers -->
+    <text x="40" y="132" class="col-header">ÓSZÖVETSÉG: Áron melltájolója (2Mózes 28:17–20)</text>
+    <text x="950" y="132" class="col-header">ÚJSZÖVETSÉG: Új Jeruzsálem alapkövei (Jelenések 21:19–20)</text>
+
+    <!-- Divider -->
+    <line x1="915" y1="115" x2="915" y2="1830" class="divider" />
+
+    <g transform="translate(40, 150)">
+        <rect width="10cm" height="3cm" rx="8" fill="#C0392B" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#C0392B</text>
+        <text x="98" y="94" class="badge-rgb">rgb(192, 57, 43)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(192, 57, 43, 1)</text>
+        <text x="406" y="33" class="name-hu">1. Szárdion (vörös / rubin-karneol)</text>
+        <text x="406" y="60" class="name-en">1. Sardius (Carnelian / Ruby) • אֹדֶם (Odem)</text>
+        <text x="406" y="86" class="meta">Júda törzse • Tűzvörös szín</text>
+        <text x="406" y="106" class="dim-text">1. sor, 1. kő • 2Móz 28:17</text>
+    </g>
+    <g transform="translate(40, 289)">
+        <rect width="10cm" height="3cm" rx="8" fill="#F1C40F" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#F1C40F</text>
+        <text x="98" y="94" class="badge-rgb">rgb(241, 196, 15)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(241, 196, 15, 1)</text>
+        <text x="406" y="33" class="name-hu">2. Topáz (aranysárga)</text>
+        <text x="406" y="60" class="name-en">2. Topaz (Golden Chrysolite) • פִּטְדָה (Pitdah)</text>
+        <text x="406" y="86" class="meta">Issakár törzse • Ragyogó sárga</text>
+        <text x="406" y="106" class="dim-text">1. sor, 2. kő • 2Móz 28:17</text>
+    </g>
+    <g transform="translate(40, 428)">
+        <rect width="10cm" height="3cm" rx="8" fill="#27AE60" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#27AE60</text>
+        <text x="98" y="94" class="badge-rgb">rgb(39, 174, 96)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(39, 174, 96, 1)</text>
+        <text x="406" y="33" class="name-hu">3. Smaragd (smaragdzöld)</text>
+        <text x="406" y="60" class="name-en">3. Emerald (Bareket) • בָּרֶקֶת (Bareket)</text>
+        <text x="406" y="86" class="meta">Zebulon törzse • Fénylő tiszta zöld</text>
+        <text x="406" y="106" class="dim-text">1. sor, 3. kő • 2Móz 28:17</text>
+    </g>
+    <g transform="translate(40, 567)">
+        <rect width="10cm" height="3cm" rx="8" fill="#8B0000" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#8B0000</text>
+        <text x="98" y="94" class="badge-rgb">rgb(139, 0, 0)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(139, 0, 0, 1)</text>
+        <text x="406" y="33" class="name-hu">4. Karbunkulus (parázsvörös gránát)</text>
+        <text x="406" y="60" class="name-en">4. Carbuncle (Red Garnet) • נֹפֶךְ (Nofekh)</text>
+        <text x="406" y="86" class="meta">Rúben törzse • Izzó sötétvörös</text>
+        <text x="406" y="106" class="dim-text">2. sor, 1. kő • 2Móz 28:18</text>
+    </g>
+    <g transform="translate(40, 706)">
+        <rect width="10cm" height="3cm" rx="8" fill="#1F618D" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#1F618D</text>
+        <text x="98" y="94" class="badge-rgb">rgb(31, 97, 141)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(31, 97, 141, 1)</text>
+        <text x="406" y="33" class="name-hu">5. Zafír (királykék / lazúrkék)</text>
+        <text x="406" y="60" class="name-en">5. Sapphire (Lapis Lazuli Blue) • סַפִּיר (Sapir)</text>
+        <text x="406" y="86" class="meta">Simeon törzse • Égkék mennyei szín</text>
+        <text x="406" y="106" class="dim-text">2. sor, 2. kő • 2Móz 28:18</text>
+    </g>
+    <g transform="translate(40, 845)">
+        <rect width="10cm" height="3cm" rx="8" fill="#EBF5FB" stroke="#94A3B8" stroke-width="2px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#EBF5FB</text>
+        <text x="98" y="94" class="badge-rgb">rgb(235, 245, 251)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(235, 245, 251, 1)</text>
+        <text x="406" y="33" class="name-hu">6. Gyémánt (csillogó jégfehér)</text>
+        <text x="406" y="60" class="name-en">6. Diamond (Rock Crystal White) • יָהֲלֹם (Yahalom)</text>
+        <text x="406" y="86" class="meta">Gád törzse • Ragyogó fehér kristály</text>
+        <text x="406" y="106" class="dim-text">2. sor, 3. kő • 2Móz 28:18</text>
+    </g>
+    <g transform="translate(40, 984)">
+        <rect width="10cm" height="3cm" rx="8" fill="#E67E22" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)"  stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#E67E22</text>
+        <text x="98" y="94" class="badge-rgb">rgb(230, 126, 34)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(230, 126, 34, 1)</text>
+        <text x="406" y="33" class="name-hu">7. Ligur / Hiácint (borostyán-narancs)</text>
+        <text x="406" y="60" class="name-en">7. Jacinth (Ligure / Amber Orange) • לֶשֶׁם (Leshem)</text>
+        <text x="406" y="86" class="meta">Efraim törzse • Meleg narancssárga</text>
+        <text x="406" y="106" class="dim-text">3. sor, 1. kő • 2Móz 28:19</text>
+    </g>
+    <g transform="translate(40, 1123)">
+        <rect width="10cm" height="3cm" rx="8" fill="#85929E" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#85929E</text>
+        <text x="98" y="94" class="badge-rgb">rgb(133, 146, 158)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(133, 146, 158, 1)</text>
+        <text x="406" y="33" class="name-hu">8. Achát (sávos palaszürke-kék)</text>
+        <text x="406" y="60" class="name-en">8. Agate (Banded Grey / Lavender) • שְׁבוֹ (Shevo)</text>
+        <text x="406" y="86" class="meta">Manassé törzse • Szürkéskék sávos</text>
+        <text x="406" y="106" class="dim-text">3. sor, 2. kő • 2Móz 28:19</text>
+    </g>
+    <g transform="translate(40, 1262)">
+        <rect width="10cm" height="3cm" rx="8" fill="#8E44AD" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#8E44AD</text>
+        <text x="98" y="94" class="badge-rgb">rgb(142, 68, 173)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(142, 68, 173, 1)</text>
+        <text x="406" y="33" class="name-hu">9. Ametiszt (királyi ibolyalila)</text>
+        <text x="406" y="60" class="name-en">9. Amethyst (Royal Violet Purple) • אַחְלָמָה (Ahlamah)</text>
+        <text x="406" y="86" class="meta">Benjámin törzse • Spirituális lila</text>
+        <text x="406" y="106" class="dim-text">3. sor, 3. kő • 2Móz 28:19</text>
+    </g>
+    <g transform="translate(40, 1401)">
+        <rect width="10cm" height="3cm" rx="8" fill="#16A085" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#16A085</text>
+        <text x="98" y="94" class="badge-rgb">rgb(22, 160, 133)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(22, 160, 133, 1)</text>
+        <text x="406" y="33" class="name-hu">10. Krizolit / Tarsis (tengerzöld)</text>
+        <text x="406" y="60" class="name-en">10. Chrysolite (Tarshish Beryl) • תַּרְשִׁישׁ (Tarshish)</text>
+        <text x="406" y="86" class="meta">Dán törzse • Aranyló zöldeskék</text>
+        <text x="406" y="106" class="dim-text">4. sor, 1. kő • 2Móz 28:20</text>
+    </g>
+    <g transform="translate(40, 1540)">
+        <rect width="10cm" height="3cm" rx="8" fill="#212F3D" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#212F3D</text>
+        <text x="98" y="94" class="badge-rgb">rgb(33, 47, 61)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(33, 47, 61, 1)</text>
+        <text x="406" y="33" class="name-hu">11. Ónix (mélyfekete drágakő)</text>
+        <text x="406" y="60" class="name-en">11. Onyx (Deep Jet Black) • שֹׁהַם (Shoham)</text>
+        <text x="406" y="86" class="meta">Áser törzse • Fényes fekete nemeskő</text>
+        <text x="406" y="106" class="dim-text">4. sor, 2. kő • 2Móz 28:20</text>
+    </g>
+    <g transform="translate(40, 1679)">
+        <rect width="10cm" height="3cm" rx="8" fill="#922B21" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#922B21</text>
+        <text x="98" y="94" class="badge-rgb">rgb(146, 43, 33)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(146, 43, 33, 1)</text>
+        <text x="406" y="33" class="name-hu">12. Jáspis (földvörös jáspis)</text>
+        <text x="406" y="60" class="name-en">12. Jasper (Deep Red Jasper) • יָשְׁפֵה (Yashfeh)</text>
+        <text x="406" y="86" class="meta">Naftali törzse • Vörös földszín</text>
+        <text x="406" y="106" class="dim-text">4. sor, 3. kő • 2Móz 28:20</text>
+    </g>
+    <g transform="translate(950, 150)">
+        <rect width="10cm" height="3cm" rx="8" fill="#1ABC9C" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#1ABC9C</text>
+        <text x="98" y="94" class="badge-rgb">rgb(26, 188, 156)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(26, 188, 156, 1)</text>
+        <text x="406" y="33" class="name-hu">1. Jáspis (kristálytiszta zöldeskék)</text>
+        <text x="406" y="60" class="name-en">1. Jasper (Clear Crystal Green) • ἴασπις (Iaspis)</text>
+        <text x="406" y="86" class="meta">Kristályfényű tiszta jáspis</text>
+        <text x="406" y="106" class="dim-text">1. alapkő • Jel 21:19</text>
+    </g>
+    <g transform="translate(950, 289)">
+        <rect width="10cm" height="3cm" rx="8" fill="#2980B9" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#2980B9</text>
+        <text x="98" y="94" class="badge-rgb">rgb(41, 128, 185)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(41, 128, 185, 1)</text>
+        <text x="406" y="33" class="name-hu">2. Zafír (királykék / lazúrkék)</text>
+        <text x="406" y="60" class="name-en">2. Sapphire (Deep Azure Blue) • σάπφειρος (Sapphiros)</text>
+        <text x="406" y="86" class="meta">Mélykék mennyei zafír</text>
+        <text x="406" y="106" class="dim-text">2. alapkő • Jel 21:19</text>
+    </g>
+    <g transform="translate(950, 428)">
+        <rect width="10cm" height="3cm" rx="8" fill="#5DADE2" stroke="rgba(255,255,255,0.2)"
+            stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)"
+            stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#5DADE2</text>
+        <text x="98" y="94" class="badge-rgb">rgb(93, 173, 226)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(93, 173, 226, 1)</text>
+        <text x="406" y="33" class="name-hu">3. Kalcedon (égszínkék-opál)</text>
+        <text x="406" y="60" class="name-en">3. Chalcedony (Sky-Blue Chalcedony) • χαλκηδών Chalkēdōn)</text>
+        <text x="406" y="86" class="meta">Opálos világos égszínkék</text>
+        <text x="406" y="106" class="dim-text">3. alapkő • Jel 21:19</text>
+    </g>
+    <g transform="translate(950, 567)">
+        <rect width="10cm" height="3cm" rx="8" fill="#2ECC71" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#2ECC71</text>
+        <text x="98" y="94" class="badge-rgb">rgb(46, 204, 113)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(46, 204, 113, 1)</text>
+        <text x="406" y="33" class="name-hu">4. Smaragd (smaragdzöld)</text>
+        <text x="406" y="60" class="name-en">4. Emerald (Radiant Emerald Green) • σμάραγδος (Smaragdos)</text>
+        <text x="406" y="86" class="meta">Ragyogó üde smaragdzöld</text>
+        <text x="406" y="106" class="dim-text">4. alapkő • Jel 21:19</text>
+    </g>
+    <g transform="translate(950, 706)">
+        <rect width="10cm" height="3cm" rx="8" fill="#A04000" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#A04000</text>
+        <text x="98" y="94" class="badge-rgb">rgb(160, 64, 0)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(160, 64, 0, 1)</text>
+        <text x="406" y="33" class="name-hu">5. Szárdonix (vörösesbarna sávos)</text>
+        <text x="406" y="60" class="name-en">5. Sardonyx (Banded Reddish Onyx) • σαρδόνυξ (Sardonyx)</text>
+        <text x="406" y="86" class="meta">Vörösesbarna és fehér sávos kő</text>
+        <text x="406" y="106" class="dim-text">5. alapkő • Jel 21:20</text>
+    </g>
+    <g transform="translate(950, 845)">
+        <rect width="10cm" height="3cm" rx="8" fill="#E74C3C" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#E74C3C</text>
+        <text x="98" y="94" class="badge-rgb">rgb(231, 76, 60)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(231, 76, 60, 1)</text>
+        <text x="406" y="33" class="name-hu">6. Sárdius (lángvörös karneol)</text>
+        <text x="406" y="60" class="name-en">6. Sardius (Fiery Carnelian) • σάρδιον (Sardion)</text>
+        <text x="406" y="86" class="meta">Izzó tüzes vérvörös</text>
+        <text x="406" y="106" class="dim-text">6. alapkő • Jel 21:20</text>
+    </g>
+    <g transform="translate(950, 984)">
+        <rect width="10cm" height="3cm" rx="8" fill="#B7950B" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#B7950B</text>
+        <text x="98" y="94" class="badge-rgb">rgb(183, 149, 11)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(183, 149, 11, 1)</text>
+        <text x="406" y="33" class="name-hu">7. Krizolit (aranyzöld peridot)</text>
+        <text x="406" y="60" class="name-en">7. Chrysolite (Golden Peridot) • χρυσόλιθος (Chrysolithos)</text>
+        <text x="406" y="86" class="meta">Aranyló sárgászöld ragyogás</text>
+        <text x="406" y="106" class="dim-text">7. alapkő • Jel 21:20</text>
+    </g>
+    <g transform="translate(950, 1123)">
+        <rect width="10cm" height="3cm" rx="8" fill="#48C9B0" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#48C9B0</text>
+        <text x="98" y="94" class="badge-rgb">rgb(72, 201, 176)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(72, 201, 176, 1)</text>
+        <text x="406" y="33" class="name-hu">8. Berill (tengerzöld akvamarin)</text>
+        <text x="406" y="60" class="name-en">8. Beryl (Sea-Green Aquamarine) • βήρυλλος (Bēryllos)</text>
+        <text x="406" y="86" class="meta">Tengerzöld tiszta drágakő</text>
+        <text x="406" y="106" class="dim-text">8. alapkő • Jel 21:20</text>
+    </g>
+    <g transform="translate(950, 1262)">
+        <rect width="10cm" height="3cm" rx="8" fill="#F39C12" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#F39C12</text>
+        <text x="98" y="94" class="badge-rgb">rgb(243, 156, 18)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(243, 156, 18, 1)</text>
+        <text x="406" y="33" class="name-hu">9. Topáz (fénylő aranysárga)</text>
+        <text x="406" y="60" class="name-en">9. Topaz (Golden Sun Topaz) • τοπάζιον (Topazion)</text>
+        <text x="406" y="86" class="meta">Ragyogó meleg napsárga</text>
+        <text x="406" y="106" class="dim-text">9. alapkő • Jel 21:20</text>
+    </g>
+    <g transform="translate(950, 1401)">
+        <rect width="10cm" height="3cm" rx="8" fill="#58D68D" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#58D68D</text>
+        <text x="98" y="94" class="badge-rgb">rgb(88, 214, 141)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(88, 214, 141, 1)</text>
+        <text x="406" y="33" class="name-hu">10. Krizopráz (világos almazöld)</text>
+        <text x="406" y="60" class="name-en">10. Chrysoprase (Apple Green) • χρυσόπρασος (Chrysoprasos)</text>
+        <text x="406" y="86" class="meta">Üde gyengéd almazöld</text>
+        <text x="406" y="106" class="dim-text">10. alapkő • Jel 21:20</text>
+    </g>
+    <g transform="translate(950, 1540)">
+        <rect width="10cm" height="3cm" rx="8" fill="#7D3C98" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#7D3C98</text>
+        <text x="98" y="94" class="badge-rgb">rgb(125, 60, 152)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(125, 60, 152, 1)</text>
+        <text x="406" y="33" class="name-hu">11. Jácint (mély violakék / ibolya)</text>
+        <text x="406" y="60" class="name-en">11. Jacinth (Violet-Indigo) • ὑάκινθος (Hyakinthos)</text>
+        <text x="406" y="86" class="meta">Mély ibolyáskék nemeskő</text>
+        <text x="406" y="106" class="dim-text">11. alapkő • Jel 21:20</text>
+    </g>
+    <g transform="translate(950, 1679)">
+        <rect width="10cm" height="3cm" rx="8" fill="#6C3483" stroke="rgba(255,255,255,0.2)" stroke-width="1.5px" />
+        <rect x="10" y="75" width="358" height="28" rx="5" fill="rgba(11,17,32,0.85)" stroke="rgba(255,255,255,0.18)" stroke-width="1px" />
+        <text x="20" y="94" class="badge-hex">#6C3483</text>
+        <text x="98" y="94" class="badge-rgb">rgb(108, 52, 131)</text>
+        <text x="356" y="94" text-anchor="end" class="badge-rgba">rgba(108, 52, 131, 1)</text>
+        <text x="406" y="33" class="name-hu">12. Ametiszt (fényes bíbor-ametiszt)</text>
+        <text x="406" y="60" class="name-en">12. Amethyst (Royal Purple Amethyst) • ἀμέθυστος (Amethystos)</text>
+        <text x="406" y="86" class="meta">Fenséges királyi bíborlila</text>
+        <text x="406" y="106" class="dim-text">12. alapkő • Jel 21:20</text>
+    </g>
+
+    <!-- Footer -->
+    <g transform="translate(40, 1860)">
+        <text x="0" y="0" class="dim-text">BM::Codium • assets/color_previews_all.svg • Mindkét bibliai gyűjtemény • Pontos 10 cm × 3 cm téglalapok • HEX, RGB és RGBA színkódok</text>
+    </g>
+</svg>
