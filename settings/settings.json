@@ -6,6 +6,7 @@
   "allow_manuals_access": true,
   "plugins_dir": "plugins",
   "autocomplete_assistant_path": "plugins/autocomplete",
+  "keymap_profile": "vscode",
   "institution_name": "BM::Codium University & AI Lab",
   "exam_mode": false,
   "allow_ai_generation": false,

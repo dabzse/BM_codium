@@ -1092,6 +1092,9 @@ fn settings_view(state: AppState) -> impl IntoView {
             label(move || format!("{} {}", locale.get().tr("Plugins Dir:"), settings.get().plugins_dir)).style(move |s| {
                 s.font_size(11.5).color(theme.get().fg_muted).margin_bottom(6.0)
             }),
+            label(move || format!("{} {}", locale.get().tr("Keymap Profile:"), settings.get().keymap_profile)).style(move |s| {
+                s.font_size(11.5).color(theme.get().accent_blue).margin_bottom(6.0)
+            }),
             label(move || format!("{} {}", locale.get().tr("Offline Exam Mode:"), policy.get().exam_mode)).style(move |s| {
                 s.font_size(11.5).color(theme.get().fg_muted).margin_bottom(6.0)
             }),

@@ -48,7 +48,9 @@ pub fn matches_chord(event: &floem::keyboard::KeyEvent, chord: &KeyChord) -> boo
         Key::Named(NamedKey::F1) => chord_key == "f1",
         Key::Named(NamedKey::F4) => chord_key == "f4",
         Key::Named(NamedKey::F5) => chord_key == "f5",
+        Key::Named(NamedKey::F10) => chord_key == "f10",
         Key::Named(NamedKey::F12) => chord_key == "f12",
+        Key::Named(NamedKey::Insert) => chord_key == "insert",
         _ => false,
     };
 
@@ -73,9 +75,17 @@ pub fn matches_chord(event: &floem::keyboard::KeyEvent, chord: &KeyChord) -> boo
         "b" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::KeyB)),
         "j" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::KeyJ)),
         "f" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::KeyF)),
+        "p" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::KeyP)),
+        "q" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::KeyQ)),
+        "t" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::KeyT)),
+        "k" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::KeyK)),
+        "1" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::Digit1)),
         "f1" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::F1)),
         "f4" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::F4)),
         "f5" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::F5)),
+        "f10" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::F10)),
+        "f12" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::F12)),
+        "insert" => matches!(event.key.physical_key, PhysicalKey::Code(KeyCode::Insert)),
         _ => false,
     }
 }

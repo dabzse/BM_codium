@@ -176,6 +176,8 @@ impl AppState {
             ("Tutor".to_string(), initial_locale.tr("Ask about downloaded manuals or select a programming language and module!")),
         ];
 
+        let keymap = Keymap::load_profile(&settings.keymap_profile);
+
         Self {
             active_menu: RwSignal::new(None),
             active_menu_overlay: RwSignal::new(None),
@@ -206,7 +208,7 @@ impl AppState {
             manuals_module_query: RwSignal::new(String::new()),
             manuals_chat_query: RwSignal::new(String::new()),
             manuals_chat_messages: RwSignal::new(initial_manuals_messages),
-            keymap: RwSignal::new(Keymap::load()),
+            keymap: RwSignal::new(keymap),
         }
     }
 }

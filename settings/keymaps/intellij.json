@@ -1,0 +1,63 @@
+[
+  {
+    "key": "Alt+Z",
+    "command": "workbench.action.toggleWordWrap",
+    "when": "editorTextFocus"
+  },
+  {
+    "key": "Ctrl+S",
+    "command": "workbench.action.files.save"
+  },
+  {
+    "key": "Alt+Insert",
+    "command": "workbench.action.files.newUntitledFile"
+  },
+  {
+    "key": "Ctrl+O",
+    "command": "workbench.action.files.openFile"
+  },
+  {
+    "key": "Ctrl+Shift+O",
+    "command": "workbench.action.files.openFolder"
+  },
+  {
+    "key": "Ctrl+F4",
+    "command": "workbench.action.closeActiveEditor"
+  },
+  {
+    "key": "Ctrl+Shift+F4",
+    "command": "workbench.action.closeAllEditors"
+  },
+  {
+    "key": "Alt+1",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "Alt+F12",
+    "command": "workbench.action.terminal.toggleTerminal"
+  },
+  {
+    "key": "Ctrl+Shift+B",
+    "command": "workbench.action.toggleAuxiliaryBar"
+  },
+  {
+    "key": "Ctrl+Shift+F",
+    "command": "workbench.action.findInFiles"
+  },
+  {
+    "key": "Shift+F10",
+    "command": "workbench.action.debug.run"
+  },
+  {
+    "key": "Shift+Shift",
+    "command": "workbench.action.quickOpen"
+  },
+  {
+    "key": "Ctrl+Q",
+    "command": "workbench.action.openDocumentation"
+  },
+  {
+    "key": "Alt+F4",
+    "command": "workbench.action.quit"
+  }
+]
