@@ -40,6 +40,10 @@ pub struct CodiumSettings {
     #[serde(default = "default_keymap_profile")]
     pub keymap_profile: String,
 
+    /// Active syntax highlight color theme ("monokai", "vscode_dark", "one_dark", "solarized_dark")
+    #[serde(default = "default_syntax_theme")]
+    pub syntax_theme: String,
+
     /// Educational institution name or course title
     #[serde(default = "default_institution")]
     pub institution_name: String,
@@ -124,6 +128,7 @@ fn default_manuals_dir() -> String { "manuals".to_string() }
 fn default_plugins_dir() -> String { "plugins".to_string() }
 fn default_autocomplete_path() -> String { "plugins/autocomplete".to_string() }
 fn default_keymap_profile() -> String { "vscode".to_string() }
+fn default_syntax_theme() -> String { "monokai".to_string() }
 fn default_institution() -> String { "BM::Codium University & AI Lab".to_string() }
 fn default_ai_endpoint() -> String { "http://localhost:11434".to_string() }
 fn default_theme() -> String { "dark".to_string() }
@@ -149,6 +154,7 @@ impl Default for CodiumSettings {
             plugins_dir: default_plugins_dir(),
             autocomplete_assistant_path: default_autocomplete_path(),
             keymap_profile: default_keymap_profile(),
+            syntax_theme: default_syntax_theme(),
             institution_name: default_institution(),
             exam_mode: false,
             allow_ai_generation: false,

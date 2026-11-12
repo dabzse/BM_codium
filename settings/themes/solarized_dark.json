@@ -1,0 +1,72 @@
+{
+  "name": "Solarized Dark",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#002B36",
+    "editor.foreground": "#839496",
+    "editor.lineHighlightBackground": "#073642",
+    "editor.selectionBackground": "#073642",
+    "editorCursor.foreground": "#839496",
+    "editorLineNumber.foreground": "#586E75",
+    "editorLineNumber.activeForeground": "#93A1A1",
+    "editorIndentGuide.background": "#073642"
+  },
+  "token_colors": {
+    "keyword": {
+      "foreground": "#859900"
+    },
+    "storage": {
+      "foreground": "#859900"
+    },
+    "type": {
+      "foreground": "#B58900"
+    },
+    "function": {
+      "foreground": "#268BD2"
+    },
+    "macro": {
+      "foreground": "#268BD2"
+    },
+    "string": {
+      "foreground": "#2AA198"
+    },
+    "comment": {
+      "foreground": "#586E75",
+      "font_style": "italic"
+    },
+    "doc_comment": {
+      "foreground": "#657B83",
+      "font_style": "italic"
+    },
+    "number": {
+      "foreground": "#D33682"
+    },
+    "boolean": {
+      "foreground": "#B58900"
+    },
+    "constant": {
+      "foreground": "#CB4B16"
+    },
+    "operator": {
+      "foreground": "#859900"
+    },
+    "punctuation": {
+      "foreground": "#839496"
+    },
+    "variable": {
+      "foreground": "#839496"
+    },
+    "parameter": {
+      "foreground": "#268BD2"
+    },
+    "attribute": {
+      "foreground": "#B58900"
+    },
+    "tag": {
+      "foreground": "#268BD2"
+    },
+    "plain": {
+      "foreground": "#839496"
+    }
+  }
+}

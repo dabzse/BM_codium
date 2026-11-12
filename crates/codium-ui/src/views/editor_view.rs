@@ -204,8 +204,12 @@ fn tab_bar_view(state: AppState) -> impl IntoView {
 }
 
 /// Active text buffer view powered by Floem's native TextEditor engine
+use std::rc::Rc;
+use codium_core::syntax::SyntaxLanguage;
+use floem::text::FamilyOwned;
 use floem::views::text_editor::text_editor;
-use floem::views::editor::text::WrapMethod;
+use floem::views::editor::text::{SimpleStyling, WrapMethod};
+use crate::syntax::CodiumStyling;
 
 fn active_editor_view(state: AppState) -> impl IntoView {
     let theme = state.theme;
@@ -214,19 +218,39 @@ fn active_editor_view(state: AppState) -> impl IntoView {
     let settings = state.settings;
 
     let active_idx = ws.get_untracked().active_document_idx;
-    let initial_text = if let Some(idx) = active_idx {
-        ws.get_untracked()
-            .open_documents
-            .get(idx)
-            .map(|d| d.text())
-            .unwrap_or_default()
+    let (initial_text, language) = if let Some(idx) = active_idx {
+        let ws_guard = ws.get_untracked();
+        if let Some(d) = ws_guard.open_documents.get(idx) {
+            let lang = d.path()
+                .and_then(|p| p.extension())
+                .and_then(|e| e.to_str())
+                .map(SyntaxLanguage::from_extension)
+                .unwrap_or(SyntaxLanguage::PlainText);
+            (d.text(), lang)
+        } else {
+            (String::new(), SyntaxLanguage::PlainText)
+        }
     } else {
-        String::new()
+        (String::new(), SyntaxLanguage::PlainText)
     };
 
     let ed = text_editor(initial_text);
     let doc_ref = ed.doc();
     let ws_signal = ws;
+
+    let font_family = settings.get_untracked().editor_font_family;
+    let base_styling = SimpleStyling::builder()
+        .font_size(14)
+        .font_family(vec![
+            FamilyOwned::Name(font_family),
+            FamilyOwned::Monospace,
+        ])
+        .build();
+
+    let mut styling = CodiumStyling::new(state.syntax_theme, language, Rc::new(base_styling));
+    styling.set_doc(ed.doc().clone());
+
+    let ed = ed.styling(styling);
 
     // Sync edited text back into the workspace TextBuffer
     let ed = ed.update(move |_| {

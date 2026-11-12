@@ -4,7 +4,7 @@
 //! UI panels visibility, locale (GNU gettext .po backed), theme settings,
 //! and settings.json configurations.
 
-use codium_core::{CodiumSettings, Keymap, Locale, Workspace, init_i18n};
+use codium_core::{CodiumSettings, Keymap, Locale, SyntaxTheme, Workspace, init_i18n};
 use codium_edu::EduPolicy;
 use floem::reactive::RwSignal;
 use crate::theme::CodiumTheme;
@@ -127,6 +127,8 @@ pub struct AppState {
     pub word_wrap: RwSignal<bool>,
     /// VSCodium keybinding configuration
     pub keymap: RwSignal<Keymap>,
+    /// Syntax color theme (default Monokai)
+    pub syntax_theme: RwSignal<SyntaxTheme>,
 }
 
 /// Represents a match in a file for workspace Search & Replace
@@ -177,6 +179,8 @@ impl AppState {
         ];
 
         let keymap = Keymap::load_profile(&settings.keymap_profile);
+        let syntax_theme = SyntaxTheme::load_profile(&settings.syntax_theme);
+        let theme = CodiumTheme::for_theme(&settings.syntax_theme);
 
         Self {
             active_menu: RwSignal::new(None),
@@ -193,7 +197,7 @@ impl AppState {
             active_search_match_idx: RwSignal::new(None),
             settings: RwSignal::new(settings),
             locale: RwSignal::new(initial_locale),
-            theme: RwSignal::new(CodiumTheme::default()),
+            theme: RwSignal::new(theme),
             workspace: RwSignal::new(ws),
             active_sidebar_tab: RwSignal::new(SidebarTab::Explorer),
             show_sidebar: RwSignal::new(true),
@@ -209,6 +213,7 @@ impl AppState {
             manuals_chat_query: RwSignal::new(String::new()),
             manuals_chat_messages: RwSignal::new(initial_manuals_messages),
             keymap: RwSignal::new(keymap),
+            syntax_theme: RwSignal::new(syntax_theme),
         }
     }
 }

@@ -1,0 +1,74 @@
+{
+  "name": "Monokai",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#272822",
+    "editor.foreground": "#F8F8F2",
+    "editor.lineHighlightBackground": "#3E3D32",
+    "editor.selectionBackground": "#49483E",
+    "editorCursor.foreground": "#F8F8F0",
+    "editorLineNumber.foreground": "#75715E",
+    "editorLineNumber.activeForeground": "#F8F8F2",
+    "editorIndentGuide.background": "#3E3D32"
+  },
+  "token_colors": {
+    "keyword": {
+      "foreground": "#F92672"
+    },
+    "storage": {
+      "foreground": "#66D9EF",
+      "font_style": "italic"
+    },
+    "type": {
+      "foreground": "#66D9EF"
+    },
+    "function": {
+      "foreground": "#A6E22E"
+    },
+    "macro": {
+      "foreground": "#66D9EF"
+    },
+    "string": {
+      "foreground": "#E6DB74"
+    },
+    "comment": {
+      "foreground": "#75715E",
+      "font_style": "italic"
+    },
+    "doc_comment": {
+      "foreground": "#8F8B7B",
+      "font_style": "italic"
+    },
+    "number": {
+      "foreground": "#AE81FF"
+    },
+    "boolean": {
+      "foreground": "#AE81FF"
+    },
+    "constant": {
+      "foreground": "#AE81FF"
+    },
+    "operator": {
+      "foreground": "#F92672"
+    },
+    "punctuation": {
+      "foreground": "#F8F8F2"
+    },
+    "variable": {
+      "foreground": "#F8F8F2"
+    },
+    "parameter": {
+      "foreground": "#FD971F",
+      "font_style": "italic"
+    },
+    "attribute": {
+      "foreground": "#A6E22E"
+    },
+    "tag": {
+      "foreground": "#F92672"
+    },
+    "plain": {
+      "foreground": "#F8F8F2"
+    }
+  }
+}

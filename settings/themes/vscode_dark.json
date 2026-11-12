@@ -1,0 +1,72 @@
+{
+  "name": "VS Code Dark+",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#1E1E1E",
+    "editor.foreground": "#D4D4D4",
+    "editor.lineHighlightBackground": "#282828",
+    "editor.selectionBackground": "#264F78",
+    "editorCursor.foreground": "#AEAFAD",
+    "editorLineNumber.foreground": "#858585",
+    "editorLineNumber.activeForeground": "#C6C6C6",
+    "editorIndentGuide.background": "#383838"
+  },
+  "token_colors": {
+    "keyword": {
+      "foreground": "#C586C0"
+    },
+    "storage": {
+      "foreground": "#569CD6"
+    },
+    "type": {
+      "foreground": "#4EC9B0"
+    },
+    "function": {
+      "foreground": "#DCDCAA"
+    },
+    "macro": {
+      "foreground": "#DCDCAA"
+    },
+    "string": {
+      "foreground": "#CE9178"
+    },
+    "comment": {
+      "foreground": "#6A9955",
+      "font_style": "italic"
+    },
+    "doc_comment": {
+      "foreground": "#608B4E",
+      "font_style": "italic"
+    },
+    "number": {
+      "foreground": "#B5CEA8"
+    },
+    "boolean": {
+      "foreground": "#569CD6"
+    },
+    "constant": {
+      "foreground": "#4FC1FF"
+    },
+    "operator": {
+      "foreground": "#D4D4D4"
+    },
+    "punctuation": {
+      "foreground": "#D4D4D4"
+    },
+    "variable": {
+      "foreground": "#9CDCFE"
+    },
+    "parameter": {
+      "foreground": "#9CDCFE"
+    },
+    "attribute": {
+      "foreground": "#9CDCFE"
+    },
+    "tag": {
+      "foreground": "#569CD6"
+    },
+    "plain": {
+      "foreground": "#D4D4D4"
+    }
+  }
+}
