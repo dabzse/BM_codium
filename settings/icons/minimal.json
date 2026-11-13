@@ -1,0 +1,19 @@
+{
+  "name": "minimal",
+  "file": "_file",
+  "folder": "_folder",
+  "folderExpanded": "_folder_open",
+  "fileExtensions": {},
+  "fileNames": {},
+  "iconDefinitions": {
+    "_folder": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1.5 2.5l1.5-1h3.5l1.5 1h6.5l.5.5v9.5l-.5.5h-13l-.5-.5v-10z\" fill=\"#E5A93C\"/></svg>"
+    },
+    "_folder_open": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1.5 2.5l1.5-1h3.5l1.5 1h6.5l.5.5v2.5h-11.5l-1.5 7v-10zm1.2 4h12.5l-1.8 6.5h-11.7l1-6.5z\" fill=\"#F5BA42\"/></svg>"
+    },
+    "_file": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 1.5h6.5L13 5v9.5H3V1.5z\" fill=\"#90A4AE\"/><path d=\"M9.5 1.5V5H13\" fill=\"#B0BEC5\"/></svg>"
+    }
+  }
+}

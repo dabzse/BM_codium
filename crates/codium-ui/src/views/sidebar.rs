@@ -332,42 +332,23 @@ fn render_file_node(node: &FileNode, depth: usize, state: AppState, items: &mut 
     let ws = state.workspace;
 
     let indent = (depth as f64) * 14.0 + 10.0;
-    let icon = if is_dir {
-        if is_expanded { "📂 " } else { "📁 " }
+    let icon_theme = state.icon_theme.get();
+    let svg_content = if is_dir {
+        icon_theme.get_folder_icon(is_expanded).to_string()
     } else {
-        if name.ends_with(".rs") { "🦀 " }
-        else if name.ends_with(".c") || name.ends_with(".h") { "🇨 " }
-        else if name.ends_with(".cpp") || name.ends_with(".hpp") || name.ends_with(".cc") { "➕ " }
-        else if name.ends_with(".cs") { "🔷 " }
-        else if name.ends_with(".py") || name.ends_with(".pyw") { "🐍 " }
-        else if name.ends_with(".php") || name.ends_with(".phtml") { "🐘 " }
-        else if name.ends_with(".java") { "☕ " }
-        else if name.ends_with(".kt") || name.ends_with(".kts") { "🎯 " }
-        else if name.ends_with(".erl") || name.ends_with(".hrl") { "🔴 " }
-        else if name.ends_with(".scala") || name.ends_with(".sc") { "🔴 " }
-        else if name.ends_with(".ex") || name.ends_with(".exs") { "💧 " }
-        else if name.ends_with(".go") { "🐹 " }
-        else if name.ends_with(".ts") || name.ends_with(".tsx") { "🔷 " }
-        else if name.ends_with(".js") || name.ends_with(".mjs") { "🟨 " }
-        else if name.ends_with(".rb") || name.ends_with(".rake") { "💎 " }
-        else if name.ends_with(".zig") { "⚡ " }
-        else if name.ends_with(".swift") { "🕊️ " }
-        else if name.ends_with(".m") || name.ends_with(".mm") { "🍏 " }
-        else if name.ends_with(".html") || name.ends_with(".htm") { "🌐 " }
-        else if name.ends_with(".css") || name.ends_with(".scss") { "🎨 " }
-        else if name.ends_with(".md") { "📝 " }
-        else if name.ends_with(".sh") || name.ends_with(".bash") || name.ends_with(".ps1") { "🐚 " }
-        else if name.ends_with(".sql") { "🗄️ " }
-        else if name.ends_with(".toml") || name.ends_with(".json") { "⚙️ " }
-        else { "📄 " }
+        icon_theme.get_file_icon(&name).to_string()
     };
 
     let item_view = h_stack((
-        label(move || icon).style(|s| s.font_size(12.0)),
+        svg(move || svg_content.clone()).style(|s| {
+            s.size(15.0, 15.0)
+                .margin_right(5.0)
+                .items_center()
+                .justify_center()
+        }),
         label(move || name.clone()).style(move |s| {
             s.font_size(12.0)
                 .color(theme.get().fg_primary)
-                .margin_left(4.0)
         }),
     ))
     .on_click_stop(move |_| {
@@ -1096,6 +1077,9 @@ fn settings_view(state: AppState) -> impl IntoView {
                 s.font_size(11.5).color(theme.get().accent_blue).margin_bottom(6.0)
             }),
             label(move || format!("{} {}", locale.get().tr("Syntax Theme:"), settings.get().syntax_theme)).style(move |s| {
+                s.font_size(11.5).color(theme.get().accent_blue).margin_bottom(6.0)
+            }),
+            label(move || format!("{} {}", locale.get().tr("Icon Theme:"), settings.get().icon_theme)).style(move |s| {
                 s.font_size(11.5).color(theme.get().accent_blue).margin_bottom(6.0)
             }),
             label(move || format!("{} {}", locale.get().tr("Offline Exam Mode:"), policy.get().exam_mode)).style(move |s| {

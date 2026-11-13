@@ -1,0 +1,178 @@
+{
+  "name": "vscode-great-icons",
+  "file": "_file",
+  "folder": "_folder",
+  "folderExpanded": "_folder_open",
+  "fileExtensions": {
+    "py": "_f_python",
+    "zsh": "_f_shell",
+    "cts": "_f_ts",
+    "mjs": "_f_js",
+    "cpp": "_f_cpp",
+    "ts": "_f_ts",
+    "html": "_f_html",
+    "cjs": "_f_js",
+    "go": "_f_go",
+    "sh": "_f_shell",
+    "pyw": "_f_python",
+    "yaml": "_f_yaml",
+    "gif": "_f_image",
+    "jsonc": "_f_json",
+    "js": "_f_js",
+    "markdown": "_f_markdown",
+    "mts": "_f_ts",
+    "htm": "_f_html",
+    "ico": "_f_image",
+    "rs": "_f_rust",
+    "zip": "_f_archive",
+    "gz": "_f_archive",
+    "h": "_f_c",
+    "sql": "_f_database",
+    "tsx": "_f_react",
+    "rar": "_f_archive",
+    "cxx": "_f_cpp",
+    "kt": "_f_kotlin",
+    "scss": "_f_sass",
+    "svg": "_f_image",
+    "php": "_f_php",
+    "jar": "_f_java",
+    "c": "_f_c",
+    "less": "_f_sass",
+    "jpg": "_f_image",
+    "yml": "_f_yaml",
+    "rb": "_f_ruby",
+    "ps1": "_f_shell",
+    "java": "_f_java",
+    "png": "_f_image",
+    "swift": "_f_swift",
+    "lock": "_f_lock",
+    "bash": "_f_shell",
+    "tar": "_f_archive",
+    "css": "_f_css",
+    "toml": "_f_toml",
+    "hpp": "_f_cpp",
+    "cc": "_f_cpp",
+    "jpeg": "_f_image",
+    "7z": "_f_archive",
+    "sass": "_f_sass",
+    "md": "_f_markdown",
+    "rake": "_f_ruby",
+    "kts": "_f_kotlin",
+    "cs": "_f_csharp",
+    "webp": "_f_image",
+    "json": "_f_json",
+    "jsx": "_f_react"
+  },
+  "fileNames": {
+    "Cargo.lock": "_f_lock",
+    ".gitignore": "_f_git",
+    "README.md": "_f_markdown",
+    "package.json": "_f_json",
+    ".gitmodules": "_f_git",
+    "settings.json": "_f_settings",
+    "package-lock.json": "_f_lock",
+    "Cargo.toml": "_f_rust",
+    ".env": "_f_settings",
+    ".gitattributes": "_f_git",
+    "Dockerfile": "_f_docker",
+    "tsconfig.json": "_f_ts"
+  },
+  "iconDefinitions": {
+    "_f_image": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"13\" height=\"11\" rx=\"1.5\" x=\"1.5\" y=\"2.5\" fill=\"#A074C4\"/><circle cx=\"5\" cy=\"5.5\" r=\"1.2\" fill=\"#FFF\"/><path d=\"M3 11.5l3.5-4 3 3.5 2-2 2.5 2.5H3z\" fill=\"#FFF\"/></svg>"
+    },
+    "_f_sass": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"3\" x=\"1\" y=\"1\" fill=\"#CF649A\"/><text x=\"2.5\" y=\"10.5\" font-size=\"6\" font-weight=\"bold\" fill=\"#FFF\">sass</text></svg>"
+    },
+    "_f_database": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><ellipse cx=\"8\" cy=\"3.5\" rx=\"6\" ry=\"2\" fill=\"#336791\"/><path d=\"M2 3.5v4c0 1.1 2.7 2 6 2s6-.9 6-2v-4\" fill=\"none\" stroke=\"#336791\" stroke-width=\"1.2\"/><path d=\"M2 7.5v4c0 1.1 2.7 2 6 2s6-.9 6-2v-4\" fill=\"none\" stroke=\"#336791\" stroke-width=\"1.2\"/></svg>"
+    },
+    "_f_csharp": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"2\" x=\"1\" y=\"1\" fill=\"#68217A\"/><text x=\"3\" y=\"10.5\" font-size=\"7.5\" font-weight=\"bold\" fill=\"#FFF\">C#</text></svg>"
+    },
+    "_f_php": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"10\" rx=\"3\" x=\"1\" y=\"3\" fill=\"#777BB4\"/><text x=\"2.5\" y=\"10\" font-size=\"5.5\" font-weight=\"bold\" fill=\"#FFF\">php</text></svg>"
+    },
+    "_f_css": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.5 1.5l1 12 4.5 1.5 4.5-1.5 1-12h-11z\" fill=\"#1572B6\"/><path d=\"M8 2.5v10.8l3.6-1.2.8-9.6H8z\" fill=\"#33A9DC\"/><text x=\"4\" y=\"9.5\" font-size=\"5\" font-weight=\"bold\" fill=\"#FFF\">#</text></svg>"
+    },
+    "_f_c": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"2\" x=\"1\" y=\"1\" fill=\"#659AD2\"/><text x=\"4.5\" y=\"11\" font-size=\"9\" font-weight=\"bold\" fill=\"#FFF\">C</text></svg>"
+    },
+    "_f_go": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"2\" x=\"1\" y=\"1\" fill=\"#00ADD8\"/><text x=\"2.5\" y=\"10.5\" font-size=\"7\" font-weight=\"bold\" fill=\"#FFF\">GO</text></svg>"
+    },
+    "_f_js": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"2\" x=\"1\" y=\"1\" fill=\"#F7DF1E\"/><text x=\"4\" y=\"11\" font-size=\"8\" font-weight=\"bold\" fill=\"#000\">JS</text></svg>"
+    },
+    "_f_ts": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"2\" x=\"1\" y=\"1\" fill=\"#3178C6\"/><text x=\"4\" y=\"11\" font-size=\"8\" font-weight=\"bold\" fill=\"#FFF\">TS</text></svg>"
+    },
+    "_f_json": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"2\" x=\"1\" y=\"1\" fill=\"#FBC02D\"/><text x=\"3.5\" y=\"10.5\" font-size=\"7\" font-weight=\"bold\" fill=\"#212121\">{}</text></svg>"
+    },
+    "_f_ruby": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3.5 3.5l-2 3.5 6.5 7 6.5-7-2-3.5h-9z\" fill=\"#CC342D\"/></svg>"
+    },
+    "_f_react": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><ellipse cx=\"8\" cy=\"8\" rx=\"6.5\" ry=\"2.5\" fill=\"none\" stroke=\"#61DAFB\" stroke-width=\"1.1\" transform=\"rotate(30 8 8)\"/><ellipse cx=\"8\" cy=\"8\" rx=\"6.5\" ry=\"2.5\" fill=\"none\" stroke=\"#61DAFB\" stroke-width=\"1.1\" transform=\"rotate(-30 8 8)\"/><ellipse cx=\"8\" cy=\"8\" rx=\"6.5\" ry=\"2.5\" fill=\"none\" stroke=\"#61DAFB\" stroke-width=\"1.1\" transform=\"rotate(90 8 8)\"/><circle cx=\"8\" cy=\"8\" r=\"1.3\" fill=\"#61DAFB\"/></svg>"
+    },
+    "_file": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M3 1.5h6.5L13 5v9.5H3V1.5z\" fill=\"#90A4AE\"/><path d=\"M9.5 1.5V5H13\" fill=\"#B0BEC5\"/></svg>"
+    },
+    "_f_docker": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M15.5 6.5c-.3-.2-.8-.2-1.1-.1-.3-.6-.8-1.1-1.5-1.4-.2 0-.3.1-.3.2 0 .5.2 1.1.4 1.5-.4.2-1 .3-1.8.3H1.2C.5 7 0 7.6 0 8.3c0 2.2 1.8 4.2 4.2 4.2 3.1 0 5.7-1.7 6.8-4.2 1.2 0 2.3-.5 3.1-1.3.5-.2 1.1-.3 1.4-.5zm-8.8-1h1.2v1.2H6.7V5.5zm1.5 0h1.2v1.2H8.2V5.5zm-3 0h1.2v1.2H5.2V5.5zm4.5 0h1.2v1.2H9.7V5.5z\" fill=\"#2496ED\"/></svg>"
+    },
+    "_f_archive": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"12\" height=\"13\" rx=\"1.5\" x=\"2\" y=\"1.5\" fill=\"#8D6E63\"/><rect width=\"3\" height=\"13\" x=\"6.5\" y=\"1.5\" fill=\"#5D4037\"/><rect width=\"2\" height=\"3\" x=\"7\" y=\"6\" fill=\"#FFD54F\"/></svg>"
+    },
+    "_f_cpp": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"2\" x=\"1\" y=\"1\" fill=\"#00599C\"/><text x=\"2\" y=\"10.5\" font-size=\"7\" font-weight=\"bold\" fill=\"#FFF\">C++</text></svg>"
+    },
+    "_f_git": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M15.2 7.2L8.8.8c-.4-.4-1-.4-1.4 0L6 2.2l1.8 1.8c.4-.1.8 0 1.1.3.4.4.4 1 0 1.4-.4.4-1 .4-1.4 0-.3-.3-.4-.7-.3-1.1L5.4 2.8 1 7.2c-.4.4-.4 1 0 1.4l6.4 6.4c.4.4 1 .4 1.4 0l6.4-6.4c.4-.4.4-1 0-1.4z\" fill=\"#F05032\"/></svg>"
+    },
+    "_f_lock": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"10\" height=\"8\" rx=\"1.5\" x=\"3\" y=\"6.5\" fill=\"#FBC02D\"/><path d=\"M5.5 6.5V4.5a2.5 2.5 0 015 0v2\" fill=\"none\" stroke=\"#F57F17\" stroke-width=\"1.3\"/><circle cx=\"8\" cy=\"10\" r=\"1\" fill=\"#795548\"/></svg>"
+    },
+    "_f_shell": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"12\" rx=\"2\" x=\"1\" y=\"2\" fill=\"#2E3440\"/><text x=\"2.5\" y=\"10.5\" font-size=\"7\" font-weight=\"bold\" fill=\"#89E051\">&gt;_</text></svg>"
+    },
+    "_f_java": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M4 11s.5 1 4 1 4-1 4-1H4zm6.5-6.5c-1 0-1.8.8-1.8 1.8h1.2c0-.3.3-.6.6-.6s.6.3.6.6c0 .8-1.5 1-1.5 2.2h1.2c0-.7 1.5-.9 1.5-2.2 0-1-.8-1.8-1.8-1.8z\" fill=\"#EA2D2E\"/><path d=\"M3 13h10v1H3z\" fill=\"#5382A1\"/></svg>"
+    },
+    "_f_yaml": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"2\" x=\"1\" y=\"1\" fill=\"#CB171E\"/><text x=\"2\" y=\"10.5\" font-size=\"5.5\" font-weight=\"bold\" fill=\"#FFF\">yml</text></svg>"
+    },
+    "_f_kotlin": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"2\" x=\"1\" y=\"1\" fill=\"#7F52FF\"/><text x=\"3.5\" y=\"11\" font-size=\"8.5\" font-weight=\"bold\" fill=\"#FFF\">K</text></svg>"
+    },
+    "_f_swift": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"3\" x=\"1\" y=\"1\" fill=\"#FA7343\"/><circle cx=\"8\" cy=\"8\" r=\"4.5\" fill=\"#FFF\"/></svg>"
+    },
+    "_f_markdown": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"15\" height=\"10\" rx=\"1.5\" x=\"0.5\" y=\"3\" fill=\"#083FA1\"/><path d=\"M2.5 5.5v5h1.5l1.5-2 1.5 2h1.5v-5h-1.5v2.8l-1.5-2-1.5 2V5.5H2.5zm8 0v3h-1.2l1.7 2 1.7-2h-1.2v-3h-1z\" fill=\"#FFF\"/></svg>"
+    },
+    "_f_settings": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"8\" cy=\"8\" r=\"6\" fill=\"#546E7A\"/><circle cx=\"8\" cy=\"8\" r=\"2.5\" fill=\"#202020\"/></svg>"
+    },
+    "_f_rust": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#DEA584\"/><circle cx=\"8\" cy=\"8\" r=\"4.5\" fill=\"#202020\"/><text x=\"5\" y=\"11\" font-size=\"8.5\" font-weight=\"bold\" fill=\"#DEA584\">R</text></svg>"
+    },
+    "_f_python": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M7.9 1C5.2 1 5.4 2.2 5.4 2.2v1.3h2.6v.4H4.2S2 3.6 2 6.4s1.9 2.6 1.9 2.6h1.1V7.7s-.1-1.3 1.3-1.3h2.6s1.2 0 1.2-1.2V2.3S10.3 1 7.9 1zm-1.4.9a.5.5 0 1 1 0 1 .5.5 0 0 1 0-1z\" fill=\"#3572A5\"/><path d=\"M8.1 15c2.7 0 2.5-1.2 2.5-1.2v-1.3H8v-.4h3.8s2.2.3 2.2-2.5-1.9-2.6-1.9-2.6H11v1.3s.1 1.3-1.3 1.3H7.1s-1.2 0-1.2 1.2v2.9s-.2 1.3 2.2 1.3zm1.4-.9a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1z\" fill=\"#FFD43B\"/></svg>"
+    },
+    "_folder": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1.5 2.5l1.5-1h3.5l1.5 1h6.5l.5.5v9.5l-.5.5h-13l-.5-.5v-10z\" fill=\"#E5A93C\"/></svg>"
+    },
+    "_f_toml": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"14\" height=\"14\" rx=\"2\" x=\"1\" y=\"1\" fill=\"#9C4121\"/><text x=\"2\" y=\"10.5\" font-size=\"5.5\" font-weight=\"bold\" fill=\"#FFF\">toml</text></svg>"
+    },
+    "_f_html": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M2.5 1.5l1 12 4.5 1.5 4.5-1.5 1-12h-11z\" fill=\"#E34F26\"/><path d=\"M8 2.5v10.8l3.6-1.2.8-9.6H8z\" fill=\"#EF652A\"/><text x=\"3.5\" y=\"9.5\" font-size=\"5\" font-weight=\"bold\" fill=\"#FFF\">&lt;&gt;</text></svg>"
+    },
+    "_folder_open": {
+      "svg": "<svg width=\"15\" height=\"15\" viewBox=\"0 0 16 16\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M1.5 2.5l1.5-1h3.5l1.5 1h6.5l.5.5v2.5h-11.5l-1.5 7v-10zm1.2 4h12.5l-1.8 6.5h-11.7l1-6.5z\" fill=\"#F5BA42\"/></svg>"
+    }
+  }
+}

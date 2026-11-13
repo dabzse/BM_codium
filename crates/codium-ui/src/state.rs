@@ -4,7 +4,7 @@
 //! UI panels visibility, locale (GNU gettext .po backed), theme settings,
 //! and settings.json configurations.
 
-use codium_core::{CodiumSettings, Keymap, Locale, SyntaxTheme, Workspace, init_i18n};
+use codium_core::{CodiumSettings, IconTheme, Keymap, Locale, SyntaxTheme, Workspace, init_i18n};
 use codium_edu::EduPolicy;
 use floem::reactive::RwSignal;
 use crate::theme::CodiumTheme;
@@ -129,6 +129,8 @@ pub struct AppState {
     pub keymap: RwSignal<Keymap>,
     /// Syntax color theme (default Monokai)
     pub syntax_theme: RwSignal<SyntaxTheme>,
+    /// Icon theme (default vscode-great-icons)
+    pub icon_theme: RwSignal<IconTheme>,
 }
 
 /// Represents a match in a file for workspace Search & Replace
@@ -180,6 +182,7 @@ impl AppState {
 
         let keymap = Keymap::load_profile(&settings.keymap_profile);
         let syntax_theme = SyntaxTheme::load_profile(&settings.syntax_theme);
+        let icon_theme = IconTheme::load_profile(&settings.icon_theme);
         let theme = CodiumTheme::for_theme(&settings.syntax_theme);
 
         Self {
@@ -214,6 +217,7 @@ impl AppState {
             manuals_chat_messages: RwSignal::new(initial_manuals_messages),
             keymap: RwSignal::new(keymap),
             syntax_theme: RwSignal::new(syntax_theme),
+            icon_theme: RwSignal::new(icon_theme),
         }
     }
 }
