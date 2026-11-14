@@ -32,6 +32,7 @@ pub fn sidebar_view(state: AppState) -> impl IntoView {
             match tab {
                 SidebarTab::Explorer => explorer_view(state).into_any(),
                 SidebarTab::Search => search_view(state).into_any(),
+                SidebarTab::SourceControl => crate::views::git_view::git_view(state).into_any(),
                 SidebarTab::DocTutor => doc_tutor_view(state).into_any(),
                 SidebarTab::AiAssistant => ai_assistant_view(state).into_any(),
                 SidebarTab::Settings => settings_view(state).into_any(),

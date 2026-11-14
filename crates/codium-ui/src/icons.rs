@@ -45,6 +45,27 @@ pub const ICON_BOOK: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" x
 /// Replace All Icon (Codicons)
 pub const ICON_REPLACE_ALL: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.5 2h13l.5.5v2l-.5.5h-13L1 4.5v-2l.5-.5zM2 4h12V3H2v1zm-.5 4h13l.5.5v2l-.5.5h-13l-.5-.5v-2l.5-.5zM2 10h12V9H2v1zm-.5 4h13l.5.5v2l-.5.5h-13l-.5-.5v-2l.5-.5zM2 16h12v-1H2v1z"/></svg>"#;
 
+/// Source Control / OmniGit Branch Icon (Codicons)
+pub const ICON_SOURCE_CONTROL: &str = r#"<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.5 5a2.5 2.5 0 1 0-1.954 4.056A4.002 4.002 0 0 1 7 12.83V9.83a2.5 2.5 0 1 0-2 0v4.34A2.5 2.5 0 1 0 6.5 15a4.004 4.004 0 0 0 3.82-2.8A2.502 2.502 0 0 0 12.5 5zM5 8a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm6.5-1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm-6 8a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z"/></svg>"#;
+
+/// Checkmark / Commit Icon (Codicons)
+pub const ICON_CHECK: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>"#;
+
+/// Refresh Icon (Codicons)
+pub const ICON_REFRESH: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M4.681 3H2V2h3.5l.5.5V6H5V4a5 5 0 1 0 4.53-.761l.302-.954A6 6 0 1 1 4.681 3z"/></svg>"#;
+
+/// Plus / Stage Icon (Codicons)
+pub const ICON_PLUS: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M8 2a.75.75 0 0 1 .75.75v4.5h4.5a.75.75 0 0 1 0 1.5h-4.5v4.5a.75.75 0 0 1-1.5 0v-4.5h-4.5a.75.75 0 0 1 0-1.5h4.5v-4.5A.75.75 0 0 1 8 2z"/></svg>"#;
+
+/// Minus / Unstage Icon (Codicons)
+pub const ICON_MINUS: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M2.75 7.25h10.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5z"/></svg>"#;
+
+/// Git Branch Icon (Codicons)
+pub const ICON_GIT_BRANCH: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.75 2a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5zm-7.5 0a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5zm0 8.75a1.75 1.75 0 1 0 0 3.5 1.75 1.75 0 0 0 0-3.5zm4.825-4.875a3.25 3.25 0 0 1 2.675-2.625V4.75a1.75 1.75 0 0 0-1.75 1.75v2.5a1.75 1.75 0 0 1-1.75 1.75H6.25v1.5h1.925a3.25 3.25 0 0 0 3.25-3.25v-2.5a3.24 3.24 0 0 0-.625-1.875zM5 5.5v5h-1.5v-5H5z"/></svg>"#;
+
+/// History / Commits Icon (Codicons)
+pub const ICON_HISTORY: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 2a6.5 6.5 0 1 0 5.485 10.024l-.84-.543A5.5 5.5 0 1 1 8.5 3a5.474 5.474 0 0 1 3.86 1.583L10.5 6.5H15V2l-1.929 1.929A6.474 6.474 0 0 0 8.5 2zm-.5 3v3.707l2.646 2.647.708-.708L9 8.293V5H8z"/></svg>"#;
+
 /// Helper to render an SVG icon with specified dimensions and crisp default light gray color
 pub fn render_svg(svg_content: &'static str, size: f64) -> impl IntoView {
     svg(move || svg_content.to_string())

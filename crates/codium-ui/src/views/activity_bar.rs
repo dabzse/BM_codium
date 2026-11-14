@@ -5,8 +5,10 @@
 
 use floem::prelude::*;
 use floem::style::CursorStyle;
+use floem::text::Weight;
 use crate::icons::{
-    render_svg, ICON_FILES, ICON_SEARCH, ICON_GRADUATION, ICON_SPARKLE, ICON_SETTINGS,
+    render_svg, ICON_FILES, ICON_SEARCH, ICON_SOURCE_CONTROL, ICON_GRADUATION, ICON_SPARKLE,
+    ICON_SETTINGS,
 };
 use crate::state::{AppState, CodiumEdition, SidebarTab};
 
@@ -16,6 +18,7 @@ pub fn activity_bar_view(state: AppState) -> impl IntoView {
     let active_tab = state.active_sidebar_tab;
     let show_sidebar = state.show_sidebar;
     let edition = state.edition;
+    let git_status = state.git_status;
 
     let make_svg_btn = move |tab: SidebarTab, svg_content: &'static str| {
         let is_active = move || active_tab.get() == tab && show_sidebar.get();
@@ -24,14 +27,47 @@ pub fn activity_bar_view(state: AppState) -> impl IntoView {
             CodiumEdition::Ai => theme.get().accent_ai,
         };
 
+        let badge_count = move || {
+            if tab == SidebarTab::SourceControl {
+                let c = git_status.get().total_changes();
+                if c > 0 { Some(c) } else { None }
+            } else {
+                None
+            }
+        };
+
         container(
-            render_svg(svg_content, 18.0).style(move |s| {
-                s.color(if is_active() {
-                    theme.get().fg_primary
-                } else {
-                    theme.get().fg_muted
-                })
-            }),
+            h_stack((
+                render_svg(svg_content, 18.0).style(move |s| {
+                    s.color(if is_active() {
+                        theme.get().fg_primary
+                    } else {
+                        theme.get().fg_muted
+                    })
+                }),
+                dyn_container(
+                    badge_count,
+                    move |count_opt| {
+                        if let Some(count) = count_opt {
+                            label(move || format!("{}", count))
+                                .style(move |s| {
+                                    s.font_size(9.0)
+                                        .font_weight(Weight::BOLD)
+                                        .color(palette::css::WHITE)
+                                        .background(theme.get().accent_blue)
+                                        .padding_horiz(4.0)
+                                        .border_radius(6.0)
+                                        .margin_left(-6.0)
+                                        .margin_top(-8.0)
+                                })
+                                .into_any()
+                        } else {
+                            empty().into_any()
+                        }
+                    },
+                ),
+            ))
+            .style(|s| s.items_center().justify_center()),
         )
         .on_click_stop(move |_| {
             if active_tab.get() == tab && show_sidebar.get() {
@@ -60,6 +96,7 @@ pub fn activity_bar_view(state: AppState) -> impl IntoView {
         v_stack((
             make_svg_btn(SidebarTab::Explorer, ICON_FILES),
             make_svg_btn(SidebarTab::Search, ICON_SEARCH),
+            make_svg_btn(SidebarTab::SourceControl, ICON_SOURCE_CONTROL),
             if edition == CodiumEdition::Edu {
                 make_svg_btn(SidebarTab::DocTutor, ICON_GRADUATION)
             } else {

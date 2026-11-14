@@ -4,9 +4,12 @@
 //! UI panels visibility, locale (GNU gettext .po backed), theme settings,
 //! and settings.json configurations.
 
-use codium_core::{CodiumSettings, IconTheme, Keymap, Locale, SyntaxTheme, Workspace, init_i18n};
+use codium_core::{
+    CodiumSettings, GitCommit, GitExecutor, GitRepoStatus, IconTheme, Keymap, Locale,
+    SyntaxTheme, Workspace, init_i18n,
+};
 use codium_edu::EduPolicy;
-use floem::reactive::RwSignal;
+use floem::reactive::{RwSignal, SignalUpdate};
 use crate::theme::CodiumTheme;
 
 /// The target edition of the Codium IDE.
@@ -41,6 +44,7 @@ impl CodiumEdition {
 pub enum SidebarTab {
     Explorer,
     Search,
+    SourceControl,
     DocTutor,
     AiAssistant,
     Settings,
@@ -131,6 +135,12 @@ pub struct AppState {
     pub syntax_theme: RwSignal<SyntaxTheme>,
     /// Icon theme (default vscode-great-icons)
     pub icon_theme: RwSignal<IconTheme>,
+    /// OmniGit repository status (branch, changes, ahead/behind)
+    pub git_status: RwSignal<GitRepoStatus>,
+    /// OmniGit commit input message
+    pub git_commit_message: RwSignal<String>,
+    /// OmniGit recent commits history
+    pub git_commits: RwSignal<Vec<GitCommit>>,
 }
 
 /// Represents a match in a file for workspace Search & Replace
@@ -185,6 +195,10 @@ impl AppState {
         let icon_theme = IconTheme::load_profile(&settings.icon_theme);
         let theme = CodiumTheme::for_theme(&settings.syntax_theme);
 
+        let cwd = std::env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from("."));
+        let initial_git = GitExecutor::get_status(&cwd).unwrap_or_default();
+        let initial_commits = GitExecutor::get_log(&cwd, 25).unwrap_or_default();
+
         Self {
             active_menu: RwSignal::new(None),
             active_menu_overlay: RwSignal::new(None),
@@ -218,6 +232,20 @@ impl AppState {
             keymap: RwSignal::new(keymap),
             syntax_theme: RwSignal::new(syntax_theme),
             icon_theme: RwSignal::new(icon_theme),
+            git_status: RwSignal::new(initial_git),
+            git_commit_message: RwSignal::new(String::new()),
+            git_commits: RwSignal::new(initial_commits),
+        }
+    }
+
+    /// Refresh OmniGit status and commit log from working directory
+    pub fn refresh_git(&self) {
+        let cwd = std::env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from("."));
+        if let Ok(st) = GitExecutor::get_status(&cwd) {
+            self.git_status.set(st);
+        }
+        if let Ok(commits) = GitExecutor::get_log(&cwd, 25) {
+            self.git_commits.set(commits);
         }
     }
 }

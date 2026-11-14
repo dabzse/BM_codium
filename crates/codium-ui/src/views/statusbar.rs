@@ -21,6 +21,7 @@ pub fn statusbar_view(state: AppState) -> impl IntoView {
         CodiumEdition::Edu => theme.get().accent_edu,
         CodiumEdition::Ai => theme.get().accent_ai,
     };
+    let git_status = state.git_status;
 
     h_stack((
         // Left Status Indicators
@@ -46,6 +47,49 @@ pub fn statusbar_view(state: AppState) -> impl IntoView {
                     .items_center()
                     .margin_right(10.0)
             }),
+
+            // Git Branch & Sync status (OmniGit)
+            dyn_container(
+                move || git_status.get().is_repo,
+                move |is_repo| {
+                    if is_repo {
+                        let branch_str = move || {
+                            let st = git_status.get();
+                            let mut text = format!("⎇ {}", st.current_branch);
+                            if st.ahead > 0 {
+                                text.push_str(&format!(" ⇡{}", st.ahead));
+                            }
+                            if st.behind > 0 {
+                                text.push_str(&format!(" ⇣{}", st.behind));
+                            }
+                            text
+                        };
+
+                        container(
+                            label(branch_str).style(move |s| {
+                                s.font_size(10.5)
+                                    .color(theme.get().fg_primary)
+                            }),
+                        )
+                        .on_click_stop(move |_| {
+                            state.active_sidebar_tab.set(crate::state::SidebarTab::SourceControl);
+                            state.show_sidebar.set(true);
+                        })
+                        .style(move |s| {
+                            s.padding_horiz(6.0)
+                                .height(20.0)
+                                .items_center()
+                                .border_radius(3.0)
+                                .cursor(CursorStyle::Pointer)
+                                .margin_right(10.0)
+                                .hover(move |s| s.background(theme.get().hover_bg))
+                        })
+                        .into_any()
+                    } else {
+                        empty().into_any()
+                    }
+                },
+            ),
 
             // Status message
             label(move || status.get()).style(move |s| {
