@@ -211,6 +211,36 @@ jobs:
           echo "prerelease=${PRERELEASE}" >> "$GITHUB_OUTPUT"
           echo "push_tag=${PUSH_TAG}" >> "$GITHUB_OUTPUT"
 
+      - name: Generate Changelog & Release Notes
+        id: changelog
+        shell: bash
+        run: |
+          TARGET_TAG="${{ steps.meta.outputs.tag }}"
+
+          # Find the previous release tag if available
+          PREV_TAG=$(git tag --sort=-creatordate | grep -E '^v[0-9]' | grep -v "^${TARGET_TAG}$" | head -n 1 || true)
+          echo "Previous release tag: ${PREV_TAG}"
+
+          echo "## 🚀 What's Changed in ${TARGET_TAG}" > release_notes.md
+          echo "" >> release_notes.md
+
+          if [ -n "$PREV_TAG" ]; then
+            echo "### 📝 Changes since **${PREV_TAG}**:" >> release_notes.md
+            git log "${PREV_TAG}..HEAD" --no-merges --pretty=format:"* %s ([%h](https://github.com/${{ github.repository }}/commit/%H)) - @%an" >> release_notes.md
+          else
+            echo "### 📝 Recent Commits:" >> release_notes.md
+            git log -n 25 --no-merges --pretty=format:"* %s ([%h](https://github.com/${{ github.repository }}/commit/%H)) - @%an" >> release_notes.md
+          fi
+
+          echo "" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "---" >> release_notes.md
+          if [ -n "$PREV_TAG" ]; then
+            echo "**Full Changelog**: https://github.com/${{ github.repository }}/compare/${PREV_TAG}...${TARGET_TAG}" >> release_notes.md
+          else
+            echo "**Full Commit History**: https://github.com/${{ github.repository }}/commits/${TARGET_TAG}" >> release_notes.md
+          fi
+
       - name: Update release tag pointer
         if: steps.meta.outputs.push_tag == 'true'
         run: |
@@ -225,6 +255,7 @@ jobs:
           tag_name: ${{ steps.meta.outputs.tag }}
           name: ${{ steps.meta.outputs.name }}
           prerelease: ${{ steps.meta.outputs.prerelease == 'true' }}
+          body_path: release_notes.md
           generate_release_notes: true
           overwrite_files: true
           files: release-assets/*
