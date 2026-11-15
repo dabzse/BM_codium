@@ -200,11 +200,14 @@ impl GitExecutor {
                 let work_status = line.chars().nth(1).unwrap_or(' ');
                 let path_part = line[3..].trim();
 
-                // Handle renamed files: old_path -> new_path
+                // Handle renamed files: old_path -> new_path, stripping any git quotes
                 let (path, old_path) = if let Some((old_p, new_p)) = path_part.split_once(" -> ") {
-                    (new_p.trim().to_string(), Some(old_p.trim().to_string()))
+                    (
+                        new_p.trim().trim_matches('"').to_string(),
+                        Some(old_p.trim().trim_matches('"').to_string()),
+                    )
                 } else {
-                    (path_part.to_string(), None)
+                    (path_part.trim().trim_matches('"').to_string(), None)
                 };
 
                 // Untracked files
@@ -395,15 +398,17 @@ impl GitExecutor {
 
     /// Stage a file (`git add -- <file>`)
     pub fn stage_file(cwd: &Path, file_path: &str) -> Result<()> {
-        Self::exec(cwd, &["add", "--", file_path])?;
+        let clean = file_path.trim().trim_matches('"');
+        Self::exec(cwd, &["add", "--", clean])?;
         Ok(())
     }
 
     /// Unstage a file (`git restore --staged -- <file>`)
     pub fn unstage_file(cwd: &Path, file_path: &str) -> Result<()> {
+        let clean = file_path.trim().trim_matches('"');
         // Try git restore --staged first, fallback to git reset HEAD
-        if Self::exec(cwd, &["restore", "--staged", "--", file_path]).is_err() {
-            Self::exec(cwd, &["reset", "HEAD", "--", file_path])?;
+        if Self::exec(cwd, &["restore", "--staged", "--", clean]).is_err() {
+            Self::exec(cwd, &["reset", "HEAD", "--", clean])?;
         }
         Ok(())
     }

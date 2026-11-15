@@ -5,11 +5,12 @@
 //! and commit history visualization.
 
 use codium_core::{format_timestamp_relative, GitExecutor};
-use floem::peniko::Brush;
+use floem::peniko::{Brush, Color};
 use floem::prelude::*;
 use floem::style::CursorStyle;
 use floem::text::Weight;
 use std::path::PathBuf;
+use std::str::FromStr;
 
 use crate::icons::{
     render_svg, ICON_CHECK, ICON_GIT_BRANCH, ICON_HISTORY, ICON_MINUS, ICON_PLUS, ICON_REFRESH,
@@ -17,14 +18,30 @@ use crate::icons::{
 };
 use crate::state::AppState;
 
+/// Helper to get the canonical Git repository root directory
+fn resolve_repo_dir(state: AppState) -> PathBuf {
+    if let Some(ref root) = state.git_status.get().root_dir {
+        return root.clone();
+    }
+    if let Some(ref ws_root) = state.workspace.get().root_path {
+        if let Some(git_root) = GitExecutor::get_repo_root(ws_root) {
+            return git_root;
+        }
+        return ws_root.clone();
+    }
+    let cwd = std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
+    if let Some(git_root) = GitExecutor::get_repo_root(&cwd) {
+        return git_root;
+    }
+    cwd
+}
+
 /// Main Source Control (OmniGit) view in sidebar
 pub fn git_view(state: AppState) -> impl IntoView {
     let theme = state.theme;
     let locale = state.locale;
     let git_status = state.git_status;
     let commit_msg = state.git_commit_message;
-
-    let get_cwd = || std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
 
     v_stack((
         // 1. Header Bar: Title, Branch Pill & Refresh Action
@@ -84,6 +101,7 @@ pub fn git_view(state: AppState) -> impl IntoView {
                             .items_center()
                             .justify_center()
                             .border_radius(3.0)
+                            .background(palette::css::TRANSPARENT)
                             .cursor(CursorStyle::Pointer)
                             .hover(move |s| s.background(theme.get().hover_bg))
                     }),
@@ -118,21 +136,22 @@ pub fn git_view(state: AppState) -> impl IntoView {
                             label(move || locale.get().tr("Initialize Repository")).style(move |s| {
                                 s.font_size(11.5)
                                     .font_weight(Weight::BOLD)
-                                    .color(palette::css::WHITE)
+                                    .color(theme.get().fg_button)
                             }),
                         )
                         .on_click_stop(move |_| {
-                            let cwd = get_cwd();
-                            let _ = GitExecutor::exec(&cwd, &["init"]);
+                            let repo_dir = resolve_repo_dir(state);
+                            let _ = GitExecutor::exec(&repo_dir, &["init"]);
                             state.refresh_git();
                         })
                         .style(move |s| {
-                            s.background(theme.get().accent_blue)
-                                .padding_horiz(12.0)
-                                .height(26.0)
+                            s.background(theme.get().bg_button)
+                                .padding_horiz(14.0)
+                                .height(28.0)
                                 .items_center()
-                                .border_radius(3.0)
+                                .border_radius(4.0)
                                 .cursor(CursorStyle::Pointer)
+                                .hover(move |s| s.background(theme.get().hover_button))
                         }),
                     ))
                     .style(move |s| {
@@ -151,7 +170,7 @@ pub fn git_view(state: AppState) -> impl IntoView {
                         text_input(commit_msg)
                             .placeholder("Message (Enter to commit)")
                             .on_enter(move || {
-                                trigger_commit(state, get_cwd());
+                                trigger_commit(state);
                             })
                             .style(move |s| {
                                 s.width_pct(100.0)
@@ -159,11 +178,26 @@ pub fn git_view(state: AppState) -> impl IntoView {
                                     .background(theme.get().bg_editor)
                                     .border(1.0)
                                     .border_color(theme.get().border)
-                                    .border_radius(3.0)
-                                    .padding_horiz(6.0)
+                                    .border_radius(4.0)
+                                    .padding_horiz(8.0)
                                     .color(theme.get().fg_primary)
                                     .cursor_color(Brush::Solid(palette::css::WHITE))
                                     .font_size(11.0)
+                                    .outline(0.0)
+                                    .outline_color(palette::css::TRANSPARENT)
+                                    .hover(move |s| {
+                                        s.background(theme.get().bg_editor)
+                                            .border_color(theme.get().accent_blue)
+                                    })
+                                    .focus(move |s| {
+                                        s.background(theme.get().bg_editor)
+                                            .border_color(theme.get().accent_blue)
+                                            .outline(0.0)
+                                            .hover(move |s| {
+                                                s.background(theme.get().bg_editor)
+                                                    .border_color(theme.get().accent_blue)
+                                            })
+                                    })
                             }),
                         // Commit Button
                         container(
@@ -172,25 +206,25 @@ pub fn git_view(state: AppState) -> impl IntoView {
                                 label(move || locale.get().tr("Commit")).style(move |s| {
                                     s.font_size(11.0)
                                         .font_weight(Weight::BOLD)
-                                        .color(palette::css::WHITE)
+                                        .color(theme.get().fg_button)
                                         .margin_left(6.0)
                                 }),
                             ))
                             .style(|s| s.items_center().justify_center()),
                         )
                         .on_click_stop(move |_| {
-                            trigger_commit(state, get_cwd());
+                            trigger_commit(state);
                         })
                         .style(move |s| {
                             s.width_pct(100.0)
-                                .height(26.0)
+                                .height(28.0)
                                 .margin_top(6.0)
-                                .background(theme.get().accent_blue)
+                                .background(theme.get().bg_button)
                                 .items_center()
                                 .justify_center()
-                                .border_radius(3.0)
+                                .border_radius(4.0)
                                 .cursor(CursorStyle::Pointer)
-                                .hover(move |s| s.background(theme.get().accent_ai))
+                                .hover(move |s| s.background(theme.get().hover_button))
                         }),
                     ))
                     .style(move |s| {
@@ -227,7 +261,8 @@ pub fn git_view(state: AppState) -> impl IntoView {
     })
 }
 
-fn trigger_commit(state: AppState, cwd: PathBuf) {
+fn trigger_commit(state: AppState) {
+    let repo_dir = resolve_repo_dir(state);
     let msg = state.git_commit_message.get().trim().to_string();
     if msg.is_empty() {
         state.status_message.set("OmniGit: Please enter a commit message".to_string());
@@ -237,10 +272,10 @@ fn trigger_commit(state: AppState, cwd: PathBuf) {
     let status = state.git_status.get();
     // If nothing staged, but there are unstaged changes, stage all first (like VS Code prompt)
     if status.staged.is_empty() && (status.unstaged.len() + status.untracked.len()) > 0 {
-        let _ = GitExecutor::stage_all(&cwd);
+        let _ = GitExecutor::stage_all(&repo_dir);
     }
 
-    match GitExecutor::commit(&cwd, &msg) {
+    match GitExecutor::commit(&repo_dir, &msg) {
         Ok(_) => {
             state.git_commit_message.set(String::new());
             state.status_message.set("OmniGit: Committed successfully".to_string());
@@ -256,7 +291,6 @@ fn trigger_commit(state: AppState, cwd: PathBuf) {
 fn render_staged_section(state: AppState) -> impl IntoView {
     let theme = state.theme;
     let git_status = state.git_status;
-    let get_cwd = || std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
 
     v_stack((
         // Section Header
@@ -282,14 +316,23 @@ fn render_staged_section(state: AppState) -> impl IntoView {
             // Unstage All action
             container(render_svg(ICON_MINUS, 12.0))
                 .on_click_stop(move |_| {
-                    let _ = GitExecutor::unstage_all(&get_cwd());
-                    state.refresh_git();
+                    let repo_dir = resolve_repo_dir(state);
+                    match GitExecutor::unstage_all(&repo_dir) {
+                        Ok(_) => {
+                            state.status_message.set("OmniGit: Unstaged all changes".to_string());
+                            state.refresh_git();
+                        }
+                        Err(e) => {
+                            state.status_message.set(format!("OmniGit error: {}", e));
+                        }
+                    }
                 })
                 .style(move |s| {
-                    s.size(18.0, 18.0)
+                    s.size(20.0, 20.0)
                         .items_center()
                         .justify_center()
                         .border_radius(3.0)
+                        .background(palette::css::TRANSPARENT)
                         .cursor(CursorStyle::Pointer)
                         .hover(move |s| s.background(theme.get().hover_bg))
                 }),
@@ -310,40 +353,68 @@ fn render_staged_section(state: AppState) -> impl IntoView {
                 let items = staged_files.into_iter().map(move |file| {
                     let file_path = file.path.clone();
                     let unstage_path = file.path.clone();
+                    let click_open_path = file.path.clone();
                     let st = file.status;
+                    let badge_color = Color::from_str(st.color_hex()).unwrap_or(Color::from_rgb8(150, 150, 150));
 
                     h_stack((
                         // Status badge (M, A, D, R, etc.)
                         label(move || st.badge().to_string()).style(move |s| {
                             s.font_size(10.0)
                                 .font_weight(Weight::BOLD)
-                                .color(palette::css::WHITE)
+                                .color(badge_color)
                                 .margin_right(6.0)
+                                .flex_shrink(0.0)
                         }),
-                        // File path
-                        label(move || file_path.clone()).style(move |s| {
-                            s.font_size(11.0)
-                                .color(theme.get().fg_primary)
-                                .flex_grow(1.0)
+                        // File path (opens file when clicked)
+                        container(
+                            label(move || file_path.clone()).style(move |s| {
+                                s.font_size(11.0)
+                                    .color(theme.get().fg_primary)
+                                    .text_ellipsis()
+                            }),
+                        )
+                        .on_click_stop(move |_| {
+                            let repo_dir = resolve_repo_dir(state);
+                            let target = repo_dir.join(&click_open_path);
+                            state.workspace.update(|w| { let _ = w.open_file(target); });
+                        })
+                        .style(|s| {
+                            s.flex_grow(1.0)
+                                .flex_shrink(1.0)
+                                .min_width(0.0)
+                                .cursor(CursorStyle::Pointer)
                         }),
                         // Unstage button (-)
-                        container(render_svg(ICON_MINUS, 11.0))
+                        container(render_svg(ICON_MINUS, 12.0))
                             .on_click_stop(move |_| {
-                                let _ = GitExecutor::unstage_file(&get_cwd(), &unstage_path);
-                                state.refresh_git();
+                                let repo_dir = resolve_repo_dir(state);
+                                match GitExecutor::unstage_file(&repo_dir, &unstage_path) {
+                                    Ok(_) => {
+                                        state.status_message.set(format!("OmniGit: Unstaged {}", unstage_path));
+                                        state.refresh_git();
+                                    }
+                                    Err(e) => {
+                                        state.status_message.set(format!("OmniGit error: {}", e));
+                                    }
+                                }
                             })
                             .style(move |s| {
-                                s.size(16.0, 16.0)
+                                s.width(24.0)
+                                    .height(20.0)
                                     .items_center()
                                     .justify_center()
+                                    .border_radius(3.0)
+                                    .background(palette::css::TRANSPARENT)
                                     .cursor(CursorStyle::Pointer)
+                                    .flex_shrink(0.0)
                                     .hover(move |s| s.background(theme.get().hover_bg))
                             }),
                     ))
                     .style(move |s| {
                         s.width_pct(100.0)
                             .height(22.0)
-                            .padding_horiz(12.0)
+                            .padding_horiz(10.0)
                             .items_center()
                             .hover(move |s| s.background(theme.get().hover_bg))
                     })
@@ -361,7 +432,6 @@ fn render_staged_section(state: AppState) -> impl IntoView {
 fn render_unstaged_section(state: AppState) -> impl IntoView {
     let theme = state.theme;
     let git_status = state.git_status;
-    let get_cwd = || std::env::current_dir().unwrap_or_else(|_| PathBuf::from("."));
 
     v_stack((
         // Section Header
@@ -391,14 +461,23 @@ fn render_unstaged_section(state: AppState) -> impl IntoView {
             // Stage All action (+)
             container(render_svg(ICON_PLUS, 12.0))
                 .on_click_stop(move |_| {
-                    let _ = GitExecutor::stage_all(&get_cwd());
-                    state.refresh_git();
+                    let repo_dir = resolve_repo_dir(state);
+                    match GitExecutor::stage_all(&repo_dir) {
+                        Ok(_) => {
+                            state.status_message.set("OmniGit: Staged all changes".to_string());
+                            state.refresh_git();
+                        }
+                        Err(e) => {
+                            state.status_message.set(format!("OmniGit error: {}", e));
+                        }
+                    }
                 })
                 .style(move |s| {
-                    s.size(18.0, 18.0)
+                    s.size(20.0, 20.0)
                         .items_center()
                         .justify_center()
                         .border_radius(3.0)
+                        .background(palette::css::TRANSPARENT)
                         .cursor(CursorStyle::Pointer)
                         .hover(move |s| s.background(theme.get().hover_bg))
                 }),
@@ -425,40 +504,68 @@ fn render_unstaged_section(state: AppState) -> impl IntoView {
                 let items = files.into_iter().map(move |file| {
                     let file_path = file.path.clone();
                     let stage_path = file.path.clone();
+                    let click_open_path = file.path.clone();
                     let st = file.status;
+                    let badge_color = Color::from_str(st.color_hex()).unwrap_or(Color::from_rgb8(150, 150, 150));
 
                     h_stack((
                         // Status badge (M, D, U, etc.)
                         label(move || st.badge().to_string()).style(move |s| {
                             s.font_size(10.0)
                                 .font_weight(Weight::BOLD)
-                                .color(palette::css::WHITE)
+                                .color(badge_color)
                                 .margin_right(6.0)
+                                .flex_shrink(0.0)
                         }),
-                        // File path
-                        label(move || file_path.clone()).style(move |s| {
-                            s.font_size(11.0)
-                                .color(theme.get().fg_primary)
-                                .flex_grow(1.0)
+                        // File path (opens file when clicked)
+                        container(
+                            label(move || file_path.clone()).style(move |s| {
+                                s.font_size(11.0)
+                                    .color(theme.get().fg_primary)
+                                    .text_ellipsis()
+                            }),
+                        )
+                        .on_click_stop(move |_| {
+                            let repo_dir = resolve_repo_dir(state);
+                            let target = repo_dir.join(&click_open_path);
+                            state.workspace.update(|w| { let _ = w.open_file(target); });
+                        })
+                        .style(|s| {
+                            s.flex_grow(1.0)
+                                .flex_shrink(1.0)
+                                .min_width(0.0)
+                                .cursor(CursorStyle::Pointer)
                         }),
                         // Stage button (+)
-                        container(render_svg(ICON_PLUS, 11.0))
+                        container(render_svg(ICON_PLUS, 12.0))
                             .on_click_stop(move |_| {
-                                let _ = GitExecutor::stage_file(&get_cwd(), &stage_path);
-                                state.refresh_git();
+                                let repo_dir = resolve_repo_dir(state);
+                                match GitExecutor::stage_file(&repo_dir, &stage_path) {
+                                    Ok(_) => {
+                                        state.status_message.set(format!("OmniGit: Staged {}", stage_path));
+                                        state.refresh_git();
+                                    }
+                                    Err(e) => {
+                                        state.status_message.set(format!("OmniGit error: {}", e));
+                                    }
+                                }
                             })
                             .style(move |s| {
-                                s.size(16.0, 16.0)
+                                s.width(24.0)
+                                    .height(20.0)
                                     .items_center()
                                     .justify_center()
+                                    .border_radius(3.0)
+                                    .background(palette::css::TRANSPARENT)
                                     .cursor(CursorStyle::Pointer)
+                                    .flex_shrink(0.0)
                                     .hover(move |s| s.background(theme.get().hover_bg))
                             }),
                     ))
                     .style(move |s| {
                         s.width_pct(100.0)
                             .height(22.0)
-                            .padding_horiz(12.0)
+                            .padding_horiz(10.0)
                             .items_center()
                             .hover(move |s| s.background(theme.get().hover_bg))
                     })

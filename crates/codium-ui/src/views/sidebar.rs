@@ -135,6 +135,7 @@ pub fn trigger_open_folder(state: AppState) {
                         s.last_workspace_folder = Some(path_str.clone());
                     });
                     let _ = settings.get_untracked().save();
+                    state.refresh_git();
                     status.set(format!("{}: {}", locale.get().tr("Opened folder"), path_str));
                 }
             }
@@ -247,6 +248,7 @@ fn explorer_view(state: AppState) -> impl IntoView {
                                             state.workspace.update(|w| { let _ = w.open_folder(path); });
                                             state.settings.update(|s| s.last_workspace_folder = Some(p));
                                             let _ = state.settings.get_untracked().save();
+                                            state.refresh_git();
                                         }
                                     }
                                 })
@@ -276,6 +278,7 @@ fn explorer_view(state: AppState) -> impl IntoView {
                                         state.workspace.update(|w| { let _ = w.open_folder(path); });
                                         state.settings.update(|s| s.last_workspace_folder = Some(p));
                                         let _ = state.settings.get_untracked().save();
+                                        state.refresh_git();
                                     }
                                 }
                             })

@@ -17,6 +17,9 @@ pub struct CodiumTheme {
     pub accent_edu: Color,
     pub accent_ai: Color,
     pub hover_bg: Color,
+    pub bg_button: Color,
+    pub fg_button: Color,
+    pub hover_button: Color,
 }
 
 impl Default for CodiumTheme {
@@ -36,6 +39,9 @@ impl Default for CodiumTheme {
             accent_edu: Color::from_str("#1abc9c").unwrap(),
             accent_ai: Color::from_str("#8e44ad").unwrap(),
             hover_bg: Color::from_str("#37373d").unwrap(),
+            bg_button: Color::from_str("#0e639c").unwrap(),
+            fg_button: Color::from_str("#ffffff").unwrap(),
+            hover_button: Color::from_str("#1177bb").unwrap(),
         }
     }
 }
@@ -58,6 +64,9 @@ impl CodiumTheme {
             accent_edu: Color::from_str("#a6e22e").unwrap(),
             accent_ai: Color::from_str("#ae81ff").unwrap(),
             hover_bg: Color::from_str("#3e3d32").unwrap(),
+            bg_button: Color::from_str("#0e639c").unwrap(),
+            fg_button: Color::from_str("#ffffff").unwrap(),
+            hover_button: Color::from_str("#1177bb").unwrap(),
         }
     }
 
@@ -78,6 +87,9 @@ impl CodiumTheme {
             accent_edu: Color::from_str("#98c379").unwrap(),
             accent_ai: Color::from_str("#c678dd").unwrap(),
             hover_bg: Color::from_str("#2c313a").unwrap(),
+            bg_button: Color::from_str("#4d78cc").unwrap(),
+            fg_button: Color::from_str("#ffffff").unwrap(),
+            hover_button: Color::from_str("#5c8ae6").unwrap(),
         }
     }
 
@@ -98,6 +110,9 @@ impl CodiumTheme {
             accent_edu: Color::from_str("#2aa198").unwrap(),
             accent_ai: Color::from_str("#6c71c4").unwrap(),
             hover_bg: Color::from_str("#073642").unwrap(),
+            bg_button: Color::from_str("#268bd2").unwrap(),
+            fg_button: Color::from_str("#ffffff").unwrap(),
+            hover_button: Color::from_str("#2aa198").unwrap(),
         }
     }
 

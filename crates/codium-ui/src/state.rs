@@ -9,7 +9,7 @@ use codium_core::{
     SyntaxTheme, Workspace, init_i18n,
 };
 use codium_edu::EduPolicy;
-use floem::reactive::{RwSignal, SignalUpdate};
+use floem::reactive::{RwSignal, SignalGet, SignalUpdate};
 use crate::theme::CodiumTheme;
 
 /// The target edition of the Codium IDE.
@@ -238,13 +238,19 @@ impl AppState {
         }
     }
 
-    /// Refresh OmniGit status and commit log from working directory
+    /// Refresh OmniGit status and commit log from working directory or workspace root
     pub fn refresh_git(&self) {
-        let cwd = std::env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from("."));
-        if let Ok(st) = GitExecutor::get_status(&cwd) {
+        let candidate = self
+            .workspace
+            .get()
+            .root_path
+            .or_else(|| self.git_status.get().root_dir)
+            .unwrap_or_else(|| std::env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from(".")));
+        let repo_dir = GitExecutor::get_repo_root(&candidate).unwrap_or(candidate);
+        if let Ok(st) = GitExecutor::get_status(&repo_dir) {
             self.git_status.set(st);
         }
-        if let Ok(commits) = GitExecutor::get_log(&cwd, 25) {
+        if let Ok(commits) = GitExecutor::get_log(&repo_dir, 25) {
             self.git_commits.set(commits);
         }
     }
