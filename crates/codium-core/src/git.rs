@@ -23,6 +23,7 @@ pub enum FileChangeStatus {
     Copied,
     Untracked,
     Conflicted,
+    Staged,
 }
 
 impl FileChangeStatus {
@@ -35,18 +36,20 @@ impl FileChangeStatus {
             Self::Copied => "C",
             Self::Untracked => "U",
             Self::Conflicted => "!",
+            Self::Staged => "S",
         }
     }
 
     pub fn color_hex(&self) -> &'static str {
         match self {
-            Self::Modified => "#e5c07b",   // Yellow / warning
-            Self::Added => "#98c379",      // Green
-            Self::Deleted => "#e06c75",    // Red
-            Self::Renamed => "#61afef",    // Blue
-            Self::Copied => "#56b6c2",     // Cyan
-            Self::Untracked => "#73c991",  // Light green
-            Self::Conflicted => "#ff5370", // Bright red
+            Self::Modified => "#e5c07b",   // Warm Amber / Yellow (Modified)
+            Self::Added => "#98c379",      // Green (Added)
+            Self::Deleted => "#e06c75",    // Red (Deleted)
+            Self::Renamed => "#61afef",    // Blue (Renamed)
+            Self::Copied => "#56b6c2",     // Cyan (Copied)
+            Self::Untracked => "#73c991",  // Light Green (Untracked)
+            Self::Conflicted => "#ff5370", // Bright Red (Conflicted)
+            Self::Staged => "#61afef",     // Vibrant Blue / Azure (Staged)
         }
     }
 }
@@ -83,6 +86,42 @@ pub struct GitCommit {
     pub refs: Vec<String>,
 }
 
+/// Palette of distinct branch colors used for commit graph lanes
+pub const GRAPH_LANE_COLORS: &[&str] = &[
+    "#3b82f6", // Blue (primary)
+    "#10b981", // Emerald Green
+    "#f59e0b", // Amber
+    "#a855f7", // Purple
+    "#06b6d4", // Cyan
+    "#ec4899", // Pink
+    "#eab308", // Yellow
+    "#14b8a6", // Teal
+];
+
+/// Layout information for a commit in the visual OmniGit commit graph
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+pub struct GitGraphNode {
+    pub commit: GitCommit,
+    pub lane: usize,
+    pub total_lanes: usize,
+    pub active_lanes: Vec<bool>,
+    pub is_head: bool,
+    pub is_merge: bool,
+    pub is_root: bool,
+}
+
+impl GitGraphNode {
+    /// Return the hex color string for this node's branch lane
+    pub fn lane_color(&self) -> &'static str {
+        GRAPH_LANE_COLORS[self.lane % GRAPH_LANE_COLORS.len()]
+    }
+
+    /// Return the hex color string for any given lane index
+    pub fn color_for_lane(lane: usize) -> &'static str {
+        GRAPH_LANE_COLORS[lane % GRAPH_LANE_COLORS.len()]
+    }
+}
+
 /// Comprehensive repository status
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, Default)]
 pub struct GitRepoStatus {
@@ -103,6 +142,119 @@ impl GitRepoStatus {
 
     pub fn has_changes(&self) -> bool {
         self.total_changes() > 0
+    }
+
+    /// Lookup git status for a specific file path (relative to repo root)
+    pub fn get_file_change(&self, rel_path: &str) -> Option<GitFileChange> {
+        let clean = rel_path.trim_start_matches("./").trim_start_matches('/');
+        // Check staged first (if staged, it takes precedence for visual S / A / D badge)
+        if let Some(f) = self.staged.iter().find(|f| f.path == clean) {
+            return Some(f.clone());
+        }
+        // Then unstaged
+        if let Some(f) = self.unstaged.iter().find(|f| f.path == clean) {
+            return Some(f.clone());
+        }
+        // Then untracked
+        if let Some(f) = self.untracked.iter().find(|f| f.path == clean) {
+            return Some(f.clone());
+        }
+        None
+    }
+
+    /// Robust lookup of git status for any file path (absolute or relative, canonicalized or raw)
+    pub fn find_file_change(&self, file_path: &Path, repo_root: Option<&Path>) -> Option<GitFileChange> {
+        if !self.is_repo {
+            return None;
+        }
+
+        // 1. Try stripping repo_root or self.root_dir
+        let root_candidates = [repo_root, self.root_dir.as_deref()];
+        for root_opt in root_candidates.into_iter().flatten() {
+            if let Ok(rel) = file_path.strip_prefix(root_opt) {
+                if let Some(rel_str) = rel.to_str() {
+                    if let Some(c) = self.get_file_change(rel_str) {
+                        return Some(c);
+                    }
+                }
+            }
+            if let (Ok(c_file), Ok(c_root)) = (file_path.canonicalize(), root_opt.canonicalize()) {
+                if let Ok(rel) = c_file.strip_prefix(&c_root) {
+                    if let Some(rel_str) = rel.to_str() {
+                        if let Some(c) = self.get_file_change(rel_str) {
+                            return Some(c);
+                        }
+                    }
+                }
+            }
+        }
+
+        // 2. Direct string match
+        if let Some(path_str) = file_path.to_str() {
+            if let Some(c) = self.get_file_change(path_str) {
+                return Some(c);
+            }
+        }
+
+        // 3. Fallback: match by path suffix (ends_with)
+        for f in &self.staged {
+            if file_path.ends_with(&f.path) {
+                return Some(f.clone());
+            }
+        }
+        for f in &self.unstaged {
+            if file_path.ends_with(&f.path) {
+                return Some(f.clone());
+            }
+        }
+        for f in &self.untracked {
+            if file_path.ends_with(&f.path) {
+                return Some(f.clone());
+            }
+        }
+
+        None
+    }
+
+    /// Check if a directory contains any staged, unstaged, or untracked changes
+    pub fn dir_has_changes(&self, dir_path: &Path, repo_root: Option<&Path>) -> Option<FileChangeStatus> {
+        if !self.is_repo {
+            return None;
+        }
+
+        let root_candidates = [repo_root, self.root_dir.as_deref()];
+        let check_list = |list: &[GitFileChange]| -> bool {
+            for f in list {
+                let f_path = Path::new(&f.path);
+                if f_path.starts_with(dir_path) {
+                    return true;
+                }
+                for root in root_candidates.into_iter().flatten() {
+                    let full_path = root.join(f_path);
+                    if full_path.starts_with(dir_path) {
+                        return true;
+                    }
+                    if let Ok(rel) = dir_path.strip_prefix(root) {
+                        if f_path.starts_with(rel) {
+                            return true;
+                        }
+                    }
+                }
+            }
+            false
+        };
+
+        if check_list(&self.staged) {
+            return Some(FileChangeStatus::Staged);
+        }
+        if check_list(&self.unstaged) {
+            return Some(FileChangeStatus::Modified);
+        }
+        if check_list(&self.untracked) {
+            return Some(FileChangeStatus::Untracked);
+        }
+
+        None
     }
 }
 
@@ -224,13 +376,13 @@ impl GitExecutor {
                 // Staged changes (Index status is not space and not '?')
                 if index_status != ' ' && index_status != '?' {
                     let st = match index_status {
-                        'M' => FileChangeStatus::Modified,
+                        'M' => FileChangeStatus::Staged,
                         'A' => FileChangeStatus::Added,
                         'D' => FileChangeStatus::Deleted,
                         'R' => FileChangeStatus::Renamed,
                         'C' => FileChangeStatus::Copied,
                         'U' => FileChangeStatus::Conflicted,
-                        _ => FileChangeStatus::Modified,
+                        _ => FileChangeStatus::Staged,
                     };
                     status.staged.push(GitFileChange {
                         path: path.clone(),
@@ -332,7 +484,7 @@ impl GitExecutor {
         Ok(branches)
     }
 
-    /// Fetch git commit log using OmniGit's robust ASCII unit separator format
+    /// Fetch git commit log across all branches using OmniGit's robust ASCII unit separator format
     pub fn get_log(cwd: &Path, max_count: usize) -> Result<Vec<GitCommit>> {
         let count_str = max_count.to_string();
         let format_str = format!(
@@ -341,12 +493,41 @@ impl GitExecutor {
             c = COMMIT_SEP
         );
 
-        let raw = Self::exec(
+        let res = Self::exec(
             cwd,
-            &["log", &format!("--format={}", format_str), "-n", &count_str],
-        )?;
+            &[
+                "log",
+                "--all",
+                "--date-order",
+                &format!("--format={}", format_str),
+                "-n",
+                &count_str,
+            ],
+        );
 
-        Self::parse_log(&raw)
+        match res {
+            Ok(raw) => Self::parse_log(&raw),
+            Err(err) => {
+                let err_str = err.to_string();
+                if err_str.contains("does not have any commits")
+                    || err_str.contains("unknown revision")
+                    || err_str.contains("bad default revision")
+                {
+                    // Fresh or empty repository
+                    Ok(Vec::new())
+                } else {
+                    // Fallback to simple log without --all in case of shallow or special clones
+                    if let Ok(raw) = Self::exec(
+                        cwd,
+                        &["log", &format!("--format={}", format_str), "-n", &count_str],
+                    ) {
+                        Self::parse_log(&raw)
+                    } else {
+                        Err(err)
+                    }
+                }
+            }
+        }
     }
 
     /// Parse git log raw string
@@ -359,7 +540,7 @@ impl GitExecutor {
             }
 
             let fields: Vec<&str> = entry.split(FIELD_SEP).collect();
-            if fields.len() < 9 {
+            if fields.len() < 8 {
                 continue;
             }
 
@@ -375,11 +556,15 @@ impl GitExecutor {
             let author_name = fields[5].trim().to_string();
             let author_email = fields[6].trim().to_string();
             let author_date = fields[7].trim().parse::<i64>().unwrap_or(0);
-            let refs = fields[8]
-                .split(',')
-                .map(|r| r.trim().to_string())
-                .filter(|r| !r.is_empty())
-                .collect();
+            let refs = if fields.len() > 8 {
+                fields[8]
+                    .split(',')
+                    .map(|r| r.trim().to_string())
+                    .filter(|r| !r.is_empty())
+                    .collect()
+            } else {
+                Vec::new()
+            };
 
             commits.push(GitCommit {
                 hash,
@@ -394,6 +579,110 @@ impl GitExecutor {
             });
         }
         Ok(commits)
+    }
+
+    /// Get list of changed files for a specific commit (status and path)
+    pub fn get_commit_files(cwd: &Path, commit_hash: &str) -> Result<Vec<(String, String)>> {
+        let raw = Self::exec(cwd, &["show", "--name-status", "--oneline", commit_hash])?;
+
+        let mut files = Vec::new();
+        // Skip first line (oneline commit summary)
+        for line in raw.lines().skip(1) {
+            let line = line.trim();
+            if line.is_empty() {
+                continue;
+            }
+            if let Some((st, path)) = line.split_once('\t') {
+                files.push((st.trim().to_string(), path.trim().trim_matches('"').to_string()));
+            } else if let Some((st, path)) = line.split_once(' ') {
+                files.push((st.trim().to_string(), path.trim().trim_matches('"').to_string()));
+            }
+        }
+        Ok(files)
+    }
+
+    /// Compute topological graph lanes for visual commit graph rendering
+    pub fn compute_graph_nodes(commits: &[GitCommit]) -> Vec<GitGraphNode> {
+        let mut nodes = Vec::with_capacity(commits.len());
+        let mut active_lanes: Vec<Option<String>> = Vec::new();
+
+        for commit in commits {
+            // 1. Check if this commit's hash is already reserved in active_lanes
+            let mut lane = None;
+            for (idx, slot) in active_lanes.iter().enumerate() {
+                if slot.as_deref() == Some(&commit.hash) {
+                    lane = Some(idx);
+                    break;
+                }
+            }
+
+            // If not found in active lanes, find first None slot or append
+            let lane = lane.unwrap_or_else(|| {
+                for (idx, slot) in active_lanes.iter().enumerate() {
+                    if slot.is_none() {
+                        return idx;
+                    }
+                }
+                active_lanes.push(None);
+                active_lanes.len() - 1
+            });
+
+            if lane >= active_lanes.len() {
+                active_lanes.resize(lane + 1, None);
+            }
+
+            let total_lanes = active_lanes.len().max(1);
+            let mut active_mask = vec![false; total_lanes];
+            for (i, slot) in active_lanes.iter().enumerate() {
+                if slot.is_some() || i == lane {
+                    active_mask[i] = true;
+                }
+            }
+
+            let is_head = commit
+                .refs
+                .iter()
+                .any(|r| r.starts_with("HEAD") || r.contains("HEAD ->"));
+            let is_merge = commit.parents.len() > 1;
+            let is_root = commit.parents.is_empty();
+
+            // 2. Update active_lanes with parents
+            if is_root {
+                active_lanes[lane] = None;
+            } else {
+                active_lanes[lane] = Some(commit.parents[0].clone());
+                for extra_parent in commit.parents.iter().skip(1) {
+                    let mut found_slot = false;
+                    for slot in active_lanes.iter_mut() {
+                        if slot.is_none() {
+                            *slot = Some(extra_parent.clone());
+                            found_slot = true;
+                            break;
+                        }
+                    }
+                    if !found_slot {
+                        active_lanes.push(Some(extra_parent.clone()));
+                    }
+                }
+            }
+
+            // Trim trailing None slots
+            while active_lanes.last().map(|s| s.is_none()).unwrap_or(false) {
+                active_lanes.pop();
+            }
+
+            nodes.push(GitGraphNode {
+                commit: commit.clone(),
+                lane,
+                total_lanes: total_lanes.max(1),
+                active_lanes: active_mask,
+                is_head,
+                is_merge,
+                is_root,
+            });
+        }
+
+        nodes
     }
 
     /// Stage a file (`git add -- <file>`)
@@ -562,15 +851,28 @@ M  crates/codium-core/src/lib.rs
         assert_eq!(status.behind, 1);
         assert_eq!(status.staged.len(), 1);
         assert_eq!(status.staged[0].path, "crates/codium-core/src/lib.rs");
-        assert_eq!(status.staged[0].status, FileChangeStatus::Modified);
+        assert_eq!(status.staged[0].status, FileChangeStatus::Staged);
+        assert_eq!(status.staged[0].status.badge(), "S");
         assert!(status.staged[0].is_staged);
 
         assert_eq!(status.unstaged.len(), 1);
         assert_eq!(status.unstaged[0].path, "crates/codium-ui/src/views/activity_bar.rs");
+        assert_eq!(status.unstaged[0].status, FileChangeStatus::Modified);
+        assert_eq!(status.unstaged[0].status.badge(), "M");
         assert!(!status.unstaged[0].is_staged);
 
         assert_eq!(status.untracked.len(), 1);
         assert_eq!(status.untracked[0].path, "settings/keymaps/vscode.json");
+        assert_eq!(status.untracked[0].status, FileChangeStatus::Untracked);
+        assert_eq!(status.untracked[0].status.badge(), "U");
+
+        // Test get_file_change helper
+        let staged_change = status.get_file_change("crates/codium-core/src/lib.rs").unwrap();
+        assert_eq!(staged_change.status, FileChangeStatus::Staged);
+        let unstaged_change = status.get_file_change("crates/codium-ui/src/views/activity_bar.rs").unwrap();
+        assert_eq!(unstaged_change.status, FileChangeStatus::Modified);
+        let untracked_change = status.get_file_change("settings/keymaps/vscode.json").unwrap();
+        assert_eq!(untracked_change.status, FileChangeStatus::Untracked);
     }
 
     #[test]
@@ -597,6 +899,145 @@ M  crates/codium-core/src/lib.rs
             let status = GitExecutor::get_status(cwd).unwrap();
             assert!(status.is_repo);
             assert!(!status.current_branch.is_empty());
+
+            let commits = GitExecutor::get_log(cwd, 20).unwrap();
+            println!("Fetched commits count: {}", commits.len());
+            for c in &commits {
+                println!("Commit: {} - {} (refs: {:?})", c.short_hash, c.subject, c.refs);
+            }
+            assert!(!commits.is_empty());
+
+            let nodes = GitExecutor::compute_graph_nodes(&commits);
+            assert_eq!(nodes.len(), commits.len());
+            assert_eq!(nodes[0].lane, 0);
+            assert!(nodes[0].is_head);
         }
+    }
+
+    #[test]
+    fn test_compute_graph_nodes_mock() {
+        let commits = vec![
+            GitCommit {
+                hash: "commit3".to_string(),
+                short_hash: "c3".to_string(),
+                parents: vec!["commit2".to_string()],
+                subject: "Third".to_string(),
+                body: "".to_string(),
+                author_name: "Dev".to_string(),
+                author_email: "dev@example.com".to_string(),
+                author_date: 1000,
+                refs: vec!["HEAD -> master".to_string()],
+            },
+            GitCommit {
+                hash: "commit2".to_string(),
+                short_hash: "c2".to_string(),
+                parents: vec!["commit1".to_string()],
+                subject: "Second".to_string(),
+                body: "".to_string(),
+                author_name: "Dev".to_string(),
+                author_email: "dev@example.com".to_string(),
+                author_date: 900,
+                refs: vec![],
+            },
+            GitCommit {
+                hash: "commit1".to_string(),
+                short_hash: "c1".to_string(),
+                parents: vec![],
+                subject: "First (root)".to_string(),
+                body: "".to_string(),
+                author_name: "Dev".to_string(),
+                author_email: "dev@example.com".to_string(),
+                author_date: 800,
+                refs: vec![],
+            },
+        ];
+
+        let nodes = GitExecutor::compute_graph_nodes(&commits);
+        assert_eq!(nodes.len(), 3);
+        assert_eq!(nodes[0].lane, 0);
+        assert!(nodes[0].is_head);
+        assert!(!nodes[0].is_root);
+
+        assert_eq!(nodes[1].lane, 0);
+        assert!(!nodes[1].is_head);
+        assert!(!nodes[1].is_root);
+
+        assert_eq!(nodes[2].lane, 0);
+        assert!(!nodes[2].is_head);
+        assert!(nodes[2].is_root);
+    }
+
+    #[test]
+    fn test_find_file_change_and_dir_has_changes() {
+        let repo_root = PathBuf::from("/workspace/myproject");
+        let status = GitRepoStatus {
+            is_repo: true,
+            root_dir: Some(repo_root.clone()),
+            current_branch: "master".to_string(),
+            ahead: 0,
+            behind: 0,
+            staged: vec![
+                GitFileChange {
+                    path: "crates/core/src/lib.rs".to_string(),
+                    status: FileChangeStatus::Staged,
+                    is_staged: true,
+                    old_path: None,
+                },
+            ],
+            unstaged: vec![
+                GitFileChange {
+                    path: "crates/ui/src/main.rs".to_string(),
+                    status: FileChangeStatus::Modified,
+                    is_staged: false,
+                    old_path: None,
+                },
+            ],
+            untracked: vec![
+                GitFileChange {
+                    path: "docs/readme.txt".to_string(),
+                    status: FileChangeStatus::Untracked,
+                    is_staged: false,
+                    old_path: None,
+                },
+            ],
+        };
+
+        // 1. Test finding staged file with absolute path
+        let abs_path = repo_root.join("crates/core/src/lib.rs");
+        let change = status.find_file_change(&abs_path, Some(&repo_root));
+        assert!(change.is_some());
+        let c = change.unwrap();
+        assert_eq!(c.status, FileChangeStatus::Staged);
+        assert_eq!(c.status.badge(), "S");
+
+        // 2. Test finding unstaged file with relative path
+        let rel_path = Path::new("crates/ui/src/main.rs");
+        let change = status.find_file_change(rel_path, Some(&repo_root));
+        assert!(change.is_some());
+        assert_eq!(change.unwrap().status, FileChangeStatus::Modified);
+
+        // 3. Test finding untracked file via suffix
+        let sub_path = Path::new("/different/prefix/docs/readme.txt");
+        let change = status.find_file_change(sub_path, None);
+        assert!(change.is_some());
+        assert_eq!(change.unwrap().status, FileChangeStatus::Untracked);
+
+        // 4. Test directory has changes
+        assert_eq!(
+            status.dir_has_changes(Path::new("crates"), Some(&repo_root)),
+            Some(FileChangeStatus::Staged)
+        );
+        assert_eq!(
+            status.dir_has_changes(Path::new("crates/ui"), Some(&repo_root)),
+            Some(FileChangeStatus::Modified)
+        );
+        assert_eq!(
+            status.dir_has_changes(Path::new("docs"), Some(&repo_root)),
+            Some(FileChangeStatus::Untracked)
+        );
+        assert_eq!(
+            status.dir_has_changes(Path::new("non_existent"), Some(&repo_root)),
+            None
+        );
     }
 }

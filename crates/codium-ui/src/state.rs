@@ -56,6 +56,7 @@ pub enum BottomTab {
     Terminal,
     Problems,
     DocTutorOutput,
+    GitGraph,
 }
 
 /// Top-level dropdown menus in desktop IDE menubar
@@ -141,6 +142,22 @@ pub struct AppState {
     pub git_commit_message: RwSignal<String>,
     /// OmniGit recent commits history
     pub git_commits: RwSignal<Vec<GitCommit>>,
+    /// Selected commit hash for graph details inspection (None = none selected)
+    pub selected_commit_hash: RwSignal<Option<String>>,
+    /// Whether staged changes section is expanded in OmniGit sidebar
+    pub show_staged_section: RwSignal<bool>,
+    /// Whether unstaged changes section is expanded in OmniGit sidebar
+    pub show_unstaged_section: RwSignal<bool>,
+    /// Whether commit graph section is expanded in OmniGit sidebar
+    pub show_commits_section: RwSignal<bool>,
+    /// Whether commit graph is moved to the top of the sidebar (above changes)
+    pub git_graph_at_top: RwSignal<bool>,
+    /// Resizable height in pixels for the OmniGit commit graph view
+    pub git_graph_height: RwSignal<f64>,
+    /// View Source Control (OmniGit) changes as a file tree instead of flat list
+    pub git_view_as_tree: RwSignal<bool>,
+    /// Collapsed directory paths in OmniGit tree view (keyed by "staged:<path>" or "unstaged:<path>")
+    pub git_collapsed_dirs: RwSignal<std::collections::HashSet<String>>,
 }
 
 /// Represents a match in a file for workspace Search & Replace
@@ -196,8 +213,10 @@ impl AppState {
         let theme = CodiumTheme::for_theme(&settings.syntax_theme);
 
         let cwd = std::env::current_dir().unwrap_or_else(|_| std::path::PathBuf::from("."));
-        let initial_git = GitExecutor::get_status(&cwd).unwrap_or_default();
-        let initial_commits = GitExecutor::get_log(&cwd, 25).unwrap_or_default();
+        let repo_dir = GitExecutor::get_repo_root(&cwd).unwrap_or(cwd);
+        let initial_git = GitExecutor::get_status(&repo_dir).unwrap_or_default();
+        let initial_commits = GitExecutor::get_log(&repo_dir, 50).unwrap_or_default();
+        let git_view_as_tree = settings.git_view_as_tree;
 
         Self {
             active_menu: RwSignal::new(None),
@@ -235,6 +254,14 @@ impl AppState {
             git_status: RwSignal::new(initial_git),
             git_commit_message: RwSignal::new(String::new()),
             git_commits: RwSignal::new(initial_commits),
+            selected_commit_hash: RwSignal::new(None),
+            show_staged_section: RwSignal::new(true),
+            show_unstaged_section: RwSignal::new(true),
+            show_commits_section: RwSignal::new(true),
+            git_graph_at_top: RwSignal::new(false),
+            git_graph_height: RwSignal::new(320.0),
+            git_view_as_tree: RwSignal::new(git_view_as_tree),
+            git_collapsed_dirs: RwSignal::new(std::collections::HashSet::new()),
         }
     }
 
@@ -250,7 +277,7 @@ impl AppState {
         if let Ok(st) = GitExecutor::get_status(&repo_dir) {
             self.git_status.set(st);
         }
-        if let Ok(commits) = GitExecutor::get_log(&repo_dir, 25) {
+        if let Ok(commits) = GitExecutor::get_log(&repo_dir, 50) {
             self.git_commits.set(commits);
         }
     }

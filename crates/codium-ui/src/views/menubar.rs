@@ -71,6 +71,7 @@ pub fn menubar_view(state: AppState) -> impl IntoView {
     .style(move |s| {
         s.height(26.0)
             .width_pct(100.0)
+            .flex_shrink(0.0)
             .background(theme.get().bg_activity)
             .border_bottom(1.0)
             .border_color(theme.get().border)

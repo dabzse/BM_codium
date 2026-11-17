@@ -8,12 +8,14 @@
 //! - Settings & Policy Management
 
 use floem::prelude::*;
-use floem::peniko::Brush;
+use floem::peniko::{Brush, Color};
 use floem::style::CursorStyle;
 use floem::text::Weight;
 use floem::taffy::style::Display;
+use std::str::FromStr;
 use codium_core::FileNode;
 use codium_edu::DocTutor;
+use crate::icons::{render_svg, ICON_CHEVRON_DOWN, ICON_CHEVRON_RIGHT};
 use crate::state::{AppState, SidebarTab};
 
 /// Root sidebar container with dynamic switching between views
@@ -41,7 +43,11 @@ pub fn sidebar_view(state: AppState) -> impl IntoView {
     )
     .style(move |s| {
         s.width(state.sidebar_width.get())
+            .flex_col()
+            .flex_shrink(0.0)
             .height_pct(100.0)
+            .min_height(0.0)
+            .max_height_pct(100.0)
             .background(theme.get().bg_sidebar)
             .display(if show_sidebar.get() { Display::Flex } else { Display::None })
     })
@@ -199,6 +205,7 @@ fn explorer_view(state: AppState) -> impl IntoView {
         .style(move |s| {
             s.width_pct(100.0)
                 .height(32.0)
+                .flex_shrink(0.0)
                 .padding_horiz(12.0)
                 .items_center()
                 .border_bottom(1.0)
@@ -306,8 +313,8 @@ fn explorer_view(state: AppState) -> impl IntoView {
 
                 scroll(
                     dyn_container(
-                        move || ws.get().file_tree.clone(),
-                        move |tree| {
+                        move || (ws.get().file_tree.clone(), state.git_status.get()),
+                        move |(tree, _)| {
                             let mut items = Vec::new();
                             for node in tree {
                                 render_file_node(&node, 0, state, &mut items);
@@ -315,15 +322,50 @@ fn explorer_view(state: AppState) -> impl IntoView {
                             v_stack_from_iter(items).style(|s| s.flex_col().width_pct(100.0))
                         },
                     )
-                    .style(|s| s.width_pct(100.0)),
+                    .style(|s| s.flex_col().width_pct(100.0)),
                 )
-                .style(|s| s.flex_grow(1.0).width_pct(100.0))
+                .scroll_style(|s| {
+                    s.shrink_to_fit()
+                        .handle_thickness(8.0)
+                        .handle_rounded(true)
+                        .handle_background(Color::from_rgba8(255, 255, 255, 75))
+                })
+                .style(|s| {
+                    s.size_pct(100.0, 100.0)
+                        .flex_grow(1.0)
+                        .flex_shrink(1.0)
+                        .flex_basis(0.0)
+                        .min_height(0.0)
+                        .class(floem::views::scroll::Handle, |s| {
+                            s.background(Color::from_rgba8(255, 255, 255, 75))
+                                .border_radius(4.0)
+                                .hover(|s| s.background(Color::from_rgba8(255, 255, 255, 150)))
+                                .active(|s| s.background(Color::from_rgba8(255, 255, 255, 220)))
+                        })
+                        .class(floem::views::scroll::Track, |s| {
+                            s.hover(|s| s.background(Color::from_rgba8(255, 255, 255, 15)))
+                        })
+                })
                 .into_any()
             },
         )
-        .style(|s| s.flex_grow(1.0).width_pct(100.0)),
+        .style(|s| {
+            s.flex_col()
+                .flex_grow(1.0)
+                .flex_shrink(1.0)
+                .flex_basis(0.0)
+                .min_height(0.0)
+                .width_pct(100.0)
+        }),
     ))
-    .style(|s| s.flex_col().size_pct(100.0, 100.0))
+    .style(|s| {
+        s.flex_col()
+            .flex_grow(1.0)
+            .flex_shrink(1.0)
+            .flex_basis(0.0)
+            .size_pct(100.0, 100.0)
+            .min_height(0.0)
+    })
 }
 
 /// Recursively builds file tree rows
@@ -334,8 +376,9 @@ fn render_file_node(node: &FileNode, depth: usize, state: AppState, items: &mut 
     let name = node.name.clone();
     let theme = state.theme;
     let ws = state.workspace;
+    let git_status = state.git_status;
 
-    let indent = (depth as f64) * 14.0 + 10.0;
+    let indent = (depth as f64) * 14.0 + 8.0;
     let icon_theme = state.icon_theme.get();
     let svg_content = if is_dir {
         icon_theme.get_folder_icon(is_expanded).to_string()
@@ -343,17 +386,62 @@ fn render_file_node(node: &FileNode, depth: usize, state: AppState, items: &mut 
         icon_theme.get_file_icon(&name).to_string()
     };
 
+    let st = git_status.get();
+    let repo_root = st.root_dir.clone().or_else(|| {
+        ws.get().root_path.clone().and_then(|p| codium_core::GitExecutor::get_repo_root(&p))
+    });
+
+    let (name_color, badge_view) = if !is_dir {
+        if let Some(change) = st.find_file_change(&path, repo_root.as_deref()) {
+            let badge = change.status.badge();
+            let color = Color::from_str(change.status.color_hex()).unwrap_or(theme.get().fg_primary);
+            (
+                color,
+                container(label(move || badge.to_string()).style(move |s| {
+                    s.font_size(9.5)
+                        .font_weight(Weight::BOLD)
+                        .color(color)
+                        .margin_left(6.0)
+                        .flex_shrink(0.0)
+                }))
+                .into_any(),
+            )
+        } else {
+            (theme.get().fg_primary, empty().into_any())
+        }
+    } else {
+        // Folder git status tint
+        if let Some(dir_status) = st.dir_has_changes(&path, repo_root.as_deref()) {
+            let color = Color::from_str(dir_status.color_hex()).unwrap_or(theme.get().fg_primary);
+            (color, empty().into_any())
+        } else {
+            (theme.get().fg_primary, empty().into_any())
+        }
+    };
+
+    let chevron_view = if is_dir {
+        render_svg(if is_expanded { ICON_CHEVRON_DOWN } else { ICON_CHEVRON_RIGHT }, 10.0)
+            .style(|s| s.margin_right(4.0).items_center().justify_center().flex_shrink(0.0))
+            .into_any()
+    } else {
+        empty().style(|s| s.width(14.0).flex_shrink(0.0)).into_any()
+    };
+
     let item_view = h_stack((
+        chevron_view,
         svg(move || svg_content.clone()).style(|s| {
             s.size(15.0, 15.0)
                 .margin_right(5.0)
                 .items_center()
                 .justify_center()
+                .flex_shrink(0.0)
         }),
         label(move || name.clone()).style(move |s| {
             s.font_size(12.0)
-                .color(theme.get().fg_primary)
+                .color(name_color)
+                .text_ellipsis()
         }),
+        badge_view,
     ))
     .on_click_stop(move |_| {
         if is_dir {
@@ -368,9 +456,11 @@ fn render_file_node(node: &FileNode, depth: usize, state: AppState, items: &mut 
     })
     .style(move |s| {
         s.height(24.0)
+            .flex_shrink(0.0)
             .width_pct(100.0)
             .items_center()
             .padding_left(indent)
+            .padding_right(8.0)
             .cursor(CursorStyle::Pointer)
             .hover(|s| s.background(theme.get().hover_bg))
     });

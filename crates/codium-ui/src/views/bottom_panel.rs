@@ -9,7 +9,7 @@ use floem::prelude::*;
 use floem::style::CursorStyle;
 use floem::text::Weight;
 use floem::taffy::style::Display;
-use crate::icons::{render_svg, ICON_TERMINAL, ICON_WARNING};
+use crate::icons::{render_svg, ICON_GIT_BRANCH, ICON_TERMINAL, ICON_WARNING};
 use crate::state::{AppState, BottomTab};
 
 /// Bottom dock container with tabs and log viewer
@@ -57,6 +57,7 @@ pub fn bottom_panel_view(state: AppState) -> impl IntoView {
                 make_tab_btn(BottomTab::Terminal, Box::new(move || locale.get().terminal_tab()), Some(ICON_TERMINAL)),
                 make_tab_btn(BottomTab::Problems, Box::new(move || locale.get().problems_tab()), Some(ICON_WARNING)),
                 make_tab_btn(BottomTab::DocTutorOutput, Box::new(move || locale.get().hints_tab()), None),
+                make_tab_btn(BottomTab::GitGraph, Box::new(move || "Git Graph".to_string()), Some(ICON_GIT_BRANCH)),
             ))
             .style(|s| s.flex_row().items_center()),
 
@@ -149,6 +150,9 @@ pub fn bottom_panel_view(state: AppState) -> impl IntoView {
                         )
                         .style(|s| s.size_pct(100.0, 100.0).min_width(0.0))
                         .into_any()
+                    }
+                    BottomTab::GitGraph => {
+                        crate::views::git_view::render_bottom_git_graph(state).into_any()
                     }
                 }
             },

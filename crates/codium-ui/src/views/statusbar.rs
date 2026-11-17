@@ -160,6 +160,7 @@ pub fn statusbar_view(state: AppState) -> impl IntoView {
     .style(move |s| {
         s.width_pct(100.0)
             .height(24.0)
+            .flex_shrink(0.0)
             .items_center()
             .justify_between()
             .background(theme.get().bg_titlebar)

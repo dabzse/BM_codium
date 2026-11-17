@@ -11,7 +11,7 @@ pub use buffer::{Language, TextBuffer};
 pub use config::CodiumSettings;
 pub use git::{
     FileChangeStatus, GitBlameLine, GitBranch, GitCommit, GitExecutor, GitFileChange,
-    GitRepoStatus, format_timestamp_relative,
+    GitGraphNode, GitRepoStatus, GRAPH_LANE_COLORS, format_timestamp_relative,
 };
 pub use i18n::{Locale, PoCatalog, I18n, get_i18n, init_i18n};
 pub use icon_theme::{IconDefinition, IconTheme};

@@ -1,4 +1,5 @@
 use floem::event::{Event, EventListener, EventPropagation};
+use floem::peniko::Color;
 use floem::prelude::*;
 use crate::state::AppState;
 use super::titlebar::titlebar_view;
@@ -40,7 +41,14 @@ pub fn root_app_view(state: AppState) -> impl IntoView {
             right_panel_splitter(state),
             right_panel_view(state),
         ))
-        .style(|s| s.flex_row().flex_grow(1.0).width_pct(100.0)),
+        .style(|s| {
+            s.flex_row()
+                .flex_grow(1.0)
+                .flex_shrink(1.0)
+                .flex_basis(0.0)
+                .min_height(0.0)
+                .width_pct(100.0)
+        }),
 
         // Bottom Statusbar
         statusbar_view(state),
@@ -82,5 +90,14 @@ pub fn root_app_view(state: AppState) -> impl IntoView {
         s.flex_col()
             .size_pct(100.0, 100.0)
             .font_family(state.settings.get().ui_font_family)
+            .class(floem::views::scroll::Handle, |s| {
+                s.background(Color::from_rgba8(255, 255, 255, 75))
+                    .border_radius(4.0)
+                    .hover(|s| s.background(Color::from_rgba8(255, 255, 255, 150)))
+                    .active(|s| s.background(Color::from_rgba8(255, 255, 255, 220)))
+            })
+            .class(floem::views::scroll::Track, |s| {
+                s.hover(|s| s.background(Color::from_rgba8(255, 255, 255, 15)))
+            })
     })
 }

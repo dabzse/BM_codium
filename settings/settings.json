@@ -27,5 +27,6 @@
   "terminal_font_family": "monospace",
   "window_width": 1280.0,
   "window_height": 800.0,
+  "git_view_as_tree": true,
   "last_workspace_folder": null
 }

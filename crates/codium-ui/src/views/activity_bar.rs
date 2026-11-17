@@ -76,6 +76,9 @@ pub fn activity_bar_view(state: AppState) -> impl IntoView {
             } else {
                 active_tab.set(tab);
                 show_sidebar.set(true);
+                if tab == SidebarTab::SourceControl {
+                    state.refresh_git();
+                }
             }
         })
         .style(move |s| {
@@ -113,6 +116,7 @@ pub fn activity_bar_view(state: AppState) -> impl IntoView {
     ))
     .style(move |s| {
         s.width(48.0)
+            .flex_shrink(0.0)
             .height_pct(100.0)
             .justify_between()
             .background(theme.get().bg_activity)

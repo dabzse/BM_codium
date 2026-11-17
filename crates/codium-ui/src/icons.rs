@@ -66,6 +66,36 @@ pub const ICON_GIT_BRANCH: &str = r#"<svg width="14" height="14" viewBox="0 0 16
 /// History / Commits Icon (Codicons)
 pub const ICON_HISTORY: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M8.5 2a6.5 6.5 0 1 0 5.485 10.024l-.84-.543A5.5 5.5 0 1 1 8.5 3a5.474 5.474 0 0 1 3.86 1.583L10.5 6.5H15V2l-1.929 1.929A6.474 6.474 0 0 0 8.5 2zm-.5 3v3.707l2.646 2.647.708-.708L9 8.293V5H8z"/></svg>"#;
 
+/// Tag Icon (Codicons)
+pub const ICON_TAG: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 1.75l.75-.75h4.69L14.7 9.2a1.75 1.75 0 0 1 0 2.47l-2.37 2.37a1.75 1.75 0 0 1-2.47 0L1.69 5.87V1.75H1zm1.5.75v3.31l8.17 8.17.88-.88-8.17-8.17H2.5zm2.5 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>"#;
+
+/// Copy Icon (Codicons)
+pub const ICON_COPY: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 4h8v8H4V4zm-1 9a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9zm-1-8V2a1 1 0 0 1 1-1h8v1H3v8H2a1 1 0 0 1-1-1V5h1z"/></svg>"#;
+
+/// Chevron Down Icon (Codicons)
+pub const ICON_CHEVRON_DOWN: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M7.976 10.072l4.357-4.357.62.618L8.284 11h-.618L3 6.333l.619-.618 4.357 4.357z"/></svg>"#;
+
+/// Chevron Right Icon (Codicons)
+pub const ICON_CHEVRON_RIGHT: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.072 8.024L5.715 3.667l.618-.62L11 7.716v.618L6.333 13l-.618-.619 4.357-4.357z"/></svg>"#;
+
+/// Arrow Up Icon (Codicons)
+pub const ICON_ARROW_UP: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 3.293l4.146 4.147-.708.708L8.5 5.207V13h-1V5.207L4.561 8.148l-.707-.708L8 3.293z"/></svg>"#;
+
+/// Arrow Down Icon (Codicons)
+pub const ICON_ARROW_DOWN: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M8 12.707l-4.146-4.147.708-.708L7.5 10.793V3h1v7.793l2.939-2.941.707.708L8 12.707z"/></svg>"#;
+
+/// Expand / Maximize Icon (Codicons)
+pub const ICON_EXPAND: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M3 3v4h1V4h3V3H3zm10 0h-4v1h3v3h1V3zm-1 10h-3v-1h3v-3h1v4h-1zm-8 0H3V9h1v3h3v1H4z"/></svg>"#;
+
+/// Dock / Panel Split Icon (Codicons)
+pub const ICON_DOCK_PANEL: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 2h12v12H2V2zm1 1v6h10V3H3zm0 7v3h10v-3H3z"/></svg>"#;
+
+/// View as Tree Icon (Codicons list-tree)
+pub const ICON_LIST_TREE: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M1 2h3v3H1V2zm4 1H2v1h2V3zm1 7h3v3H6v-3zm4 1H7v1h2v-1zm1-8h4v3h-4V3zm3 1h-2v1h2V4zM4 6.5A1.5 1.5 0 0 0 2.5 8v2.5H4V9h3.5v1.5H9V8a1.5 1.5 0 0 0-1.5-1.5h-3.5zM9 13.5A1.5 1.5 0 0 0 10.5 12V9.5H9V11H6.5V9.5H5V12a1.5 1.5 0 0 0 1.5 1.5h2z"/></svg>"#;
+
+/// View as Flat List Icon (Codicons list-flat)
+pub const ICON_LIST_FLAT: &str = r#"<svg width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 3h12v1H2V3zm0 4h12v1H2V7zm0 4h12v1H2v-1zm0 4h12v1H2v-1z"/></svg>"#;
+
 /// Helper to render an SVG icon with specified dimensions and crisp default light gray color
 pub fn render_svg(svg_content: &'static str, size: f64) -> impl IntoView {
     svg(move || svg_content.to_string())

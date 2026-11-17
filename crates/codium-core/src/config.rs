@@ -120,6 +120,10 @@ pub struct CodiumSettings {
     #[serde(default = "default_window_height")]
     pub window_height: f64,
 
+    /// View Source Control (OmniGit) changes as a file tree instead of a flat list
+    #[serde(default = "default_true")]
+    pub git_view_as_tree: bool,
+
     /// Last opened workspace directory path
     #[serde(default)]
     pub last_workspace_folder: Option<String>,
@@ -179,6 +183,7 @@ impl Default for CodiumSettings {
             terminal_font_family: default_terminal_font(),
             window_width: default_window_width(),
             window_height: default_window_height(),
+            git_view_as_tree: true,
             last_workspace_folder: None,
         }
     }
@@ -188,7 +193,17 @@ impl CodiumSettings {
     /// Discovers and loads `settings.json` from `settings/` directory, current directory or application root.
     /// If no file is found, creates a default `settings/settings.json`.
     pub fn load() -> Self {
-        let candidates = [
+        let mut candidates = Vec::new();
+
+        // 1. User-level global settings (applies across all projects)
+        if let Ok(home) = std::env::var("HOME") {
+            candidates.push(PathBuf::from(home).join(".config").join("codium").join("settings.json"));
+        } else if let Ok(profile) = std::env::var("USERPROFILE") {
+            candidates.push(PathBuf::from(profile).join(".config").join("codium").join("settings.json"));
+        }
+
+        // 2. Project local and binary adjacent settings
+        candidates.extend([
             PathBuf::from("settings/settings.json"),
             PathBuf::from("settings.json"),
             std::env::current_exe()
@@ -207,7 +222,7 @@ impl CodiumSettings {
                 .ok()
                 .and_then(|p| p.parent().and_then(|d| d.parent().map(|g| g.join("settings.json"))))
                 .unwrap_or_else(|| PathBuf::from("settings.json")),
-        ];
+        ]);
 
         for path in &candidates {
             if path.exists() {
@@ -226,13 +241,25 @@ impl CodiumSettings {
     }
 
     /// Saves the current configuration to `settings/settings.json` (or `settings.json` if already present in root)
+    /// Also mirrors configuration to `~/.config/codium/settings.json` so user settings persist across all projects.
     pub fn save(&self) -> Result<(), std::io::Error> {
         let target_path = if Path::new("settings.json").exists() && !Path::new("settings/settings.json").exists() {
             PathBuf::from("settings.json")
         } else {
             PathBuf::from("settings/settings.json")
         };
-        self.save_to(&target_path)
+        let res = self.save_to(&target_path);
+
+        // Mirror to global user configuration directory
+        if let Ok(home) = std::env::var("HOME") {
+            let global_path = PathBuf::from(home).join(".config").join("codium").join("settings.json");
+            let _ = self.save_to(&global_path);
+        } else if let Ok(profile) = std::env::var("USERPROFILE") {
+            let global_path = PathBuf::from(profile).join(".config").join("codium").join("settings.json");
+            let _ = self.save_to(&global_path);
+        }
+
+        res
     }
 
     /// Saves to a specific file path, automatically creating parent directories if needed
